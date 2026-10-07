@@ -9,6 +9,8 @@ frontend:
   phases:
     build:
       commands:
+        # SITE_URL (set in the Amplify console) must reach the Next.js server at runtime.
+        - env | grep -e '^SITE_URL=' >> .env.production || true
         - npm run build
   artifacts:
     baseDirectory: .next

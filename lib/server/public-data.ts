@@ -32,7 +32,14 @@ async function fetchPublicData(): Promise<PublicData> {
     if (catalogResult.errors?.length || !catalogResult.data) {
       throw new Error(`getPublicCatalog: ${errorText(catalogResult.errors) || 'no data'}`);
     }
-    return { settings: settingsResult.data ?? null, catalog: catalogResult.data };
+    const data = { settings: settingsResult.data ?? null, catalog: catalogResult.data };
+    if (process.env.NODE_ENV === 'development') {
+      const { categories, services, galleryImages } = data.catalog;
+      console.info(
+        `[public-data] read as guest from AppSync: settings ${data.settings ? 'found' : 'none'}, ${categories.length} categories, ${services.length} services, ${galleryImages.length} images`,
+      );
+    }
+    return data;
   });
 }
 
