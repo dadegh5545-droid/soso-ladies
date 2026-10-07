@@ -1,0 +1,123 @@
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: var(--hero-height);
+  padding: 0 var(--section-pad-x) var(--space-7);
+  background: var(--color-hero-tone);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+.video {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.video[data-ready] {
+  opacity: 1;
+}
+
+/* The design's light dark layer, a little deeper at the bottom where the text sits. */
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to top,
+    var(--color-hero-overlay-strong) 0%,
+    var(--color-hero-overlay) 55%,
+    var(--color-hero-overlay) 100%
+  );
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 760px;
+}
+
+.line {
+  width: var(--hero-line-width);
+  height: 3px;
+  background: var(--color-brand-yellow);
+}
+
+.title {
+  font-size: var(--text-display);
+  line-height: 1.2;
+  color: var(--color-on-dark);
+  overflow-wrap: anywhere;
+}
+
+.subtitle {
+  max-width: 560px;
+  font-size: var(--text-hero-sub);
+  color: var(--color-on-dark-muted);
+  white-space: pre-line;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: 10px;
+}
+
+.primary,
+.secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 var(--space-7);
+  border-radius: var(--radius-pill);
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.primary {
+  background: var(--color-on-dark);
+  color: var(--color-text);
+}
+
+.secondary {
+  border: 1px solid var(--color-on-dark);
+  color: var(--color-on-dark);
+}
+
+.hero :focus-visible {
+  outline-color: var(--color-focus-on-dark);
+}
+
+@media (min-width: 720px) {
+  .hero {
+    padding-bottom: var(--space-10);
+  }
+
+  .content {
+    gap: var(--space-5);
+  }
+
+  .title {
+    line-height: 1.15;
+  }
+
+  .buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-top: var(--space-3);
+  }
+}

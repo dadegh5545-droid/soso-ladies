@@ -1,0 +1,293 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-9) var(--section-pad-x) var(--section-pad-y);
+}
+
+.lead {
+  font-size: var(--text-lead);
+  color: var(--color-text-muted);
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* Mobile: one scrolling line each; desktop: centered and wrapping. */
+.row {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  padding-bottom: var(--space-1);
+  scrollbar-width: thin;
+}
+
+.tab,
+.chip {
+  flex-shrink: 0;
+  white-space: nowrap;
+  min-height: var(--touch-min);
+  border-radius: var(--radius-pill);
+  background: transparent;
+}
+
+.tab {
+  padding: 0 22px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text);
+  border: 1px solid var(--color-border-button);
+}
+
+.tab[aria-pressed='true'] {
+  background: var(--color-magenta);
+  border-color: var(--color-magenta);
+  color: var(--color-on-magenta);
+}
+
+.chip {
+  padding: 0 18px;
+  font-size: 14px;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+
+.chip[aria-pressed='true'] {
+  background: var(--color-chip-on);
+  border-color: var(--color-magenta);
+  color: var(--color-text);
+}
+
+.empty {
+  margin: var(--space-4) 0;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.empty[hidden] {
+  display: none;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Mobile card: compact and horizontal (image 96 × 120 + text). */
+.card {
+  display: flex;
+  gap: 14px;
+  padding: var(--space-3);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+}
+
+.image {
+  position: relative;
+  flex-shrink: 0;
+  width: 96px;
+  height: 120px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--color-placeholder-1);
+}
+
+.photo {
+  object-fit: cover;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.badgeSalon,
+.badgeHome {
+  font-size: var(--text-badge);
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  line-height: 1.6;
+}
+
+.badgeSalon {
+  background: var(--color-badge-salon-bg);
+  color: var(--color-badge-salon-text);
+  border: 1px solid var(--color-badge-salon-border);
+}
+
+.badgeHome {
+  background: var(--color-badge-home-bg);
+  color: var(--color-badge-home-text);
+  border: 1px solid var(--color-badge-home-bg);
+}
+
+.name {
+  font-weight: 500;
+  font-size: var(--text-card-title);
+  line-height: 1.5;
+}
+
+.description {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  white-space: pre-line;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-top: auto;
+}
+
+.price {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.ask {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--touch-min);
+  margin-inline-start: auto;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-text);
+}
+
+.ask svg {
+  width: 16px;
+  height: 16px;
+}
+
+@media (min-width: 720px) {
+  .section {
+    gap: var(--space-7);
+    padding: var(--section-pad-y) var(--section-pad-x);
+  }
+
+  .row {
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow: visible;
+    padding-bottom: 0;
+  }
+
+  .filters {
+    gap: var(--space-6);
+  }
+
+  .row:first-child {
+    gap: var(--space-3);
+  }
+
+  .row + .row {
+    gap: 10px;
+  }
+
+  .tab {
+    min-height: 48px;
+    padding: 0 28px;
+    font-size: 16px;
+  }
+
+  .chip {
+    padding: 0 var(--space-5);
+    font-size: 15px;
+  }
+
+  .empty {
+    margin: var(--space-6) 0;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 28px;
+  }
+
+  /* Desktop card: image on top, button at the bottom. */
+  .card {
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .image {
+    width: 100%;
+    height: 210px;
+    border-radius: 0;
+  }
+
+  .body {
+    gap: var(--space-3);
+    padding: var(--space-6);
+  }
+
+  .badges {
+    gap: var(--space-2);
+  }
+
+  .badgeSalon,
+  .badgeHome {
+    padding: 4px 14px;
+  }
+
+  .name {
+    line-height: 1.45;
+  }
+
+  .description {
+    flex-grow: 1;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-3);
+  }
+
+  .price {
+    font-size: 16px;
+  }
+
+  .ask {
+    justify-content: center;
+    gap: 10px;
+    min-height: 48px;
+    margin-top: var(--space-2);
+    margin-inline-start: 0;
+    border: 1px solid var(--color-text);
+    border-radius: var(--radius-pill);
+    font-size: 16px;
+  }
+
+  .ask svg {
+    width: 18px;
+    height: 18px;
+  }
+}

@@ -1,0 +1,24 @@
+.heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.line {
+  width: var(--accent-line-width);
+  height: 2px;
+  background: var(--color-magenta);
+}
+
+.title {
+  font-size: var(--text-section);
+  line-height: 1.4;
+}
+
+@media (min-width: 720px) {
+  .heading {
+    gap: var(--space-3);
+  }
+}

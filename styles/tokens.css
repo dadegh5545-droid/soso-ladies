@@ -1,0 +1,142 @@
+/*
+ * Design tokens (docs/design/DESIGN.md). Every color, font, size and spacing
+ * value used by the site and the admin panel comes from here.
+ * Mobile values are the defaults; the desktop block overrides them.
+ */
+:root {
+  /* Brand */
+  --color-brand-magenta: #e10485; /* brand strip, logo background */
+  --color-magenta: #d6077a; /* primary buttons, home badge, selection */
+  --color-magenta-dark: #b0125f; /* emphasis text */
+  --color-brand-yellow: #fce211; /* large text and thin lines only */
+
+  /* Surfaces */
+  --color-page: #fff6fa;
+  --color-card: #ffffff;
+  --color-gallery-bg: #fdeaf3;
+  --color-chip-on: #f9dce9;
+  --color-placeholder-1: #f9dce9;
+  --color-placeholder-2: #f6d0e1;
+  --color-placeholder-3: #f2c7db;
+  --color-placeholder-text: #7a2250;
+
+  /* Text */
+  --color-text: #2a1522; /* dark violet, never black */
+  --color-text-muted: #6e4a5e;
+  --color-on-dark: #fff6fa;
+  --color-on-dark-muted: #fbe3ee;
+  --color-on-magenta: #ffffff;
+
+  /* Lines */
+  --color-border: #f3d3e3;
+  --color-border-button: #e3a6c4;
+  --color-border-soft: #f1b5d1;
+  --color-border-dashed: #c9a3b8;
+
+  /* Badges */
+  --color-badge-salon-bg: #fce4ee;
+  --color-badge-salon-text: #8a0f56;
+  --color-badge-salon-border: #f1b5d1;
+  --color-badge-home-bg: #d6077a;
+  --color-badge-home-text: #ffffff;
+
+  /* Hero */
+  --color-hero-tone: #4a0f33;
+  --color-hero-overlay: rgba(40, 6, 28, 0.4);
+  --color-hero-overlay-strong: rgba(40, 6, 28, 0.62);
+
+  /* Footer */
+  --color-footer-bg: #2a1522;
+  --color-footer-text: #fbe3ee;
+  --color-footer-muted: #f3c6db;
+
+  /* States */
+  --color-danger: #b3123f;
+  --color-success: #1d6b45;
+  --color-switch-off: #c9a3b8;
+  --color-focus: #2a1522;
+  --color-focus-on-dark: #fff6fa;
+
+  /* Admin */
+  --color-admin-sidebar: #2a1522;
+  --color-admin-active: #5b1642;
+
+  /* Fonts (next/font sets --font-kufi and --font-plex in _app) */
+  --font-heading: var(--font-kufi), 'Noto Kufi Arabic', sans-serif;
+  --font-body: var(--font-plex), 'IBM Plex Sans Arabic', sans-serif;
+
+  /* Type scale (mobile) */
+  --text-display: 52px;
+  --text-section: 28px;
+  --text-card-title: 17px;
+  --text-body: 16px;
+  --text-lead: 16px;
+  --text-about: 17px;
+  --text-hero-sub: 17px;
+  --text-small: 14px;
+  --text-badge: 12px;
+  --line-body: 1.75;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 40px;
+  --space-9: 48px;
+  --space-10: 64px;
+  --section-pad-y: 56px;
+  --section-pad-x: 20px;
+
+  /* Shape */
+  --radius-card: 14px;
+  --radius-tile: 10px;
+  --radius-field: 12px;
+  --radius-pill: 999px;
+  --radius-frame: 4px;
+
+  /* Sizes */
+  --touch-min: 44px;
+  --header-logo-height: 40px;
+  --hero-height: 520px;
+  --gallery-tile-height: 170px;
+  --accent-line-width: 40px;
+  --hero-line-width: 56px;
+}
+
+@media (min-width: 720px) {
+  :root {
+    --text-display: 84px;
+    --text-section: 36px;
+    --text-card-title: 21px;
+    --text-body: 17px;
+    --text-lead: 17px;
+    --text-about: 19px;
+    --text-hero-sub: 20px;
+    --text-small: 15px;
+    --text-badge: 13px;
+    --line-body: 1.8;
+
+    --section-pad-y: 96px;
+    --section-pad-x: 64px;
+
+    --radius-card: 16px;
+    --radius-tile: 12px;
+
+    --header-logo-height: 50px;
+    --hero-height: 580px;
+    --gallery-tile-height: 300px;
+    --accent-line-width: 48px;
+    --hero-line-width: 72px;
+  }
+}
+
+@media (min-width: 720px) and (max-width: 1023px) {
+  :root {
+    --text-display: 64px;
+    --section-pad-x: 40px;
+  }
+}

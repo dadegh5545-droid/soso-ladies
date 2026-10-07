@@ -1,9 +1,17 @@
-import { Html, Head, Main, NextScript } from "next/document";
+import { Head, Html, Main, NextScript, type DocumentProps } from 'next/document';
 
-export default function Document() {
+/** Arabic (RTL) everywhere except the English page under /en. */
+export default function Document({ __NEXT_DATA__ }: DocumentProps) {
+  const page = __NEXT_DATA__.page;
+  const english = page === '/en' || page.startsWith('/en/');
   return (
-    <Html lang="en">
-      <Head />
+    <Html lang={english ? 'en' : 'ar'} dir={english ? 'ltr' : 'rtl'}>
+      <Head>
+        <meta name="theme-color" content="#E10485" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/brand/favicon-32.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/brand/favicon-512.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/brand/favicon-180.png" />
+      </Head>
       <body>
         <Main />
         <NextScript />

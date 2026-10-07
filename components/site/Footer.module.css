@@ -1,0 +1,100 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-7) var(--section-pad-x);
+  background: var(--color-footer-bg);
+  color: var(--color-footer-text);
+  text-align: center;
+}
+
+/* Room for the floating button below the last line on phones. */
+.footer[data-floating] {
+  padding-bottom: 96px;
+}
+
+.identity {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  line-height: 1.3;
+}
+
+.name {
+  font-family: var(--font-heading);
+  font-size: 18px;
+}
+
+.rights {
+  font-size: 13px;
+  color: var(--color-footer-muted);
+}
+
+.instagram {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: var(--touch-min);
+  font-size: 16px;
+}
+
+.footer :focus-visible {
+  outline-color: var(--color-focus-on-dark);
+}
+
+.floating {
+  position: fixed;
+  bottom: var(--space-4);
+  inset-inline-end: var(--space-4);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-pill);
+  background: var(--color-magenta);
+  border: 2px solid var(--color-card);
+  color: var(--color-on-dark);
+  box-shadow: 0 6px 18px rgba(42, 21, 34, 0.22);
+}
+
+.demo {
+  padding: var(--space-2) var(--section-pad-x);
+  background: var(--color-brand-yellow);
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+@media (min-width: 720px) {
+  .footer,
+  .footer[data-floating] {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-8) var(--section-pad-x);
+    text-align: start;
+  }
+
+  /* Keep the Instagram link clear of the floating button. */
+  .footer[data-floating] {
+    padding-inline-end: 112px;
+  }
+
+  .name {
+    font-size: 20px;
+  }
+
+  .rights {
+    font-size: 14px;
+  }
+
+  .floating {
+    bottom: var(--space-6);
+    inset-inline-end: 28px;
+  }
+}

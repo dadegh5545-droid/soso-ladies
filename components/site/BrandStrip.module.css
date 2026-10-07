@@ -1,0 +1,92 @@
+/* Mobile: face, then the Arabic block, then the Latin block. */
+.strip {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 44px var(--section-pad-x);
+  background: var(--color-brand-magenta);
+}
+
+.frame {
+  position: absolute;
+  inset: 10px;
+  border: 1.5px solid rgba(252, 226, 17, 0.55);
+  border-radius: var(--radius-frame);
+  pointer-events: none;
+}
+
+.block {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.block:last-child {
+  margin-top: var(--space-2);
+}
+
+.face {
+  position: relative;
+  order: -1;
+  height: 130px;
+  width: auto;
+}
+
+.sousou {
+  width: 220px;
+  height: auto;
+}
+
+.soso {
+  width: 210px;
+  height: auto;
+}
+
+.pill {
+  width: 190px;
+  height: auto;
+}
+
+/* Desktop: one row [Arabic block] · [face] · [Latin block], scaled down on tablets. */
+@media (min-width: 720px) {
+  .strip {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: min(48px, 3.75vw);
+    padding: var(--space-10) min(64px, 4vw);
+  }
+
+  .frame {
+    inset: var(--space-4);
+  }
+
+  .block {
+    gap: 18px;
+  }
+
+  .block:last-child {
+    margin-top: 0;
+  }
+
+  .face {
+    order: 0;
+    height: min(290px, 22.6vw);
+  }
+
+  .sousou {
+    width: min(400px, 31vw);
+  }
+
+  .soso {
+    width: min(360px, 28vw);
+  }
+
+  .pill {
+    width: min(340px, 26.5vw);
+  }
+}

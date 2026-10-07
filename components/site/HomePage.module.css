@@ -1,0 +1,15 @@
+.skip {
+  position: absolute;
+  top: var(--space-2);
+  inset-inline-start: var(--space-2);
+  z-index: 30;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  background: var(--color-text);
+  color: var(--color-on-dark);
+  transform: translateY(-200%);
+}
+
+.skip:focus {
+  transform: none;
+}

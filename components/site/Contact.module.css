@@ -1,0 +1,167 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--section-pad-y) var(--section-pad-x);
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: var(--space-6);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+}
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.icon {
+  display: flex;
+  flex-shrink: 0;
+  padding-top: 3px;
+}
+
+.icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.label {
+  font-weight: 600;
+}
+
+.value {
+  color: var(--color-text-muted);
+  white-space: pre-line;
+}
+
+.phone {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-min);
+  color: var(--color-text-muted);
+  unicode-bidi: isolate;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.whatsapp,
+.instagram,
+.mapLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 28px;
+  border-radius: var(--radius-pill);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.whatsapp {
+  background: var(--color-magenta);
+  color: var(--color-on-magenta);
+}
+
+.instagram,
+.mapLink {
+  border: 1px solid var(--color-text);
+  color: var(--color-text);
+}
+
+.map {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.frame {
+  width: 100%;
+  height: 240px;
+  border: 0;
+  border-radius: var(--radius-card);
+  background: var(--color-placeholder-1);
+}
+
+.mapLinkOnly {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  border-radius: var(--radius-card);
+  background: var(--color-placeholder-1);
+}
+
+.mapLinkOnly .mapLink {
+  background: var(--color-card);
+}
+
+@media (min-width: 720px) {
+  .section {
+    gap: var(--space-8);
+  }
+
+  .layout {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-7);
+  }
+
+  .card {
+    flex: 1 1 380px;
+    gap: var(--space-6);
+    padding: 36px;
+  }
+
+  .row {
+    gap: var(--space-4);
+  }
+
+  .icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-2);
+  }
+
+  .map,
+  .mapLinkOnly {
+    flex: 1 1 520px;
+  }
+
+  .frame {
+    flex: 1 1 auto;
+    min-height: 380px;
+  }
+
+  .mapLinkOnly {
+    min-height: 240px;
+  }
+
+  .map .mapLink {
+    align-self: flex-start;
+  }
+}
