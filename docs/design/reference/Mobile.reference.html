@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>الصفحة الرئيسية — الجوال</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Noto+Kufi+Arabic:wght@300;400;500&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+</style>
+</helmet>
+<div dir="rtl" style="display: flex; flex-direction: column; background: #FFF6FA; color: #2A1522; font-family: 'IBM Plex Sans Arabic', sans-serif; font-size: 16px; line-height: 1.75">
+
+<!-- الرأس -->
+<header style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 20px; border-bottom: 1px solid #F3D3E3">
+<a href="#top" aria-label="سوسو صالون نسائي" style="display: flex; align-items: center; gap: 10px"><img src="../brand/soso-magenta.svg" alt="Soso" style="height: 40px; width: auto; display: block"><span style="font-size: 13px; font-weight: 500; color: #6E4A5E; border-inline-start: 1px solid #F1B5D1; padding-inline-start: 10px">صالون نسائي</span></a>
+<div style="display: flex; align-items: center; gap: 4px">
+<a href="#top" style="display: flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; font-family: 'Cormorant Garamond', serif; font-size: 18px; letter-spacing: 0.08em">EN</a>
+<button aria-label="القائمة" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: transparent; border: 0">
+<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2A1522" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+</button>
+</div>
+</header>
+
+<!-- الهيرو -->
+<section id="top" style="position: relative; display: flex; flex-direction: column; justify-content: flex-end; height: 520px; background: {{heroTone}}; padding: 0 20px 32px; box-sizing: border-box; overflow: hidden">
+<div style="position: absolute; top: 16px; inset-inline-end: 20px; background: rgba(255,246,250,0.14); color: #FFF6FA; border: 1px solid rgba(255,246,250,0.45); padding: 6px 12px; border-radius: 999px; font-size: 13px">مكان الفيديو</div>
+<div style="position: absolute; top: 0; bottom: 0; inset-inline-start: 0; inset-inline-end: 0; background: rgba(40,6,28,0.4)"></div>
+<div style="position: relative; display: flex; flex-direction: column; gap: 14px">
+<div style="width: 56px; height: 3px; background: #FCE211"></div>
+<h1 style="margin: 0; font-family: 'Noto Kufi Arabic', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2; color: #FFF6FA">جمالك شغفنا</h1>
+<p style="margin: 0; font-size: 17px; color: #FBE3EE">[سطر قصير يعرّف بالصالون]</p>
+<div style="display: flex; flex-direction: column; gap: 12px; margin-top: 10px">
+<a href="#contact" style="display: flex; align-items: center; justify-content: center; background: #FFF6FA; color: #2A1522; min-height: 52px; border-radius: 999px; font-size: 17px; font-weight: 500">تواصلي عبر واتساب</a>
+<a href="#services" style="display: flex; align-items: center; justify-content: center; border: 1px solid #FFF6FA; color: #FFF6FA; min-height: 52px; border-radius: 999px; font-size: 17px; font-weight: 500">استعرضي الخدمات</a>
+</div>
+</div>
+</section>
+
+
+<!-- الخدمات -->
+<section id="services" style="display: flex; flex-direction: column; gap: 20px; padding: 48px 20px 56px;">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center">
+<div style="width: 40px; height: 2px; background: {{accent}}"></div>
+<h2 style="margin: 0; font-family: 'Noto Kufi Arabic', sans-serif; font-weight: 400; font-size: 28px">خدماتنا</h2>
+<p style="margin: 0; color: #6E4A5E; font-size: 16px">في الصالون أو في منزلك.</p>
+</div>
+
+<div style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="3">
+<button onClick="{{ t.pick }}" style="{{ t.style }}">{{ t.label }}</button>
+</sc-for>
+</div>
+
+<div style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px">
+<sc-for list="{{cats}}" as="c" hint-placeholder-count="5">
+<button onClick="{{ c.pick }}" style="{{ c.style }}">{{ c.label }}</button>
+</sc-for>
+</div>
+
+<sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+<p style="text-align: center; color: #6E4A5E; margin: 16px 0">لا توجد خدمات في هذا التصنيف حالياً.</p>
+</sc-if>
+
+<div style="display: flex; flex-direction: column; gap: 14px">
+<sc-for list="{{services}}" as="s" hint-placeholder-count="6">
+<article style="display: flex; gap: 14px; background: #FFFFFF; border: 1px solid #F3D3E3; border-radius: 14px; padding: 12px">
+<div style="display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 96px; height: 120px; background: #F9DCE9; color: #7A2250; font-size: 12px; border-radius: 10px; text-align: center">صورة الخدمة</div>
+<div style="display: flex; flex-direction: column; gap: 6px; flex-grow: 1; min-width: 0">
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<sc-for list="{{ s.badges }}" as="b" hint-placeholder-count="1">
+<span style="{{ b.style }}">{{ b.label }}</span>
+</sc-for>
+</div>
+<h3 style="margin: 0; font-family: 'Noto Kufi Arabic', sans-serif; font-weight: 500; font-size: 17px; line-height: 1.5">{{ s.name }}</h3>
+<p style="margin: 0; color: #6E4A5E; font-size: 14px; line-height: 1.6">{{ s.desc }}</p>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: auto">
+<sc-if value="{{ s.hasPrice }}" hint-placeholder-val="{{ false }}">
+<span style="font-size: 14px; font-weight: 600">{{ s.price }}</span>
+</sc-if>
+<a href="#contact" style="display: flex; align-items: center; gap: 6px; min-height: 44px; margin-inline-start: auto; font-size: 14px; font-weight: 500; color: #2A1522; border-bottom: 1px solid #2A1522">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2A1522" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.4-4.2A8 8 0 1 1 8.4 18.7L4 20z"/></svg>
+<span>اطلبي عبر واتساب</span>
+</a>
+</div>
+</div>
+</article>
+</sc-for>
+</div>
+</section>
+
+<!-- نبذة -->
+<section id="about" style="border-top: 1px solid #F3D3E3; display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 56px 24px; text-align: center">
+<div style="width: 40px; height: 2px; background: {{accent}}"></div>
+<h2 style="margin: 0; font-family: 'Noto Kufi Arabic', sans-serif; font-weight: 400; font-size: 28px">عن الصالون</h2>
+<p style="margin: 0; font-size: 17px; color: #6E4A5E">[نبذة قصيرة عن الصالون وفريقه، تُكتب من لوحة الإدارة]</p>
+</section>
+
+<!-- شريط الهوية -->
+<section aria-label="هوية الصالون" style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 44px 20px; background: #E10485">
+<div style="position: absolute; top: 10px; bottom: 10px; inset-inline-start: 10px; inset-inline-end: 10px; border: 1.5px solid rgba(252,226,17,0.55); border-radius: 4px; pointer-events: none"></div>
+<img src="../brand/face-white.svg" alt="" style="position: relative; height: 130px; width: auto; display: block">
+<div style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 10px">
+<img src="../brand/sousou-yellow.svg" alt="سوسو" style="width: 220px; height: auto; display: block">
+<img src="../brand/pill-arabic.svg" alt="صالون نسائي" style="width: 190px; height: auto; display: block">
+</div>
+<div style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 8px">
+<img src="../brand/soso-yellow.svg" alt="Soso" style="width: 210px; height: auto; display: block">
+<img src="../brand/pill-latin.svg" alt="Ladies Salon" style="width: 190px; height: auto; display: block">
+</div>
+</section>
+
+<!-- المعرض -->
+<section id="gallery" style="display: flex; flex-direction: column; gap: 20px; padding: 56px 20px; background: #FDEAF3">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center">
+<div style="width: 40px; height: 2px; background: {{accent}}"></div>
+<h2 style="margin: 0; font-family: 'Noto Kufi Arabic', sans-serif; font-weight: 400; font-size: 28px">من داخل الصالون</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div style="display: flex; align-items: center; justify-content: center; height: 170px; background: #F6D0E1; color: #7A2250; font-size: 13px; border-radius: 10px">صورة من الصالون</div>
+<div style="display: flex; align-items: center; justify-content: center; height: 170px; background: #F9DCE9; color: #7A2250; font-size: 13px; border-radius: 10px">صورة من الصالون</div>
+<div style="display: flex; align-items: center; justify-content: center; height: 170px; background: #F2C7DB; color: #7A2250; font-size: 13px; border-radius: 10px">صورة من الصالون</div>
+<div style="display: flex; align-items: center; justify-content: center; height: 170px; background: #F6D0E1; color: #7A2250; font-size: 13px; border-radius: 10px">صورة من الصالون</div>
+<div style="display: flex; align-items: center; justify-content: center; height: 170px; background: #F9DCE9; color: #7A2250; font-size: 13px; border-radius: 10px">صورة من الصالون</div>
+<div style="display: flex; align-items: center; justify-content: center; height: 170px; background: #F2C7DB; color: #7A2250; font-size: 13px; border-radius: 10px">صورة من الصالون</div>
+</div>
+</section>
+
+<!-- التواصل -->
+<section id="contact" style="display: flex; flex-direction: column; gap: 20px; padding: 56px 20px">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center">
+<div style="width: 40px; height: 2px; background: {{accent}}"></div>
+<h2 style="margin: 0; font-family: 'Noto Kufi Arabic', sans-serif; font-weight: 400; font-size: 28px">تواصلي معنا</h2>
+</div>
+<div style="display: flex; flex-direction: column; gap: 18px; background: #FFFFFF; border: 1px solid #F3D3E3; border-radius: 14px; padding: 24px">
+<div style="display: flex; gap: 14px; align-items: flex-start">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2A1522" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+<div><div style="font-weight: 600">العنوان</div><div style="color: #6E4A5E">[العنوان]</div></div>
+</div>
+<div style="display: flex; gap: 14px; align-items: flex-start">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2A1522" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+<div><div style="font-weight: 600">ساعات العمل</div><div style="color: #6E4A5E">[ساعات العمل]</div></div>
+</div>
+<div style="display: flex; gap: 14px; align-items: flex-start">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2A1522" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3.5h3l1.5 4-2 1.3a10 10 0 0 0 5.7 5.7l1.3-2 4 1.5v3a2 2 0 0 1-2 2A14.5 14.5 0 0 1 4 5.5a2 2 0 0 1 2-2z"/></svg>
+<div><div style="font-weight: 600">الهاتف</div><div style="color: #6E4A5E; direction: ltr; text-align: right">[+974 0000 0000]</div></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px; margin-top: 6px">
+<a href="#contact" style="display: flex; align-items: center; justify-content: center; gap: 10px; background: #D6077A; color: #FFFFFF; min-height: 52px; border-radius: 999px; font-size: 16px; font-weight: 500">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFF6FA" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.4-4.2A8 8 0 1 1 8.4 18.7L4 20z"/></svg>
+<span>واتساب</span>
+</a>
+<a href="#contact" style="display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid #2A1522; color: #2A1522; min-height: 52px; border-radius: 999px; font-size: 16px; font-weight: 500">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2A1522" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.8" cy="7.2" r="0.6"/></svg>
+<span>انستقرام</span>
+</a>
+</div>
+</div>
+<div style="display: flex; align-items: center; justify-content: center; height: 240px; background: #F9DCE9; color: #7A2250; font-size: 13px; border-radius: 14px">الخريطة</div>
+</section>
+
+<!-- الفوتر -->
+<footer style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 32px 20px 96px; background: #2A1522; color: #FBE3EE; text-align: center">
+<span style="font-family: 'Noto Kufi Arabic', sans-serif; font-size: 18px">سوسو صالون نسائي</span>
+<span style="font-size: 13px; color: #F3C6DB">جميع الحقوق محفوظة</span>
+</footer>
+
+<!-- زر واتساب العائم -->
+<div style="position: sticky; bottom: 16px; align-self: flex-end; margin-inline-end: 16px; margin-top: -72px; width: 56px; height: 56px; z-index: 5">
+<a href="#contact" aria-label="تواصلي عبر واتساب" style="display: flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 999px; background: #D6077A; border: 2px solid #FFFFFF">
+<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFF6FA" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.4-4.2A8 8 0 1 1 8.4 18.7L4 20z"/><path d="M9 9.5c.4 2.2 2.3 4.1 4.5 4.5l1.2-1.2-1.6-1-.8.6c-.9-.3-1.7-1.1-2-2l.6-.8-1-1.6L9 9.5z"/></svg>
+</a>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#D6077A","options":["#D6077A","#B0125F","#7A1D6B"]},"heroTone":{"editor":"color","default":"#4A0F33"},"$preview":{"width":390,"height":4700}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tab: 'all', cat: 'all' };
+  }
+  renderVals() {
+    const accent = this.props.accent ?? '#D6077A';
+    const heroTone = this.props.heroTone ?? '#4A0F33';
+    const { tab, cat } = this.state;
+
+    const base = 'flex-shrink: 0; white-space: nowrap; min-height: 44px; padding: 0 22px; border-radius: 999px; font-size: 15px; font-weight: 500; ';
+    const on = base + 'background: #D6077A; color: #FFFFFF; border: 1px solid #D6077A;';
+    const off = base + 'background: transparent; color: #2A1522; border: 1px solid #E3A6C4;';
+    const chipBase = 'flex-shrink: 0; white-space: nowrap; min-height: 44px; padding: 0 18px; border-radius: 999px; font-size: 14px; ';
+    const chipOn = chipBase + 'background: #F9DCE9; color: #2A1522; border: 1px solid #D6077A;';
+    const chipOff = chipBase + 'background: transparent; color: #6E4A5E; border: 1px solid #F3D3E3;';
+
+    const tabs = [
+      { key: 'all', label: 'الكل' },
+      { key: 'salon', label: 'في الصالون' },
+      { key: 'home', label: 'خدمة منزلية' }
+    ].map((t) => ({
+      label: t.label,
+      style: tab === t.key ? on : off,
+      pick: () => this.setState({ tab: t.key })
+    }));
+
+    const cats = [
+      { key: 'all', label: 'كل الفئات' },
+      { key: 'hair', label: 'الشعر' },
+      { key: 'makeup', label: 'المكياج والحنّاء' },
+      { key: 'nails', label: 'الأظافر' },
+      { key: 'skin', label: 'البشرة' }
+    ].map((c) => ({
+      label: c.label,
+      style: cat === c.key ? chipOn : chipOff,
+      pick: () => this.setState({ cat: c.key })
+    }));
+
+    const data = [
+      { id: 1, name: 'صبغ وعناية بالشعر', desc: 'ألوان مدروسة وعناية تحافظ على صحة الشعر.', cat: 'hair', type: 'SALON', price: 'من [السعر]' },
+      { id: 2, name: 'تسريحات المناسبات', desc: 'تسريحة تناسب فستانك وشكل وجهك.', cat: 'hair', type: 'BOTH', price: '' },
+      { id: 3, name: 'مكياج سهرة', desc: 'مكياج متكامل لإطلالة تدوم طوال المناسبة.', cat: 'makeup', type: 'BOTH', price: 'من [السعر]' },
+      { id: 4, name: 'حنّاء ونقش', desc: 'نقوش ناعمة بتصاميم تناسب المناسبة.', cat: 'makeup', type: 'HOME', price: '' },
+      { id: 5, name: 'مانيكير وباديكير', desc: 'عناية كاملة باليدين والقدمين.', cat: 'nails', type: 'SALON', price: '' },
+      { id: 6, name: 'جلسة عناية بالبشرة', desc: 'تنظيف وترطيب لبشرة متوازنة ومشرقة.', cat: 'skin', type: 'SALON', price: 'من [السعر]' }
+    ];
+
+    const badgeBase = 'font-size: 12px; padding: 2px 10px; border-radius: 999px; ';
+    const salonBadge = badgeBase + 'background: #FCE4EE; color: #8A0F56; border: 1px solid #F1B5D1;';
+    const homeBadge = badgeBase + 'background: #D6077A; color: #FFF6FA; border: 1px solid #D6077A;';
+
+    const tabOk = (s) => tab === 'all' || (tab === 'salon' && s.type !== 'HOME') || (tab === 'home' && s.type !== 'SALON');
+    const catOk = (s) => cat === 'all' || s.cat === cat;
+
+    const services = data.filter((s) => tabOk(s) && catOk(s)).map((s) => {
+      const badges = [];
+      if (s.type !== 'HOME') badges.push({ label: 'في الصالون', style: salonBadge });
+      if (s.type !== 'SALON') badges.push({ label: 'خدمة منزلية', style: homeBadge });
+      return { ...s, badges, hasPrice: s.price !== '' };
+    });
+
+    return { accent, heroTone, tabs, cats, services, isEmpty: services.length === 0 };
+  }
+}
+</script>
+</body>
+</html>

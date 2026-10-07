@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>لوحة الإدارة — الخدمات</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Noto+Kufi+Arabic:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+input,select,textarea{font-family:inherit}
+</style>
+</helmet>
+<div dir="rtl" style="display: flex; flex-wrap: wrap; background: #FFF6FA; color: #2A1522; font-family: 'IBM Plex Sans Arabic', sans-serif; font-size: 16px; line-height: 1.7; min-height: 1400px">
+
+<!-- الشريط الجانبي -->
+<aside style="display: flex; flex-direction: column; gap: 32px; flex: 0 0 260px; box-sizing: border-box; padding: 32px 20px; background: #2A1522; color: #FBE3EE">
+<div style="display: flex; flex-direction: column; line-height: 1.3; padding: 0 12px">
+<span style="font-family: 'Noto Kufi Arabic', sans-serif; font-size: 20px; font-weight: 500; color: #FFF6FA">سوسو صالون نسائي</span>
+<span style="font-size: 14px; color: #F3C6DB">لوحة الإدارة</span>
+</div>
+<nav style="display: flex; flex-direction: column; gap: 6px; flex-grow: 1">
+<a href="#" style="display: flex; align-items: center; gap: 14px; min-height: 48px; padding: 0 12px; border-radius: 10px; color: #FBE3EE">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FBE3EE" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>
+<span>الملخص</span>
+</a>
+<a href="#" style="display: flex; align-items: center; gap: 14px; min-height: 48px; padding: 0 12px; border-radius: 10px; color: #FBE3EE">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FBE3EE" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg>
+<span>الإعدادات العامة</span>
+</a>
+<a href="#" style="display: flex; align-items: center; gap: 14px; min-height: 48px; padding: 0 12px; border-radius: 10px; color: #FBE3EE">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FBE3EE" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M10 9.5v5l4.5-2.5z"/></svg>
+<span>الفيديو الرئيسي</span>
+</a>
+<a href="#" style="display: flex; align-items: center; gap: 14px; min-height: 48px; padding: 0 12px; border-radius: 10px; color: #FBE3EE">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FBE3EE" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4 17l5-4.5 3.5 3 3-2.5 4.5 4"/></svg>
+<span>المعرض</span>
+</a>
+<a href="#" aria-current="page" style="display: flex; align-items: center; gap: 14px; min-height: 48px; padding: 0 12px; border-radius: 10px; background: #5B1642; color: #FFF6FA; font-weight: 500">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFF6FA" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h9"/></svg>
+<span>الخدمات</span>
+</a>
+</nav>
+<a href="#" style="display: flex; align-items: center; gap: 14px; min-height: 48px; padding: 0 12px; border-radius: 10px; color: #F3C6DB">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F3C6DB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4M10 16l-4-4 4-4M6 12h10"/></svg>
+<span>تسجيل الخروج</span>
+</a>
+</aside>
+
+<!-- المحتوى -->
+<main style="display: flex; flex-direction: column; gap: 28px; flex: 1 1 760px; min-width: 0; box-sizing: border-box; padding: 40px 48px">
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<div>
+<h1 style="margin: 0; font-family: 'Noto Kufi Arabic', sans-serif; font-weight: 400; font-size: 32px">الخدمات</h1>
+<p style="margin: 0; color: #6E4A5E; font-size: 16px">أضيفي الخدمات وحدّدي أين تُقدَّم كل خدمة. تظهر التعديلات في الموقع خلال دقيقة.</p>
+</div>
+<button style="display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 28px; background: #D6077A; color: #FFFFFF; border: 0; border-radius: 999px; font-size: 16px; font-weight: 500">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFF6FA" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+<span>خدمة جديدة</span>
+</button>
+</div>
+
+<!-- ما ينقص الموقع -->
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; background: #FDEAF3; border: 1px solid #F1B5D1; border-radius: 14px; padding: 16px 20px">
+<span style="font-weight: 600">ما ينقص الموقع:</span>
+<a href="#" style="display: flex; align-items: center; min-height: 44px; text-decoration: underline">رقم الواتساب لم يُدخل</a>
+<a href="#" style="display: flex; align-items: center; min-height: 44px; text-decoration: underline">لا يوجد فيديو للصفحة الرئيسية</a>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start">
+
+<!-- قائمة الخدمات -->
+<section style="display: flex; flex-direction: column; gap: 10px; flex: 1 1 380px; min-width: 0">
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="6">
+<div style="{{ r.boxStyle }}">
+<button onClick="{{ r.pick }}" style="display: flex; flex-direction: column; align-items: flex-start; gap: 6px; flex-grow: 1; min-width: 0; min-height: 44px; padding: 0; background: transparent; border: 0; text-align: start; color: #2A1522">
+<span style="font-family: 'Noto Kufi Arabic', sans-serif; font-weight: 500; font-size: 17px">{{ r.name }}</span>
+<span style="display: flex; flex-wrap: wrap; gap: 6px">
+<sc-for list="{{ r.badges }}" as="b" hint-placeholder-count="1">
+<span style="{{ b.style }}">{{ b.label }}</span>
+</sc-for>
+<sc-if value="{{ r.hidden }}" hint-placeholder-val="{{ false }}">
+<span style="font-size: 12px; padding: 2px 10px; border-radius: 999px; background: transparent; color: #6E4A5E; border: 1px dashed #C58AA8">مخفية</span>
+</sc-if>
+</span>
+</button>
+<div style="display: flex; flex-direction: column">
+<button aria-label="نقل للأعلى" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 32px; background: transparent; border: 0">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6E4A5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg>
+</button>
+<button aria-label="نقل للأسفل" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 32px; background: transparent; border: 0">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6E4A5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+</button>
+</div>
+</div>
+</sc-for>
+</section>
+
+<!-- نموذج التعديل -->
+<section style="display: flex; flex-direction: column; gap: 24px; flex: 1.5 1 480px; min-width: 0; background: #FFFFFF; border: 1px solid #F3D3E3; border-radius: 16px; padding: 32px">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<h2 style="margin: 0; font-family: 'Noto Kufi Arabic', sans-serif; font-weight: 500; font-size: 22px">تعديل الخدمة</h2>
+<div style="display: flex; align-items: center; gap: 12px">
+<span id="vis-label" style="font-size: 15px; color: #6E4A5E">{{ visLabel }}</span>
+<button role="switch" aria-checked="{{ form.visible }}" aria-labelledby="vis-label" onClick="{{ toggleVisible }}" style="{{ form.switchStyle }}">
+<span style="{{ form.knobStyle }}"></span>
+</button>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="f-name" style="font-weight: 600">اسم الخدمة (بالعربية) <span style="color: #B3123F">*</span></label>
+<input id="f-name" type="text" value="{{ form.name }}" onChange="{{ setName }}" style="min-height: 52px; padding: 0 16px; border: 1px solid #E3A6C4; border-radius: 12px; font-size: 16px; background: #FFFFFF; color: #2A1522">
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="f-name-en" style="font-weight: 600">اسم الخدمة (بالإنجليزية) <span style="color: #6E4A5E; font-weight: 400">اختياري</span></label>
+<input id="f-name-en" type="text" value="" placeholder="Service name" dir="ltr" onChange="{{ noop }}" style="min-height: 52px; padding: 0 16px; border: 1px solid #E3A6C4; border-radius: 12px; font-size: 16px; background: #FFFFFF; color: #2A1522">
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="f-desc" style="font-weight: 600">الوصف</label>
+<textarea id="f-desc" rows="3" onChange="{{ noop }}" style="padding: 12px 16px; border: 1px solid #E3A6C4; border-radius: 12px; font-size: 16px; background: #FFFFFF; color: #2A1522; resize: vertical">{{ form.desc }}</textarea>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="f-cat" style="font-weight: 600">الفئة</label>
+<select id="f-cat" onChange="{{ noop }}" style="min-height: 52px; padding: 0 16px; border: 1px solid #E3A6C4; border-radius: 12px; font-size: 16px; background: #FFFFFF; color: #2A1522">
+<option>الشعر</option>
+<option>المكياج والحنّاء</option>
+<option>الأظافر</option>
+<option>البشرة</option>
+<option>+ فئة جديدة</option>
+</select>
+</div>
+
+<fieldset style="display: flex; flex-direction: column; gap: 12px; margin: 0; padding: 0; border: 0; min-width: 0">
+<legend style="padding: 0; margin-bottom: 4px; font-weight: 600">أين تُقدَّم هذه الخدمة؟ <span style="color: #B3123F">*</span></legend>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<sc-for list="{{options}}" as="o" hint-placeholder-count="3">
+<label style="{{ o.style }}">
+<input type="radio" name="availability" checked="{{ o.checked }}" onChange="{{ o.pick }}" style="width: 20px; height: 20px; margin: 0; accent-color: #D6077A">
+<span style="font-weight: 500">{{ o.label }}</span>
+</label>
+</sc-for>
+</div>
+<p style="margin: 0; font-size: 14px; color: #6E4A5E">{{ typeHint }}</p>
+</fieldset>
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 8px; flex: 1 1 200px">
+<label for="f-price" style="font-weight: 600">السعر <span style="color: #6E4A5E; font-weight: 400">اختياري</span></label>
+<input id="f-price" type="text" value="{{ form.price }}" onChange="{{ setPrice }}" style="min-height: 52px; padding: 0 16px; border: 1px solid #E3A6C4; border-radius: 12px; font-size: 16px; background: #FFFFFF; color: #2A1522">
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; flex: 1 1 200px">
+<label for="f-dur" style="font-weight: 600">المدة بالدقائق <span style="color: #6E4A5E; font-weight: 400">اختياري</span></label>
+<input id="f-dur" type="text" value="" placeholder="60" dir="ltr" onChange="{{ noop }}" style="min-height: 52px; padding: 0 16px; border: 1px solid #E3A6C4; border-radius: 12px; font-size: 16px; background: #FFFFFF; color: #2A1522">
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-weight: 600">صورة الخدمة <span style="color: #6E4A5E; font-weight: 400">اختيارية</span></span>
+<div style="display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px; min-height: 120px; border: 1.5px dashed #C9A3B8; border-radius: 12px; color: #6E4A5E; font-size: 15px; text-align: center; padding: 16px">
+<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#6E4A5E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V5M7.5 9.5L12 5l4.5 4.5M5 19h14"/></svg>
+<span>اضغطي لرفع صورة. تُصغَّر وتُضغط تلقائياً قبل الرفع.</span>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding-top: 8px; border-top: 1px solid #F3D3E3">
+<button style="min-height: 52px; padding: 0 32px; background: #D6077A; color: #FFFFFF; border: 0; border-radius: 999px; font-size: 16px; font-weight: 500">حفظ</button>
+<button style="min-height: 52px; padding: 0 28px; background: transparent; color: #2A1522; border: 1px solid #2A1522; border-radius: 999px; font-size: 16px; font-weight: 500">إلغاء</button>
+<button style="min-height: 52px; padding: 0 20px; margin-inline-start: auto; background: transparent; color: #B3123F; border: 0; font-size: 16px; font-weight: 500; text-decoration: underline">حذف الخدمة</button>
+</div>
+</section>
+
+</div>
+</main>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1400}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { sel: 3, name: 'مكياج سهرة', price: 'من [السعر]', types: {}, vis: {} };
+  }
+  renderVals() {
+    const { sel, name, price, types, vis } = this.state;
+
+    const base = [
+      { id: 1, name: 'صبغ وعناية بالشعر', desc: 'ألوان مدروسة وعناية تحافظ على صحة الشعر.', type: 'SALON', price: 'من [السعر]' },
+      { id: 2, name: 'تسريحات المناسبات', desc: 'تسريحة تناسب فستانك وشكل وجهك.', type: 'BOTH', price: '' },
+      { id: 3, name: 'مكياج سهرة', desc: 'مكياج متكامل لإطلالة تدوم طوال المناسبة.', type: 'BOTH', price: 'من [السعر]' },
+      { id: 4, name: 'حنّاء ونقش', desc: 'نقوش ناعمة بتصاميم تناسب المناسبة.', type: 'HOME', price: '' },
+      { id: 5, name: 'مانيكير وباديكير', desc: 'عناية كاملة باليدين والقدمين.', type: 'SALON', price: '' },
+      { id: 6, name: 'جلسة عناية بالبشرة', desc: 'تنظيف وترطيب لبشرة متوازنة ومشرقة.', type: 'SALON', price: 'من [السعر]' }
+    ];
+    const typeOf = (s) => types[s.id] ?? s.type;
+    const visOf = (s) => (vis[s.id] === undefined ? true : vis[s.id]);
+
+    const badgeBase = 'font-size: 12px; padding: 2px 10px; border-radius: 999px; ';
+    const salonBadge = badgeBase + 'background: #FCE4EE; color: #8A0F56; border: 1px solid #F1B5D1;';
+    const homeBadge = badgeBase + 'background: #D6077A; color: #FFF6FA; border: 1px solid #D6077A;';
+
+    const rows = base.map((s) => {
+      const t = typeOf(s);
+      const badges = [];
+      if (t !== 'HOME') badges.push({ label: 'في الصالون', style: salonBadge });
+      if (t !== 'SALON') badges.push({ label: 'خدمة منزلية', style: homeBadge });
+      const active = s.id === sel;
+      return {
+        name: s.id === sel ? name : s.name,
+        badges,
+        hidden: !visOf(s),
+        boxStyle: 'display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 14px; ' + (active ? 'background: #FFFFFF; border: 1.5px solid #D6077A;' : 'background: #FFFFFF; border: 1px solid #F3D3E3;'),
+        pick: () => this.setState({ sel: s.id, name: s.name, price: s.price })
+      };
+    });
+
+    const cur = base.find((s) => s.id === sel);
+    const curType = typeOf(cur);
+    const curVisible = visOf(cur);
+
+    const optBase = 'display: flex; align-items: center; gap: 12px; flex: 1 1 150px; min-height: 52px; padding: 0 18px; border-radius: 12px; cursor: pointer; ';
+    const options = [
+      { key: 'SALON', label: 'في الصالون فقط' },
+      { key: 'HOME', label: 'منزلية فقط' },
+      { key: 'BOTH', label: 'الاثنان' }
+    ].map((o) => ({
+      label: o.label,
+      checked: curType === o.key,
+      style: optBase + (curType === o.key ? 'background: #FCE4EE; border: 1.5px solid #D6077A;' : 'background: #FFFFFF; border: 1px solid #E3A6C4;'),
+      pick: () => this.setState({ types: { ...types, [sel]: o.key } })
+    }));
+
+    const hints = {
+      SALON: 'تظهر للزائرات تحت تبويب «في الصالون» فقط.',
+      HOME: 'تظهر تحت تبويب «خدمة منزلية» فقط، بشارة «خدمة منزلية».',
+      BOTH: 'تظهر تحت التبويبين، بشارتين: «في الصالون» و«خدمة منزلية».'
+    };
+
+    const form = {
+      name,
+      price,
+      desc: cur.desc,
+      visible: curVisible,
+      switchStyle: 'position: relative; width: 52px; height: 30px; padding: 0; border: 0; border-radius: 999px; cursor: pointer; background: ' + (curVisible ? '#D6077A' : '#C9A3B8') + ';',
+      knobStyle: 'position: absolute; top: 3px; width: 24px; height: 24px; border-radius: 999px; background: #FFF6FA; ' + (curVisible ? 'inset-inline-start: 25px;' : 'inset-inline-start: 3px;')
+    };
+
+    return {
+      rows,
+      options,
+      form,
+      typeHint: hints[curType],
+      visLabel: curVisible ? 'ظاهرة في الموقع' : 'مخفية عن الموقع',
+      toggleVisible: () => this.setState({ vis: { ...vis, [sel]: !curVisible } }),
+      setName: (e) => this.setState({ name: e.target.value }),
+      setPrice: (e) => this.setState({ price: e.target.value }),
+      noop: () => {}
+    };
+  }
+}
+</script>
+</body>
+</html>
