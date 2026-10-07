@@ -21,7 +21,7 @@ const categories = [
 const services = [
   { id: 'demo-1', cat: 'demo-hair', type: 'SALON', price: '150', ar: ['صبغ وعناية بالشعر', 'ألوان مدروسة وعناية تحافظ على صحة الشعر.'], en: ['Hair color & care', 'Considered colors and care that keeps hair healthy.'] },
   { id: 'demo-2', cat: 'demo-hair', type: 'BOTH', price: null, ar: ['تسريحات المناسبات', 'تسريحة تناسب فستانك وشكل وجهك.'], en: ['Occasion hairstyles', 'A style that suits your dress and face shape.'] },
-  { id: 'demo-3', cat: 'demo-makeup', type: 'BOTH', price: '300', ar: ['مكياج سهرة', 'مكياج متكامل لإطلالة تدوم طوال المناسبة.'], en: ['Evening makeup', 'Complete makeup that lasts the whole occasion.'] },
+  { id: 'demo-3', cat: 'demo-makeup', type: 'BOTH', price: '1,250', ar: ['مكياج سهرة', 'مكياج متكامل لإطلالة تدوم طوال المناسبة.'], en: ['Evening makeup', 'Complete makeup that lasts the whole occasion.'] },
   { id: 'demo-4', cat: 'demo-makeup', type: 'HOME', price: null, ar: ['حنّاء ونقش', 'نقوش ناعمة بتصاميم تناسب المناسبة.'], en: ['Henna designs', 'Fine patterns designed for the occasion.'] },
   { id: 'demo-5', cat: 'demo-nails', type: 'SALON', price: null, ar: ['مانيكير وباديكير', 'عناية كاملة باليدين والقدمين.'], en: ['Manicure & pedicure', 'Complete care for hands and feet.'] },
   { id: 'demo-6', cat: 'demo-skin', type: 'SALON', price: '200', ar: ['جلسة عناية بالبشرة', 'تنظيف وترطيب لبشرة متوازنة ومشرقة.'], en: ['Skin care session', 'Cleansing and hydration for balanced, glowing skin.'] },

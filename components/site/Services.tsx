@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { useMemo, useState } from 'react';
 import { ChatIcon } from '@/components/icons';
+import { PriceText } from '@/components/PriceText';
 import { strings } from '@/lib/site/strings';
 import type { ServiceView, SiteView } from '@/lib/site/view';
 import { serviceMessage, whatsappLink, type ServiceTab } from '@/lib/whatsapp';
@@ -109,7 +110,11 @@ function ServiceCard({ service, view, tab }: { service: ServiceView; view: SiteV
         )}
         {(service.price || view.whatsapp) && (
           <div className={styles.footer}>
-            {service.price && <span className={styles.price}>{t.priceFrom(service.price)}</span>}
+            {service.price && (
+              <span className={styles.price}>
+                <PriceText lang={view.lang} amount={service.price} />
+              </span>
+            )}
             {view.whatsapp && (
               <a
                 className={styles.ask}

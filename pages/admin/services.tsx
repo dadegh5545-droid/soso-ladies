@@ -3,6 +3,7 @@ import { AdminLayout, Notice, PageTitle, useConfirm, useUnsavedChanges } from '@
 import { Switch, TextField, focusFirstError } from '@/components/admin/fields';
 import { MissingBar } from '@/components/admin/MissingBar';
 import { ChevronIcon, PlusIcon, UploadIcon } from '@/components/icons';
+import { PriceText } from '@/components/PriceText';
 import styles from '@/components/admin/admin.module.css';
 import type { Availability, Service, ServiceCategory, SiteSettings } from '@/lib/admin/amplify';
 import {
@@ -21,6 +22,7 @@ import {
 import { compressImage, newMediaKey, previewUrl, removeMedia, uploadMedia } from '@/lib/admin/media';
 import { dataErrorMessage, logError } from '@/lib/admin/messages';
 import { missingItems } from '@/lib/admin/missing';
+import { formatPrice } from '@/lib/price';
 import { requireSessionCookie } from '@/lib/server/admin-guard';
 
 export const getServerSideProps = requireSessionCookie;
@@ -322,6 +324,11 @@ function ServicesEditor() {
                       {!service.isVisible && <span className={styles.badgeHidden}>مخفية</span>}
                       {category && !category.isVisible && <span className={styles.badgeHidden}>فئتها مخفية</span>}
                       {category && <span className={styles.badgeNeutral}>{category.nameAr}</span>}
+                      {formatPrice(service.price) && (
+                        <span className={styles.badgeNeutral}>
+                          <PriceText lang="ar" amount={formatPrice(service.price) as string} />
+                        </span>
+                      )}
                     </span>
                   </button>
                   <div className={styles.arrows}>
@@ -415,7 +422,24 @@ function ServicesEditor() {
           </fieldset>
 
           <div className={styles.pair}>
-            <TextField label="السعر" optional dir="ltr" inputMode="decimal" value={form.price} onChange={(v) => set('price', v)} error={errors.price} hint="يظهر في الموقع «من …»." />
+            <TextField
+              label="السعر (ر.ق)"
+              optional
+              dir="ltr"
+              inputMode="decimal"
+              value={form.price}
+              onChange={(v) => set('price', v)}
+              error={errors.price}
+              hint={
+                formatPrice(Number(form.price)) ? (
+                  <>
+                    يظهر في الموقع: <PriceText lang="ar" amount={formatPrice(Number(form.price)) as string} />
+                  </>
+                ) : (
+                  'يظهر في الموقع «من … ر.ق».'
+                )
+              }
+            />
             <TextField label="المدة بالدقائق" optional dir="ltr" inputMode="numeric" placeholder="60" value={form.durationMinutes} onChange={(v) => set('durationMinutes', v)} error={errors.durationMinutes} />
           </div>
 

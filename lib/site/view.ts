@@ -4,6 +4,7 @@
  * empty values, so components only decide whether to show an element.
  */
 import type { Schema } from '@/amplify/data/resource';
+import { formatPrice } from '@/lib/price';
 import { normalizeWhatsappNumber, type Availability } from '@/lib/whatsapp';
 import { strings, type Lang } from './strings';
 
@@ -19,6 +20,7 @@ export type ServiceView = {
   description: LText | null;
   categoryId: string;
   availability: Availability;
+  /** Formatted amount in QAR (lib/price.ts), shown with PriceText. */
   price: string | null;
   imageSrc: string | null;
 };
@@ -71,11 +73,6 @@ export const mediaSrc = (key: string | null | undefined): string | null => {
   const k = clean(key);
   return k && k.startsWith('media/') ? `/${k}` : null;
 };
-
-const formatPrice = (price: number | null | undefined): string | null =>
-  typeof price === 'number' && Number.isFinite(price) && price > 0
-    ? String(Math.round(price * 100) / 100)
-    : null;
 
 export function buildSiteView(
   lang: Lang,
