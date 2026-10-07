@@ -52,7 +52,6 @@ export const strings = {
     mapTitle: 'موقع الصالون على الخريطة',
     rights: 'جميع الحقوق محفوظة',
     followInstagram: 'تابعينا على انستقرام',
-    demoBanner: 'محتوى تجريبي: يظهر في بيئة التطوير فقط لأن البيانات فارغة، ولا يصل إلى الموقع المنشور.',
   },
   en: {
     salonType: 'Ladies Salon',
@@ -101,7 +100,6 @@ export const strings = {
     mapTitle: 'Salon location on the map',
     rights: 'All rights reserved',
     followInstagram: 'Follow us on Instagram',
-    demoBanner: 'Demo content: shown in development only because the data is empty. It never reaches the published site.',
   },
 } as const;
 

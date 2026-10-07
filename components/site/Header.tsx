@@ -28,6 +28,8 @@ export function Header({ view, nav }: { view: SiteView; nav: NavItem[] }) {
   }, [open]);
 
   const homeHref = view.lang === 'en' ? '/en' : '/';
+  // With nothing but "Home" to link to, the menu is left out.
+  const showNav = nav.length > 1;
 
   return (
     <header className={styles.header}>
@@ -38,20 +40,22 @@ export function Header({ view, nav }: { view: SiteView; nav: NavItem[] }) {
             alt="Soso"
             width={390}
             height={182}
-            priority
+            loading="eager"
             unoptimized
             className={styles.logo}
           />
           <span className={styles.salonType}>{t.salonType}</span>
         </Link>
 
-        <nav className={styles.nav} aria-label={t.mainNav}>
-          {nav.map((item) => (
-            <a key={item.href} href={item.href}>
-              {item.label}
-            </a>
-          ))}
-        </nav>
+        {showNav && (
+          <nav className={styles.nav} aria-label={t.mainNav}>
+            {nav.map((item) => (
+              <a key={item.href} href={item.href}>
+                {item.label}
+              </a>
+            ))}
+          </nav>
+        )}
 
         <div className={styles.actions}>
           <Link href={t.otherLang.href} hrefLang={t.otherLang.lang} lang={t.otherLang.lang} className={styles.lang} aria-label={t.otherLang.name}>
@@ -63,35 +67,39 @@ export function Header({ view, nav }: { view: SiteView; nav: NavItem[] }) {
               <span>{t.whatsappCta}</span>
             </a>
           )}
-          <button
-            ref={buttonRef}
-            type="button"
-            className={styles.menuButton}
-            aria-expanded={open}
-            aria-controls={panelId}
-            aria-label={open ? t.closeMenu : t.menu}
-            onClick={() => setOpen((value) => !value)}
-          >
-            {open ? <CloseIcon size={26} /> : <MenuIcon size={26} />}
-          </button>
+          {showNav && (
+            <button
+              ref={buttonRef}
+              type="button"
+              className={styles.menuButton}
+              aria-expanded={open}
+              aria-controls={panelId}
+              aria-label={open ? t.closeMenu : t.menu}
+              onClick={() => setOpen((value) => !value)}
+            >
+              {open ? <CloseIcon size={26} /> : <MenuIcon size={26} />}
+            </button>
+          )}
         </div>
       </div>
 
-      <div id={panelId} className={styles.panel} hidden={!open}>
-        <nav aria-label={t.mainNav}>
-          {nav.map((item) => (
-            <a key={item.href} href={item.href} onClick={() => setOpen(false)}>
-              {item.label}
+      {showNav && (
+        <div id={panelId} className={styles.panel} hidden={!open}>
+          <nav aria-label={t.mainNav}>
+            {nav.map((item) => (
+              <a key={item.href} href={item.href} onClick={() => setOpen(false)}>
+                {item.label}
+              </a>
+            ))}
+          </nav>
+          {view.whatsapp && (
+            <a className={styles.panelWhatsapp} href={whatsappLink(view.whatsapp)} target="_blank" rel="noopener noreferrer">
+              <WhatsappIcon size={20} />
+              <span>{t.whatsappCta}</span>
             </a>
-          ))}
-        </nav>
-        {view.whatsapp && (
-          <a className={styles.panelWhatsapp} href={whatsappLink(view.whatsapp)} target="_blank" rel="noopener noreferrer">
-            <WhatsappIcon size={20} />
-            <span>{t.whatsappCta}</span>
-          </a>
-        )}
-      </div>
+          )}
+        </div>
+      )}
     </header>
   );
 }

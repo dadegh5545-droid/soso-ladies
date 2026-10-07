@@ -75,6 +75,7 @@
 
   /* Fonts (next/font sets --font-kufi and --font-plex in _app) */
   --font-heading: var(--font-kufi), 'Noto Kufi Arabic', sans-serif;
+  --font-heading-medium: var(--font-kufi-medium), var(--font-kufi), 'Noto Kufi Arabic', sans-serif;
   --font-body: var(--font-plex), 'IBM Plex Sans Arabic', sans-serif;
 
   /* Type scale (mobile) */

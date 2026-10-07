@@ -29,7 +29,7 @@
 }
 
 .brandTitle {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading-medium);
   font-size: 18px;
   font-weight: 500;
 }
@@ -76,7 +76,7 @@
 }
 
 .sidebarName {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading-medium);
   font-size: 20px;
   font-weight: 500;
   color: var(--color-on-dark);
@@ -204,7 +204,7 @@
 }
 
 .cardTitle {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading-medium);
   font-size: 20px;
   font-weight: 500;
   line-height: 1.4;
@@ -415,7 +415,7 @@
 }
 
 .sectionTitle {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading-medium);
   font-size: 18px;
   font-weight: 500;
 }
@@ -615,7 +615,7 @@
 }
 
 .rowName {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading-medium);
   font-weight: 500;
   font-size: 17px;
   overflow-wrap: anywhere;

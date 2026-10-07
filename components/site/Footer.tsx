@@ -41,10 +41,10 @@ export function FloatingWhatsapp({ view }: { view: SiteView }) {
 }
 
 export function DemoBanner({ view }: { view: SiteView }) {
-  if (!view.demo) return null;
+  if (!view.demoNote) return null;
   return (
     <div className={styles.demo} role="note">
-      {strings[view.lang].demoBanner}
+      {view.demoNote}
     </div>
   );
 }

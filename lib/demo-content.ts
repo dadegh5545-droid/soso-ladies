@@ -69,6 +69,10 @@ export function applyDemo(view: SiteView, hasSettings: boolean): SiteView {
     }));
   }
 
-  next.demo = used;
+  next.demoNote = used
+    ? lang === 'en'
+      ? 'Demo content: shown in development only because the data is empty. It never reaches the published site.'
+      : 'محتوى تجريبي: يظهر في بيئة التطوير فقط لأن البيانات فارغة، ولا يصل إلى الموقع المنشور.'
+    : null;
   return next;
 }

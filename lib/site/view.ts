@@ -43,7 +43,8 @@ export type SiteView = {
   categories: { id: string; name: LText }[];
   services: ServiceView[];
   gallery: GalleryImageView[];
-  demo: boolean;
+  /** Development only (lib/demo-content.ts): the banner shown over demo content. */
+  demoNote: string | null;
 };
 
 const clean = (value: string | null | undefined): string | null => {
@@ -134,7 +135,7 @@ export function buildSiteView(
       if (!src) return [];
       return [{ id: image.id, src, alt: pick(lang, image.altAr, image.altEn) ?? { text: t.galleryTitle, lang } }];
     }),
-    demo: false,
+    demoNote: null,
   };
 }
 
