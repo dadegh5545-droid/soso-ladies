@@ -12,8 +12,17 @@ export type NavItem = { href: string; label: string };
 export function Header({ view, nav }: { view: SiteView; nav: NavItem[] }) {
   const t = strings[view.lang];
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const panelId = useId();
   const buttonRef = useRef<HTMLButtonElement>(null);
+
+  // Once the page moves, the sticky bar gets its glass background and shadow.
+  useEffect(() => {
+    const update = () => setScrolled(window.scrollY > 8);
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    return () => window.removeEventListener('scroll', update);
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -32,7 +41,7 @@ export function Header({ view, nav }: { view: SiteView; nav: NavItem[] }) {
   const showNav = nav.length > 1;
 
   return (
-    <header className={styles.header}>
+    <header className={styles.header} data-scrolled={scrolled || open || undefined}>
       <div className={styles.bar}>
         <Link href={homeHref} className={styles.brand} aria-label={view.salonName.text}>
           <Image

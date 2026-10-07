@@ -2,63 +2,101 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  height: var(--hero-height);
-  padding: 0 var(--section-pad-x) var(--space-7);
-  background: var(--color-hero-tone);
+  justify-content: center;
+  padding: var(--space-9) var(--section-pad-x) var(--space-10);
+  background: var(--gradient-hero);
+  color: var(--color-on-dark);
   overflow: hidden;
   isolation: isolate;
 }
 
-.media {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -2;
-}
-
-.video {
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-
-.video[data-ready] {
-  opacity: 1;
-}
-
-/* The design's light dark layer, a little deeper at the bottom where the text sits. */
-.overlay {
+/* Soft light drifting behind everything: three blurred-edge radial washes. */
+.backdrop {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(
-    to top,
-    var(--color-hero-overlay-strong) 0%,
-    var(--color-hero-overlay) 55%,
-    var(--color-hero-overlay) 100%
-  );
+  pointer-events: none;
+}
+
+.glowA,
+.glowB,
+.glowC {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+}
+
+.glowA {
+  width: 90vw;
+  height: 90vw;
+  top: -30vw;
+  inset-inline-end: -30vw;
+  background: radial-gradient(circle, var(--color-hero-glow-magenta) 0%, transparent 65%);
+  animation: drift-a 18s var(--ease-in-out) infinite alternate;
+}
+
+.glowB {
+  width: 70vw;
+  height: 70vw;
+  bottom: -35vw;
+  inset-inline-start: -25vw;
+  background: radial-gradient(circle, var(--color-hero-glow-rose) 0%, transparent 65%);
+  animation: drift-b 22s var(--ease-in-out) infinite alternate;
+}
+
+.glowC {
+  width: 40vw;
+  height: 40vw;
+  top: 35%;
+  inset-inline-start: 30%;
+  background: radial-gradient(circle, var(--color-hero-glow-pink) 0%, transparent 65%);
+  animation: drift-c 26s var(--ease-in-out) infinite alternate;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-10);
+  width: 100%;
+  max-width: 1240px;
+  margin-inline: auto;
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  max-width: 760px;
+  align-items: center;
+  gap: var(--space-4);
+  text-align: center;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--color-on-dark-muted);
+  animation: fade-up 0.8s var(--ease-out) 0.05s both;
 }
 
 .line {
   width: var(--hero-line-width);
   height: 3px;
   background: var(--color-brand-yellow);
+  transform-origin: center;
+  animation: line-grow 1s var(--ease-out) 0.2s both;
 }
 
+/* Transform only (no fade): the title paints at once, which keeps LCP fast. */
 .title {
   font-size: var(--text-display);
   line-height: 1.2;
   color: var(--color-on-dark);
   overflow-wrap: anywhere;
+  animation: rise 1s var(--ease-out) both;
 }
 
 .subtitle {
@@ -66,25 +104,64 @@
   font-size: var(--text-hero-sub);
   color: var(--color-on-dark-muted);
   white-space: pre-line;
+  animation: fade-up 0.8s var(--ease-out) 0.25s both;
+}
+
+.modes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+  margin: var(--space-1) 0 0;
+  padding: 0;
+  list-style: none;
+  animation: fade-up 0.8s var(--ease-out) 0.35s both;
+}
+
+.modes li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 40px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-hero-glass-border);
+  background: var(--color-hero-glass);
+  font-size: 15px;
+}
+
+.modes svg {
+  color: var(--color-brand-yellow);
 }
 
 .buttons {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   gap: var(--space-3);
-  margin-top: 10px;
+  width: 100%;
+  max-width: 360px;
+  margin-top: var(--space-2);
+  animation: fade-up 0.8s var(--ease-out) 0.45s both;
 }
 
 .primary,
 .secondary {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 52px;
+  gap: 10px;
+  min-height: 54px;
   padding: 0 var(--space-7);
   border-radius: var(--radius-pill);
   font-size: 17px;
   font-weight: 500;
+  overflow: hidden;
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out),
+    background var(--duration-fast) ease;
 }
 
 .primary {
@@ -92,32 +169,199 @@
   color: var(--color-text);
 }
 
+/* A light sweep crosses the main button on hover. */
+.primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-shine);
+  transform: translateX(-120%);
+  transition: transform 0.8s var(--ease-out);
+}
+
+.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+.primary:hover::after {
+  transform: translateX(120%);
+}
+
 .secondary {
   border: 1px solid var(--color-on-dark);
   color: var(--color-on-dark);
+}
+
+.secondary:hover {
+  background: var(--color-hero-glass);
+  transform: translateY(-2px);
+}
+
+.scrollCue {
+  display: none;
 }
 
 .hero :focus-visible {
   outline-color: var(--color-focus-on-dark);
 }
 
+@keyframes rise {
+  from {
+    transform: translate3d(0, 24px, 0);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes line-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes drift-a {
+  to {
+    transform: translate3d(-8vw, 6vw, 0) scale(1.1);
+  }
+}
+
+@keyframes drift-b {
+  to {
+    transform: translate3d(10vw, -6vw, 0) scale(1.15);
+  }
+}
+
+@keyframes drift-c {
+  to {
+    transform: translate3d(-12vw, -8vw, 0) scale(0.9);
+  }
+}
+
+@keyframes scroll-dot {
+  0% {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+  80% {
+    transform: translate(-50%, 12px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, 0);
+    opacity: 0;
+  }
+}
+
 @media (min-width: 720px) {
   .hero {
-    padding-bottom: var(--space-10);
+    min-height: min(860px, calc(100svh - var(--header-height)));
+    padding: var(--space-10) var(--section-pad-x) 96px;
+  }
+
+  .inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: min(96px, 6vw);
   }
 
   .content {
+    align-items: flex-start;
     gap: var(--space-5);
+    text-align: start;
+  }
+
+  .eyebrow {
+    font-size: 17px;
   }
 
   .title {
     line-height: 1.15;
   }
 
+  .modes {
+    justify-content: flex-start;
+  }
+
   .buttons {
     flex-direction: row;
     flex-wrap: wrap;
+    max-width: none;
+    width: auto;
     gap: var(--space-4);
     margin-top: var(--space-3);
+  }
+
+  .glowA {
+    width: 60vw;
+    height: 60vw;
+    top: -20vw;
+    inset-inline-end: -15vw;
+  }
+
+  .glowB {
+    width: 50vw;
+    height: 50vw;
+    bottom: -25vw;
+  }
+
+  .glowC {
+    width: 28vw;
+    height: 28vw;
+  }
+
+  /* A small mouse outline at the bottom with a falling dot. */
+  .scrollCue {
+    position: absolute;
+    bottom: var(--space-6);
+    left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--touch-min);
+    height: 56px;
+    transform: translateX(-50%);
+    opacity: 0.8;
+    animation: fade-up 0.8s var(--ease-out) 1s both;
+  }
+
+  .scrollCue:hover {
+    opacity: 1;
+  }
+
+  .mouse {
+    position: relative;
+    width: 24px;
+    height: 38px;
+    border: 1.5px solid var(--color-on-dark-muted);
+    border-radius: 14px;
+  }
+
+  .mouse::after {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 50%;
+    width: 3px;
+    height: 7px;
+    border-radius: 2px;
+    background: var(--color-brand-yellow);
+    animation: scroll-dot 1.8s var(--ease-in-out) infinite;
   }
 }

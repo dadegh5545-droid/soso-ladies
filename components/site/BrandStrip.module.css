@@ -29,11 +29,24 @@
   margin-top: var(--space-2);
 }
 
-.face {
+.faceWrap {
   position: relative;
   order: -1;
+}
+
+.face {
   height: 130px;
   width: auto;
+  animation: float-face 5s var(--ease-in-out) infinite alternate;
+}
+
+@keyframes float-face {
+  from {
+    transform: translate3d(0, -4px, 0) rotate(-1.5deg);
+  }
+  to {
+    transform: translate3d(0, 6px, 0) rotate(1.5deg);
+  }
 }
 
 .sousou {
@@ -73,8 +86,11 @@
     margin-top: 0;
   }
 
-  .face {
+  .faceWrap {
     order: 0;
+  }
+
+  .face {
     height: min(290px, 22.6vw);
   }
 

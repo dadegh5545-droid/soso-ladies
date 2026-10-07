@@ -93,6 +93,56 @@ export const ChevronIcon = ({ direction, ...p }: IconProps & { direction: 'up' |
   );
 };
 
+export const PauseIcon = (p: IconProps) => (
+  <Icon strokeWidth={1.8} {...p}>
+    <path d="M9 6v12M15 6v12" />
+  </Icon>
+);
+
+export const PlayIcon = (p: IconProps) => (
+  <Icon strokeWidth={1.6} {...p}>
+    <path d="M8 5.5v13l10-6.5-10-6.5z" />
+  </Icon>
+);
+
+export const HomeIcon = (p: IconProps) => (
+  <Icon strokeWidth={1.5} {...p}>
+    <path d="M4 10.5L12 4l8 6.5" />
+    <path d="M6 9v10.5h12V9" />
+    <path d="M10 19.5v-5h4v5" />
+  </Icon>
+);
+
+/** A vanity mirror on a stand: the salon. */
+export const SalonIcon = (p: IconProps) => (
+  <Icon strokeWidth={1.5} {...p}>
+    <ellipse cx="12" cy="9" rx="5.5" ry="6" />
+    <path d="M12 15v4.5M8 20h8" />
+    <path d="M9.5 7.5c.6-1 1.5-1.6 2.5-1.8" />
+  </Icon>
+);
+
+export const SparkleIcon = (p: IconProps) => (
+  <Icon strokeWidth={1.5} {...p}>
+    <path d="M12 3.5l1.9 5.1L19 10.5l-5.1 1.9L12 17.5l-1.9-5.1L5 10.5l5.1-1.9L12 3.5z" />
+    <path d="M18.5 16.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8z" />
+  </Icon>
+);
+
+export const LockIcon = (p: IconProps) => (
+  <Icon strokeWidth={1.5} {...p}>
+    <rect x="5" y="10.5" width="14" height="9.5" rx="2.5" />
+    <path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" />
+    <path d="M12 14.5v2" />
+  </Icon>
+);
+
+export const CheckIcon = (p: IconProps) => (
+  <Icon strokeWidth={1.8} {...p}>
+    <path d="M5 12.5l4.5 4.5L19 7.5" />
+  </Icon>
+);
+
 export const PlusIcon = (p: IconProps) => (
   <Icon strokeWidth={1.8} {...p}>
     <path d="M12 5v14M5 12h14" />

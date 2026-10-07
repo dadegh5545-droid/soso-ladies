@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ChevronIcon, CloseIcon } from '@/components/icons';
+import { revealItem, useReveal } from '@/lib/site/reveal';
 import { strings } from '@/lib/site/strings';
 import type { SiteView } from '@/lib/site/view';
 import { SectionHeading } from './SectionHeading';
@@ -10,6 +11,7 @@ export function Gallery({ view }: { view: SiteView }) {
   const t = strings[view.lang];
   const images = view.gallery;
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const sectionRef = useReveal<HTMLElement>();
   const [index, setIndex] = useState<number | null>(null);
 
   const open = (i: number) => {
@@ -38,11 +40,13 @@ export function Gallery({ view }: { view: SiteView }) {
   const current = index === null ? null : images[index];
 
   return (
-    <section id="gallery" className={styles.section} aria-labelledby="gallery-title">
-      <SectionHeading id="gallery-title" title={t.galleryTitle} />
+    <section id="gallery" ref={sectionRef} data-reveal className={styles.section} aria-labelledby="gallery-title">
+      <div {...revealItem(0)}>
+        <SectionHeading id="gallery-title" title={t.galleryTitle} />
+      </div>
       <ul className={styles.grid}>
         {images.map((image, i) => (
-          <li key={image.id}>
+          <li key={image.id} {...revealItem(Math.min(i, 5) + 1)}>
             <button type="button" className={styles.tile} onClick={() => open(i)} aria-label={t.openImage(image.alt.text)}>
               <Image
                 src={image.src}

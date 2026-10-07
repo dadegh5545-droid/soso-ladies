@@ -42,8 +42,23 @@
 
   /* Hero */
   --color-hero-tone: #4a0f33;
+  --color-hero-deep: #2a1522;
   --color-hero-overlay: rgba(40, 6, 28, 0.4);
   --color-hero-overlay-strong: rgba(40, 6, 28, 0.62);
+  --color-hero-glow-magenta: rgba(225, 4, 133, 0.5);
+  --color-hero-glow-rose: rgba(241, 181, 209, 0.22);
+  --color-hero-glow-pink: rgba(246, 208, 225, 0.16);
+  --color-hero-glass: rgba(255, 246, 250, 0.08);
+  --color-hero-glass-border: rgba(255, 246, 250, 0.24);
+  --color-hero-track: rgba(255, 246, 250, 0.28);
+  --color-header-glass: rgba(255, 246, 250, 0.86);
+
+  /* Section washes */
+  --color-wash: #fdeaf3;
+  --gradient-magenta: linear-gradient(135deg, #e10485 0%, #b0125f 100%);
+  --gradient-hero: radial-gradient(120% 90% at 85% 10%, #5b1642 0%, #4a0f33 38%, #2a1522 100%);
+  --gradient-wash: linear-gradient(180deg, #fff6fa 0%, #fdeaf3 100%);
+  --gradient-shine: linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, 0.35) 50%, transparent 80%);
 
   /* Footer */
   --color-footer-bg: #2a1522;
@@ -57,6 +72,11 @@
   --color-lightbox-control-border: rgba(255, 246, 250, 0.6);
   --color-dialog-backdrop: rgba(42, 21, 34, 0.5);
   --shadow-floating: 0 6px 18px rgba(42, 21, 34, 0.22);
+  --shadow-card: 0 1px 2px rgba(42, 21, 34, 0.04), 0 10px 30px rgba(42, 21, 34, 0.06);
+  --shadow-lift: 0 22px 48px rgba(42, 21, 34, 0.14);
+  --shadow-header: 0 8px 30px rgba(42, 21, 34, 0.08);
+  --shadow-frame: 0 40px 80px rgba(10, 2, 8, 0.45);
+  --shadow-glow: 0 10px 30px rgba(214, 7, 122, 0.35);
 
   /* States */
   --color-danger: #b3123f;
@@ -118,6 +138,17 @@
   --gallery-tile-height: 170px;
   --accent-line-width: 40px;
   --hero-line-width: 56px;
+  --hero-frame-width: min(78vw, 340px);
+  --header-height: 68px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 0.75, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 0.25s;
+  --duration-reveal: 0.9s;
+  --duration-slide-fade: 1.1s;
+  --reveal-distance: 28px;
+  --reveal-stagger: 90ms;
 }
 
 @media (min-width: 720px) {
@@ -144,6 +175,8 @@
     --gallery-tile-height: 300px;
     --accent-line-width: 48px;
     --hero-line-width: 72px;
+    --hero-frame-width: min(38vw, 470px);
+    --header-height: 90px;
   }
 }
 
@@ -151,5 +184,6 @@
   :root {
     --text-display: 64px;
     --section-pad-x: 40px;
+    --hero-frame-width: min(38vw, 340px);
   }
 }

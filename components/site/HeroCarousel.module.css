@@ -1,0 +1,280 @@
+.carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+  width: var(--hero-frame-width);
+  margin-inline: auto;
+  animation: frame-in 1.2s var(--ease-out) 0.15s both;
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+}
+
+/* Thin yellow arch drawn just outside the frame, slowly breathing. */
+.outline {
+  position: absolute;
+  inset: -14px;
+  border: 1.5px solid var(--color-brand-frame);
+  border-radius: 999px 999px 34px 34px;
+  animation: breathe 6s var(--ease-in-out) infinite alternate;
+  pointer-events: none;
+}
+
+.frame {
+  position: relative;
+  aspect-ratio: 5 / 6;
+  border-radius: 999px 999px 24px 24px;
+  overflow: hidden;
+  background: var(--color-placeholder-1);
+  box-shadow: var(--shadow-frame);
+  isolation: isolate;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity var(--duration-slide-fade) var(--ease-in-out);
+}
+
+.slide[data-active] {
+  opacity: 1;
+  z-index: 1;
+}
+
+.image {
+  object-fit: cover;
+}
+
+/* The active slide settles from a slight zoom while it is shown. */
+.slide[data-active] .image {
+  animation: settle 6s var(--ease-out) both;
+}
+
+.caption {
+  position: absolute;
+  inset-inline: 0;
+  bottom: var(--space-5);
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.captionText {
+  padding: 6px 18px;
+  border-radius: var(--radius-pill);
+  background: var(--color-lightbox-control);
+  border: 1px solid var(--color-hero-glass-border);
+  color: var(--color-on-dark);
+  font-size: 14px;
+  font-weight: 500;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: caption-in 0.7s var(--ease-out) both;
+}
+
+.sparkles {
+  position: absolute;
+  inset: -40px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.sparkle {
+  position: absolute;
+  fill: var(--color-brand-yellow);
+  animation: twinkle 3.2s var(--ease-in-out) infinite;
+}
+
+.sparkle:nth-child(1) {
+  top: 14%;
+  inset-inline-start: 2%;
+  width: 22px;
+  height: 22px;
+}
+
+.sparkle:nth-child(2) {
+  top: 4%;
+  inset-inline-end: 16%;
+  width: 14px;
+  height: 14px;
+  animation-delay: 0.8s;
+}
+
+.sparkle:nth-child(3) {
+  bottom: 22%;
+  inset-inline-end: 0;
+  width: 18px;
+  height: 18px;
+  animation-delay: 1.6s;
+}
+
+.sparkle:nth-child(4) {
+  bottom: 6%;
+  inset-inline-start: 12%;
+  width: 12px;
+  height: 12px;
+  animation-delay: 2.4s;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.pause {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch-min);
+  height: var(--touch-min);
+  padding: 0;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-hero-glass-border);
+  background: var(--color-hero-glass);
+  color: var(--color-on-dark);
+  transition: background var(--duration-fast) ease;
+}
+
+.pause:hover {
+  background: var(--color-hero-glass-border);
+}
+
+.dots {
+  display: flex;
+}
+
+.dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: var(--touch-min);
+  padding: 0 6px;
+  border: 0;
+  background: transparent;
+}
+
+.track {
+  position: relative;
+  width: 100%;
+  height: 3px;
+  border-radius: var(--radius-pill);
+  background: var(--color-hero-track);
+  overflow: hidden;
+}
+
+.fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--color-on-dark);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+:global([dir='rtl']) .fill {
+  transform-origin: right center;
+}
+
+.dot[aria-current] .fill {
+  transform: scaleX(1);
+}
+
+.dot[aria-current] .fill[data-playing] {
+  animation: fill var(--slide-interval) linear both;
+}
+
+.dot:hover .track {
+  background: var(--color-hero-glass-border);
+}
+
+.carousel :focus-visible {
+  outline-color: var(--color-focus-on-dark);
+}
+
+@keyframes frame-in {
+  from {
+    transform: translate3d(0, 40px, 0) scale(0.96);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes settle {
+  from {
+    transform: scale(1.12);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes breathe {
+  from {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  to {
+    transform: scale(1.025);
+    opacity: 1;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    transform: scale(0.6) rotate(0deg);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scale(1) rotate(45deg);
+    opacity: 1;
+  }
+}
+
+@keyframes caption-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (min-width: 720px) {
+  .carousel {
+    margin-inline: 0;
+  }
+
+  .outline {
+    inset: -20px;
+    border-radius: 999px 999px 42px 42px;
+  }
+
+  .frame {
+    border-radius: 999px 999px 30px 30px;
+  }
+
+  .captionText {
+    font-size: 15px;
+    padding: 8px 22px;
+  }
+}

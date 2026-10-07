@@ -30,11 +30,11 @@
 
 .photo {
   object-fit: cover;
-  transition: transform 0.4s ease;
+  transition: transform 0.9s var(--ease-out);
 }
 
 .tile:hover .photo {
-  transform: scale(1.03);
+  transform: scale(1.07);
 }
 
 .dialog {

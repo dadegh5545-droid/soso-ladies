@@ -51,6 +51,63 @@ export const strings = {
     mapTitle: 'موقع الصالون على الخريطة',
     rights: 'جميع الحقوق محفوظة',
     followInstagram: 'تابعينا على انستقرام',
+    discoverMore: 'اكتشفي المزيد',
+    carousel: {
+      label: 'لمحات من خدماتنا',
+      slide: (i: number, n: number, name: string) => `${name}، الشريحة ${i} من ${n}`,
+      goTo: (name: string) => `اعرضي: ${name}`,
+      pause: 'إيقاف العرض',
+      play: 'تشغيل العرض',
+    },
+    slides: {
+      'permanent-makeup': 'المكياج الدائم',
+      nails: 'الأظافر',
+      hair: 'الشعر',
+      facial: 'العناية بالبشرة',
+    },
+    modes: {
+      eyebrow: 'في الصالون أو في منزلك',
+      title: 'جمالك أينما كنتِ',
+      lead: 'زورينا في الصالون، أو دعينا نصل إليك في منزلك بنفس العناية.',
+      salon: {
+        title: 'في الصالون',
+        text: 'أجواء نسائية مريحة تحفظ خصوصيتك، ونهتم فيها بكل تفصيلة تُبرز جمالك.',
+        points: ['أجواء هادئة وخاصة', 'عناية بكل تفصيلة'],
+        browse: 'خدمات الصالون',
+        message: 'السلام عليكم، أبغى أستفسر عن خدماتكم في الصالون',
+      },
+      home: {
+        title: 'خدمة منزلية',
+        text: 'نصل إليك في منزلك بنفس عناية الصالون، لتستمتعي بالخدمة براحتك وفي وقتك.',
+        points: ['في راحة بيتك', 'بنفس عناية الصالون'],
+        browse: 'الخدمات المنزلية',
+        message: 'السلام عليكم، أبغى أستفسر عن الخدمة المنزلية',
+      },
+      ask: 'اسألي عبر واتساب',
+      count: (n: number) => (n === 1 ? 'خدمة واحدة' : n === 2 ? 'خدمتان' : n <= 10 ? `${n} خدمات` : `${n} خدمة`),
+    },
+    highlights: {
+      title: 'لماذا سوسو؟',
+      items: [
+        { title: 'خصوصية وراحة', text: 'أجواء نسائية هادئة تشعرين فيها بالراحة.' },
+        { title: 'عناية بالتفاصيل', text: 'نهتم بكل تفصيلة تُبرز جمالك.' },
+        { title: 'في الصالون أو في بيتك', text: 'اختاري المكان الذي يناسبك.' },
+        { title: 'تواصل سهل', text: 'اسألي عن أي خدمة عبر واتساب مباشرة.' },
+      ],
+    },
+    steps: {
+      title: 'كيف تطلبين خدمتك؟',
+      items: [
+        { title: 'اختاري خدمتك', text: 'تصفّحي خدماتنا واختاري ما يناسبك.' },
+        { title: 'راسلينا على واتساب', text: 'اسألي عن التفاصيل والمواعيد المتاحة.' },
+        { title: 'استمتعي بالتجربة', text: 'في الصالون أو في راحة منزلك.' },
+      ],
+    },
+    showcaseTitle: 'لمحة من سوسو',
+    cta: {
+      title: 'جاهزة لإطلالتك القادمة؟',
+      text: 'راسلينا على واتساب ونرتّب لك موعدك في الصالون أو في منزلك.',
+    },
   },
   en: {
     salonType: 'Ladies Salon',
@@ -98,6 +155,63 @@ export const strings = {
     mapTitle: 'Salon location on the map',
     rights: 'All rights reserved',
     followInstagram: 'Follow us on Instagram',
+    discoverMore: 'Discover more',
+    carousel: {
+      label: 'A look at our services',
+      slide: (i: number, n: number, name: string) => `${name}, slide ${i} of ${n}`,
+      goTo: (name: string) => `Show: ${name}`,
+      pause: 'Pause slideshow',
+      play: 'Play slideshow',
+    },
+    slides: {
+      'permanent-makeup': 'Permanent makeup',
+      nails: 'Nails',
+      hair: 'Hair',
+      facial: 'Facial care',
+    },
+    modes: {
+      eyebrow: 'At the salon or at home',
+      title: 'Beauty, wherever you are',
+      lead: 'Visit us at the salon, or let us come to your home with the same care.',
+      salon: {
+        title: 'At the salon',
+        text: 'A comfortable, private ladies-only setting where every detail that brings out your beauty matters.',
+        points: ['Calm and private', 'Care in every detail'],
+        browse: 'Salon services',
+        message: "Hello, I'd like to ask about your salon services",
+      },
+      home: {
+        title: 'Home service',
+        text: 'We come to your home with the same care as the salon, so you can enjoy it in comfort and on your time.',
+        points: ['In the comfort of home', 'The same salon care'],
+        browse: 'Home services',
+        message: "Hello, I'd like to ask about your home service",
+      },
+      ask: 'Ask on WhatsApp',
+      count: (n: number) => (n === 1 ? '1 service' : `${n} services`),
+    },
+    highlights: {
+      title: 'Why Soso',
+      items: [
+        { title: 'Privacy and comfort', text: 'A calm, ladies-only space where you can relax.' },
+        { title: 'Care in every detail', text: 'Every detail that brings out your beauty matters to us.' },
+        { title: 'Salon or home', text: 'Choose the place that suits you.' },
+        { title: 'Easy to reach', text: 'Ask about any service directly on WhatsApp.' },
+      ],
+    },
+    steps: {
+      title: 'How it works',
+      items: [
+        { title: 'Choose your service', text: 'Browse our services and pick what suits you.' },
+        { title: 'Message us on WhatsApp', text: 'Ask about the details and available times.' },
+        { title: 'Enjoy the experience', text: 'At the salon or in the comfort of your home.' },
+      ],
+    },
+    showcaseTitle: 'A glimpse of Soso',
+    cta: {
+      title: 'Ready for your next look?',
+      text: "Message us on WhatsApp and we'll arrange your visit at the salon or at your home.",
+    },
   },
 } as const;
 

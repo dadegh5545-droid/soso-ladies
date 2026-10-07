@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { ClockIcon, InstagramIcon, MapIcon, PhoneIcon, PinIcon, WhatsappIcon } from '@/components/icons';
+import { revealItem, useReveal } from '@/lib/site/reveal';
 import { strings } from '@/lib/site/strings';
 import type { LText, SiteView } from '@/lib/site/view';
 import { whatsappLink } from '@/lib/whatsapp';
@@ -43,11 +44,14 @@ export function Contact({ view }: { view: SiteView }) {
   const mapHref = view.mapUrl ?? (view.geo ? osmLink(view.geo) : null);
   const hasCard = !!(view.address || view.workingHours || view.phone || view.whatsapp || view.instagramUrl);
   const hasMap = !!(view.geo || view.mapUrl);
+  const ref = useReveal<HTMLElement>();
 
   return (
-    <section id="contact" className={styles.section} aria-labelledby="contact-title">
-      <SectionHeading id="contact-title" title={t.contactTitle} />
-      <div className={styles.layout}>
+    <section id="contact" ref={ref} data-reveal className={styles.section} aria-labelledby="contact-title">
+      <div {...revealItem(0)}>
+        <SectionHeading id="contact-title" title={t.contactTitle} />
+      </div>
+      <div className={styles.layout} {...revealItem(1)}>
         {hasCard && (
           <div className={styles.card}>
             {view.address && (
