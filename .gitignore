@@ -41,3 +41,9 @@ next-env.d.ts
 .amplify
 amplify_outputs*
 amplifyconfiguration*
+
+# site media for scripts/seed-content.mjs (kept out of git)
+content/images/
+content/hero*
+content/stock/
+content/*.mp4

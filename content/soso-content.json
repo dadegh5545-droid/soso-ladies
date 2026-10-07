@@ -1,0 +1,85 @@
+{
+  "settings": {
+    "salonName": { "ar": "سوسو صالون نسائي", "en": "Soso Ladies Salon" },
+    "tagline": { "ar": "جمالك يبدأ هنا", "en": "Your beauty starts here" },
+    "subline": {
+      "ar": "عناية بالبشرة، مكياج دائم، شعر، أظافر وحنّاء، في الصالون أو في منزلك.",
+      "en": "Facial care, permanent makeup, hair, nails and henna, at the salon or at your home."
+    },
+    "about": {
+      "ar": "في سوسو نهتم بكل تفصيلة تُبرز جمالك. نقدّم لك العناية بالبشرة والمكياج الدائم وخدمات الشعر والأظافر والحنّاء، بأجواء مريحة تحفظ خصوصيتك. وإن كنتِ تفضّلين الراحة في بيتك، فالخدمة المنزلية متوفرة.",
+      "en": "At Soso we care about every detail that brings out your beauty. We offer facial care, permanent makeup, hair, nails and henna in a comfortable, private setting. If you prefer the comfort of home, our home service is available."
+    },
+    "seoDescription": {
+      "ar": "سوسو صالون نسائي: عناية بالبشرة، مكياج دائم، شعر، أظافر وحنّاء، مع خدمة منزلية. تواصلي معنا عبر واتساب.",
+      "en": "Soso Ladies Salon: facial care, permanent makeup, hair, nails and henna, with home service. Contact us on WhatsApp."
+    },
+    "ownerProvided": {
+      "whatsappNumber": null,
+      "phone": null,
+      "instagramUrl": null,
+      "address": null,
+      "mapUrl": null,
+      "latitude": null,
+      "longitude": null,
+      "hours": null
+    }
+  },
+  "services": [
+    {
+      "key": "facial",
+      "order": 1,
+      "name": { "ar": "العناية بالبشرة (Facial)", "en": "Facial" },
+      "description": {
+        "ar": "جلسات عناية تنظّف بشرتك وترطّبها وتمنحها نضارة وراحة.",
+        "en": "Care sessions that cleanse and hydrate your skin and leave it fresh and relaxed."
+      },
+      "availability": "BOTH",
+      "image": "facial"
+    },
+    {
+      "key": "permanent-makeup",
+      "order": 2,
+      "name": { "ar": "المكياج الدائم", "en": "Permanent makeup" },
+      "description": {
+        "ar": "تجميل وتحديد الحواجب والعيون والشفاه بتقنية المكياج الدائم لإطلالة متناسقة تدوم.",
+        "en": "Shaping and defining brows, eyes and lips with permanent makeup for a balanced look that lasts."
+      },
+      "availability": "BOTH",
+      "image": "permanent-makeup"
+    },
+    {
+      "key": "hair",
+      "order": 3,
+      "name": { "ar": "الشعر", "en": "Hair" },
+      "description": {
+        "ar": "قص وتصفيف وصبغ وعناية بالشعر لإطلالة تناسب ذوقك ومناسبتك.",
+        "en": "Cutting, styling, coloring and hair care for a look that suits your taste and occasion."
+      },
+      "availability": "BOTH",
+      "image": "hair"
+    },
+    {
+      "key": "nails",
+      "order": 4,
+      "name": { "ar": "الأظافر", "en": "Nails" },
+      "description": {
+        "ar": "مانيكير وباديكير وتلميع بعناية بالتفاصيل لأظافر أنيقة.",
+        "en": "Manicure, pedicure and polish with attention to detail for elegant nails."
+      },
+      "availability": "BOTH",
+      "image": "nails"
+    },
+    {
+      "key": "henna",
+      "order": 5,
+      "name": { "ar": "الحنّاء", "en": "Henna" },
+      "description": {
+        "ar": "نقوش حنّاء ناعمة بتصاميم تناسب مناسباتك وأعيادك.",
+        "en": "Soft henna designs that suit your occasions and celebrations."
+      },
+      "availability": "BOTH",
+      "image": "henna"
+    }
+  ]
+}

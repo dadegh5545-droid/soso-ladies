@@ -72,6 +72,8 @@ lib/whatsapp.ts          روابط ورسائل واتساب
 lib/demo-content.ts      محتوى تجريبي لبيئة التطوير فقط
 pages/                   الصفحات: / و /en و /admin/* و /api/media و sitemap.xml و robots.txt
 public/brand/            ملفات الهوية (منسوخة كما هي من docs/design/brand)
+scripts/seed-content.mjs سكربت تعبئة المحتوى ورفع الوسائط
+content/                 نصوص المحتوى (soso-content.json) والوسائط المحلية (خارج git)
 styles/tokens.css        كل الألوان والخطوط والمسافات
 ```
 
@@ -91,6 +93,39 @@ styles/tokens.css        كل الألوان والخطوط والمسافات
 - الصفحة تُبنى في الخادم عند كل طلب، وتحتفظ بها شبكة التوزيع (CDN) 30 ثانية (`s-maxage=30, stale-while-revalidate=15`).
 - الخادم يحتفظ بآخر قراءة ناجحة 15 ثانية.
 - لا يُستخدم ISR، لأن Amplify Hosting يقدّم منه نسخة وقت البناء من كل نسخة خادم.
+
+## تعبئة المحتوى (`scripts/seed-content.mjs`)
+
+يملأ السكربت إعدادات الموقع والخدمات من `content/soso-content.json`، ويرفع الصور والفيديو من `content/`.
+ملفات الوسائط خارج git (`.gitignore`)، فتوضع في `content/` محلياً.
+
+- **الفيديو:** `content/Soso_Website_Hero_12s.mp4`.
+- **صورة الغلاف:** `content/hero-poster.jpg` (أو png أو webp).
+- **صور الخدمات:** `content/images/<الاسم>.jpg`.
+
+```powershell
+npm run seed                      # dry-run: يعرض ما سيُكتب بدون أي كتابة وبدون دخول
+$env:SOSO_OWNER_EMAIL = "…"; $env:SOSO_OWNER_PASSWORD = "…"
+npm run seed -- --apply           # يكتب فعلاً بحساب المالكة (مجموعة OWNER)
+npm run seed -- --apply --force   # يكتب فوق الخدمات الموجودة وفيديو الهيرو
+```
+
+- يتصل بالبيئة الموجودة في `amplify_outputs.json` المحلي.
+- الخدمات تُطابَق بالاسم العربي. الموجودة لا تُكرَّر ولا يُكتب فوقها بدون `--force`، ولا يُحذف شيء أبداً.
+- إن كان الحساب ما زال بكلمة مرور مؤقتة، يتوقف السكربت: سجّلي الدخول من `/admin/login` مرة أولاً.
+
+**على الإنتاج (بعد نشر الفرع على Amplify Hosting):**
+
+1. احتفظي بنسخة الـ sandbox، مثلاً `Rename-Item amplify_outputs.json amplify_outputs.sandbox.json`.
+2. ولّدي outputs الفرع المنشور:
+
+   ```powershell
+   npx ampx generate outputs --app-id <APP_ID> --branch main --profile soso
+   ```
+
+   `APP_ID` في صفحة التطبيق في Amplify console.
+3. شغّلي `npm run seed` ثم `--apply` بحساب مالكة الإنتاج.
+4. أعيدي ملف الـ sandbox باسمه بعد الانتهاء.
 
 ## إنشاء حساب المالكة
 
