@@ -33,6 +33,8 @@
 | `ServiceCategory` و`Service` و`GalleryImage` | عبر `getPublicCatalog` فقط | كل العمليات |
 | الملفات (Storage) | قراءة | قراءة ورفع وحذف |
 
+سياسة IAM التي يولّدها Amplify لدور الزائر تشمل mutations وsubscriptions الخاصة بـ`SiteSettings`، فيبقى الـresolver هو المانع الوحيد. لذلك يضيف `backend.ts` سياسة `GuestDenyWrites` على دور الزائر، وهي Deny صريح لـ`appsync:GraphQL` على `types/Mutation/*` و`types/Subscription/*` في هذا الـAPI. أي كتابة من الزائر تُرفض الآن من IAM قبل الـresolver (HTTP 401).
+
 ### `getPublicCatalog`
 
 الزائر لا يصل إلى جداول الخدمات والفئات والمعرض مباشرة؛ يقرأها عبر `getPublicCatalog`.

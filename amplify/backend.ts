@@ -1,4 +1,5 @@
 import { defineBackend } from '@aws-amplify/backend';
+import { Effect, Policy, PolicyStatement } from 'aws-cdk-lib/aws-iam';
 import { auth } from './auth/resource';
 import { data } from './data/resource';
 import { publicCatalog } from './functions/public-catalog/resource';
@@ -30,3 +31,20 @@ for (const [envName, modelName] of Object.entries(catalogTables)) {
   table.grant(backend.publicCatalog.resources.lambda, 'dynamodb:Scan');
   backend.publicCatalog.addEnvironment(envName, table.tableName);
 }
+
+// Guests only read. The generated guest policy also allows the SiteSettings
+// mutations and subscriptions, leaving the resolver as the only guard, so an
+// explicit Deny closes them at the IAM level for this API. The guest's query
+// access (getPublicCatalog, getSiteSettings) is left as generated.
+const apiArn = backend.data.resources.graphqlApi.arn;
+backend.auth.resources.unauthenticatedUserIamRole.attachInlinePolicy(
+  new Policy(backend.stack, 'GuestDenyWrites', {
+    statements: [
+      new PolicyStatement({
+        effect: Effect.DENY,
+        actions: ['appsync:GraphQL'],
+        resources: [`${apiArn}/types/Mutation/*`, `${apiArn}/types/Subscription/*`],
+      }),
+    ],
+  }),
+);
