@@ -50,9 +50,21 @@
   --color-footer-text: #fbe3ee;
   --color-footer-muted: #f3c6db;
 
+  /* Overlays and effects */
+  --color-brand-frame: rgba(252, 226, 17, 0.55);
+  --color-lightbox-backdrop: rgba(20, 4, 14, 0.88);
+  --color-lightbox-control: rgba(42, 21, 34, 0.6);
+  --color-lightbox-control-border: rgba(255, 246, 250, 0.6);
+  --color-dialog-backdrop: rgba(42, 21, 34, 0.5);
+  --shadow-floating: 0 6px 18px rgba(42, 21, 34, 0.22);
+
   /* States */
   --color-danger: #b3123f;
+  --color-danger-bg: #fbe7ec;
   --color-success: #1d6b45;
+  --color-success-bg: #e6f4ec;
+  --color-warning-bg: #fff4cc;
+  --color-border-hidden: #c58aa8;
   --color-switch-off: #c9a3b8;
   --color-focus: #2a1522;
   --color-focus-on-dark: #fff6fa;

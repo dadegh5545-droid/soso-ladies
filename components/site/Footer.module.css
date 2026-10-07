@@ -57,7 +57,7 @@
   background: var(--color-magenta);
   border: 2px solid var(--color-card);
   color: var(--color-on-dark);
-  box-shadow: 0 6px 18px rgba(42, 21, 34, 0.22);
+  box-shadow: var(--shadow-floating);
 }
 
 .demo {

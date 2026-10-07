@@ -12,7 +12,7 @@
 .frame {
   position: absolute;
   inset: 10px;
-  border: 1.5px solid rgba(252, 226, 17, 0.55);
+  border: 1.5px solid var(--color-brand-frame);
   border-radius: var(--radius-frame);
   pointer-events: none;
 }
