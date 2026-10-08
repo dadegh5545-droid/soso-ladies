@@ -3,20 +3,36 @@
 }
 
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 14px;
   max-width: 920px;
   margin-inline: auto;
-  padding: 34px 26px;
+  padding: 36px 26px;
   border-radius: var(--radius-cta-card);
-  background: var(--cream-card);
-  color: var(--cream-card-text);
+  background: var(--gradient-brand);
+  color: var(--on-accent);
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow: var(--shadow-accent);
+}
+
+.glow {
+  position: absolute;
+  z-index: -1;
+  width: 90%;
+  aspect-ratio: 1;
+  top: -55%;
+  inset-inline-end: -30%;
+  border-radius: 50%;
+  background: var(--glow-on-brand);
+  animation: drift 12s var(--ease-in-out) infinite alternate;
 }
 
 .wordmark {
   width: auto;
-  height: 34px;
+  height: 40px;
   align-self: flex-start;
 }
 
@@ -25,13 +41,14 @@
   margin: 0;
   font-size: 38px;
   line-height: 1.1;
-  color: var(--cream-card-text);
+  color: var(--on-accent);
 }
 
 .body {
+  max-width: 460px;
   font-size: 14.5px;
   line-height: 1.7;
-  color: var(--cream-card-muted);
+  color: var(--on-accent);
 }
 
 .button {
@@ -39,7 +56,13 @@
 }
 
 .card :focus-visible {
-  outline-color: var(--cream-card-text);
+  outline-color: var(--on-accent);
+}
+
+@keyframes drift {
+  to {
+    transform: translate3d(-30%, 20%, 0);
+  }
 }
 
 @media (min-width: 1024px) {
@@ -49,7 +72,7 @@
   }
 
   .wordmark {
-    height: 44px;
+    height: 52px;
   }
 
   .card .title {

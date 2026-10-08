@@ -3,7 +3,7 @@ import { ArrowIcon } from '@/components/icons';
 import styles from './ui.module.css';
 
 /** A 28 px magenta line and a small label; opens every section. */
-export function Eyebrow({ children, tone = 'accent' }: { children: ReactNode; tone?: 'accent' | 'gold' }) {
+export function Eyebrow({ children, tone = 'accent' }: { children: ReactNode; tone?: 'accent' | 'gold' | 'light' }) {
   return (
     <p className={styles.eyebrow} data-tone={tone}>
       <span className={styles.eyebrowLine} aria-hidden="true" />
@@ -28,10 +28,23 @@ export function Lines({ lines }: { lines: readonly string[] }) {
 
 const external = { target: '_blank', rel: 'noopener noreferrer' } as const;
 
-/** 56 px magenta pill: label on the start side, arrow in a circle on the end side. */
-export function PrimaryButton({ href, children, className }: { href: string; children: ReactNode; className?: string }) {
+/**
+ * 56 px pill: label on the start side, arrow in a circle on the end side.
+ * Magenta by default; "light" is white with magenta text, for magenta grounds.
+ */
+export function PrimaryButton({
+  href,
+  children,
+  className,
+  tone = 'accent',
+}: {
+  href: string;
+  children: ReactNode;
+  className?: string;
+  tone?: 'accent' | 'light';
+}) {
   return (
-    <a className={`${styles.primary} ${className ?? ''}`} href={href} {...external}>
+    <a className={`${styles.primary} ${className ?? ''}`} data-tone={tone} href={href} {...external}>
       <span>{children}</span>
       <span className={styles.primaryCircle} aria-hidden="true">
         <ArrowIcon size={18} className={styles.arrow} />

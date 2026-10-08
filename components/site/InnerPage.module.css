@@ -1,0 +1,16 @@
+/* Shared bits of the inner pages. */
+.facts {
+  max-width: calc(var(--content-max) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding: 40px var(--gutter) 0;
+}
+
+@media (min-width: 1024px) {
+  .facts {
+    padding-top: 64px;
+  }
+
+  .facts > * {
+    max-width: 760px;
+  }
+}

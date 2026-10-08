@@ -1,0 +1,122 @@
+.section {
+  max-width: calc(var(--content-max) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding: var(--section-top) var(--gutter) 0;
+}
+
+/* Masonry-like rhythm: every fifth photo spans two rows. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 170px;
+  grid-auto-flow: dense;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cell[data-shape='tall'] {
+  grid-row: span 2;
+}
+
+.tile {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-thumb);
+  overflow: hidden;
+  background: var(--bg-raised);
+  cursor: zoom-in;
+}
+
+.photo {
+  object-fit: cover;
+  transition:
+    transform 1s var(--ease-out),
+    filter 0.5s ease;
+}
+
+.tile:hover .photo {
+  transform: scale(1.06);
+  filter: brightness(1.04);
+}
+
+.dialog {
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  margin: 0;
+  padding: var(--space-4);
+  border: 0;
+  background: transparent;
+  color: var(--text-strong);
+}
+
+.dialog::backdrop {
+  background: var(--backdrop-lightbox);
+}
+
+.viewer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  height: 100%;
+}
+
+.full {
+  position: relative;
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.fullPhoto {
+  object-fit: contain;
+}
+
+.controls {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid var(--segment-border);
+  border-radius: var(--radius-pill);
+  background: var(--segment-fill);
+  color: var(--text-strong);
+}
+
+.control:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.control:focus-visible {
+  outline: 2px solid var(--accent-soft);
+  outline-offset: 3px;
+}
+
+@media (min-width: 720px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-rows: 260px;
+    gap: 18px;
+  }
+
+  .dialog {
+    padding: var(--space-7);
+  }
+}

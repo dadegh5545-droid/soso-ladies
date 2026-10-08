@@ -1,20 +1,19 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useId, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState, type CSSProperties } from 'react';
 import { CloseIcon, MenuIcon, WhatsappIcon } from '@/components/icons';
+import { PAGE_KEYS, pathFor, type PageKey } from '@/lib/site/routes';
 import { strings } from '@/lib/site/strings';
 import type { SiteView } from '@/lib/site/view';
 import { whatsappLink } from '@/lib/whatsapp';
 import styles from './Header.module.css';
 
-export type NavItem = { href: string; label: string };
-
 /**
- * Fixed header: transparent over the hero, solid (--bg-elevated with a
- * hairline) after 40 px of scroll. Phones get a full-screen menu; desktop
- * shows the links inline and a WhatsApp pill.
+ * Fixed header: transparent over the page's hero, solid (--bg-elevated with a
+ * hairline) after 40 px of scroll. The menu links to the site's pages and
+ * marks the current one; phones get a full-screen menu.
  */
-export function Header({ view, nav }: { view: SiteView; nav: NavItem[] }) {
+export function Header({ view, page }: { view: SiteView; page: PageKey }) {
   const t = strings[view.lang];
   const [open, setOpen] = useState(false);
   const [solid, setSolid] = useState(false);
@@ -22,6 +21,8 @@ export function Header({ view, nav }: { view: SiteView; nav: NavItem[] }) {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
   const bookHref = view.whatsapp ? whatsappLink(view.whatsapp, t.messages.booking) : null;
+  const otherLang = view.lang === 'ar' ? 'en' : 'ar';
+  const links = PAGE_KEYS.map((key) => ({ key, href: pathFor(key, view.lang), label: t.nav[key] }));
 
   useEffect(() => {
     const update = () => setSolid(window.scrollY > 40);
@@ -48,26 +49,30 @@ export function Header({ view, nav }: { view: SiteView; nav: NavItem[] }) {
     };
   }, [open]);
 
-  const homeHref = view.lang === 'en' ? '/en' : '/';
-
   return (
     <header className={styles.header} data-solid={solid || undefined}>
       <div className={styles.bar}>
-        <Link href={homeHref} className={styles.brand} aria-label={view.salonName.text}>
+        <Link href={pathFor('home', view.lang)} className={styles.brand} aria-label={view.salonName.text}>
           <Image src="/brand/soso-magenta.svg" alt="Soso" width={390} height={182} loading="eager" unoptimized className={styles.logo} />
           <span className={styles.salonType}>{t.salonType}</span>
         </Link>
 
         <nav className={styles.nav} aria-label={t.mainNav}>
-          {nav.map((item) => (
-            <a key={item.href} href={item.href}>
-              {item.label}
-            </a>
+          {links.map((link) => (
+            <Link key={link.key} href={link.href} aria-current={link.key === page ? 'page' : undefined}>
+              {link.label}
+            </Link>
           ))}
         </nav>
 
         <div className={styles.actions}>
-          <Link href={t.otherLang.href} hrefLang={t.otherLang.lang} lang={t.otherLang.lang} className={styles.lang} aria-label={t.otherLang.name}>
+          <Link
+            href={pathFor(page, otherLang)}
+            hrefLang={otherLang}
+            lang={otherLang}
+            className={styles.lang}
+            aria-label={t.otherLang.name}
+          >
             {t.otherLang.label}
           </Link>
           {bookHref && (
@@ -98,10 +103,17 @@ export function Header({ view, nav }: { view: SiteView; nav: NavItem[] }) {
           </button>
         </div>
         <nav className={styles.overlayNav} aria-label={t.mainNav}>
-          {nav.map((item, i) => (
-            <a key={item.href} ref={i === 0 ? firstLinkRef : undefined} href={item.href} onClick={() => setOpen(false)}>
-              {item.label}
-            </a>
+          {links.map((link, i) => (
+            <Link
+              key={link.key}
+              ref={i === 0 ? firstLinkRef : undefined}
+              href={link.href}
+              aria-current={link.key === page ? 'page' : undefined}
+              onClick={() => setOpen(false)}
+              style={{ '--i': i } as CSSProperties}
+            >
+              {link.label}
+            </Link>
           ))}
         </nav>
         {bookHref && (

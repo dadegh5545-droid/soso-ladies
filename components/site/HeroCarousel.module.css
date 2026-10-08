@@ -1,0 +1,371 @@
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: var(--hero-carousel-height);
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--bg);
+  touch-action: pan-y;
+}
+
+.slides {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.2s var(--ease-in-out);
+}
+
+.slide[data-active] {
+  opacity: 1;
+  z-index: 1;
+}
+
+.image {
+  object-fit: cover;
+  transform-origin: 70% 50%;
+}
+
+.slide[data-variant='1'] .image {
+  transform-origin: 30% 60%;
+}
+
+/* The shown photo settles slowly from a zoom while it is on screen. */
+.slide[data-active] .image {
+  animation: settle calc(var(--slide-ms) + 2s) var(--ease-out) both;
+}
+
+.fade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--fade-hero);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  width: 100%;
+  max-width: calc(var(--content-max) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding: 0 var(--gutter) 20px;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-shadow: var(--shadow-text-on-video);
+}
+
+.copy a,
+.copy button {
+  text-shadow: none;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--fs-h1);
+  line-height: 1.05;
+  animation: rise 0.8s var(--ease-out) both;
+}
+
+.body {
+  max-width: 340px;
+  color: var(--text);
+  animation: fade-up 0.7s var(--ease-out) 0.12s both;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: fade-up 0.7s var(--ease-out) 0.2s both;
+}
+
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 48px;
+  padding-inline: 22px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-secondary);
+  color: var(--text-strong);
+  font-family: var(--font-text-bold);
+  font-size: 14px;
+  font-weight: 700;
+  transition: background var(--duration-fast) ease;
+}
+
+.secondary:hover {
+  background: var(--segment-fill);
+}
+
+/* Arrows: "next" points in the reading direction, "previous" against it. */
+.arrow,
+.prevArrow {
+  flex-shrink: 0;
+}
+
+:global([dir='ltr']) .arrow,
+:global([dir='rtl']) .prevArrow {
+  transform: scaleX(-1);
+}
+
+/* Salon / home shortcuts into the services page, styled as a segmented pill. */
+.segment {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+  padding: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--segment-fill);
+  border: 1px solid var(--segment-border);
+  animation: fade-up 0.7s var(--ease-out) 0.28s both;
+}
+
+.segment a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--touch-min);
+  border-radius: var(--radius-pill);
+  color: var(--text-strong);
+  font-size: 14px;
+  transition:
+    background var(--duration-fast) ease,
+    color var(--duration-fast) ease;
+}
+
+.segment a:hover {
+  background: var(--text-strong);
+  color: var(--bg);
+}
+
+/* Slide controls: numbered progress bars, then previous / pause / next. */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dots {
+  display: flex;
+  flex: 1;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dots li {
+  flex: 1;
+}
+
+.dot {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: var(--touch-min);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-muted);
+  text-align: start;
+}
+
+.dotLabel {
+  display: none;
+}
+
+.track {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 2px;
+  border-radius: var(--radius-pill);
+  background: var(--hero-track);
+  overflow: hidden;
+}
+
+.fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--accent-soft);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+:global([dir='rtl']) .fill {
+  transform-origin: right center;
+}
+
+.dot[aria-current] .fill {
+  transform: scaleX(1);
+}
+
+.dot[aria-current] .fill[data-playing] {
+  animation: fill var(--slide-ms) linear both;
+}
+
+.buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.round {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch-min);
+  height: var(--touch-min);
+  padding: 0;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--segment-border);
+  background: var(--segment-fill);
+  color: var(--text-strong);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition:
+    background var(--duration-fast) ease,
+    border-color var(--duration-fast) ease;
+}
+
+.round:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* Prev / next arrows only from tablet up; phones swipe. */
+.buttons .round:first-child,
+.buttons .round:last-child {
+  display: none;
+}
+
+@keyframes settle {
+  from {
+    transform: scale(1.12);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Transform only: the title paints at once, which keeps LCP fast. */
+@keyframes rise {
+  from {
+    transform: translate3d(0, 14px, 0);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+}
+
+@keyframes fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (min-width: 720px) {
+  .content {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 48px;
+    padding-bottom: 56px;
+  }
+
+  /*
+   * The faces in these photos sit on the right, so on desktop the text keeps
+   * to the left 40 % in both languages (the end side on Arabic pages).
+   */
+  .fade {
+    background: var(--fade-hero-left), var(--fade-hero-desktop);
+  }
+
+  .copy {
+    order: 2;
+    width: min(42%, 540px);
+  }
+
+  :global([dir='ltr']) .copy {
+    order: 0;
+  }
+
+  .actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .actions > a:first-child {
+    min-width: 300px;
+  }
+
+  .segment {
+    width: 380px;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+    width: min(46%, 500px);
+  }
+
+  .dots {
+    gap: 14px;
+  }
+
+  .dotLabel {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 13px;
+    white-space: nowrap;
+    transition: color var(--duration-fast) ease;
+  }
+
+  .dotNumber {
+    font-family: var(--font-display);
+    font-size: 15px;
+    color: var(--accent-soft);
+  }
+
+  .dot:hover .dotLabel,
+  .dot[aria-current] .dotLabel {
+    color: var(--text-strong);
+  }
+
+  .buttons .round:first-child,
+  .buttons .round:last-child {
+    display: flex;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide[data-active] .image {
+    animation: none;
+  }
+}

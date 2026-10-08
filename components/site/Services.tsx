@@ -1,5 +1,9 @@
 import Image from 'next/image';
+import Link from 'next/link';
+import type { ReactNode } from 'react';
+import { ArrowIcon } from '@/components/icons';
 import { revealItem, useReveal } from '@/lib/site/reveal';
+import { pathFor } from '@/lib/site/routes';
 import { formatIndex, inPlace, type Place, type ServiceRow } from '@/lib/site/services';
 import { strings, type Lang } from '@/lib/site/strings';
 import { whatsappLink } from '@/lib/whatsapp';
@@ -9,10 +13,23 @@ import styles from './Services.module.css';
 
 const PLACES: Place[] = ['all', 'salon', 'home'];
 
+/** Section frame shared by the services sections: eyebrow, title, intro. */
+function Heading({ id, eyebrow, titleLines, intro }: { id: string; eyebrow: string; titleLines: readonly string[]; intro?: string }) {
+  return (
+    <div className={styles.heading}>
+      <Eyebrow>{eyebrow}</Eyebrow>
+      <h2 id={id} className={styles.title}>
+        <Lines lines={titleLines} />
+      </h2>
+      {intro && <p className={styles.intro}>{intro}</p>}
+    </div>
+  );
+}
+
 /**
- * The admin's services as an editorial list. The place filter lives in the
- * page (URL ?place=), shared with the hero's control; the filter row shows
- * only when some service is not offered in both places. No prices.
+ * The full services list (services page). The place filter lives in the
+ * page (URL ?place=); the filter row shows only when some service is not
+ * offered in both places. No prices.
  */
 export function Services({
   rows,
@@ -36,16 +53,8 @@ export function Services({
   return (
     <section id="services" ref={ref} data-reveal className={styles.section} aria-labelledby="services-title">
       <div className={styles.inner}>
-        <div className={styles.heading} {...revealItem(0)}>
-          <Eyebrow>{t.eyebrow}</Eyebrow>
-          <h2 id="services-title" className={styles.title}>
-            <Lines lines={t.titleLines} />
-          </h2>
-          <p className={styles.intro}>{t.intro}</p>
-        </div>
-
         {showFilter && (
-          <div className={styles.filter} role="group" aria-label={t.filterLabel} {...revealItem(1)}>
+          <div className={styles.filter} role="group" aria-label={t.filterLabel} {...revealItem(0)}>
             {PLACES.map((key) => (
               <button key={key} type="button" aria-pressed={place === key} onClick={() => onPlace(key)}>
                 {t.filter[key]}
@@ -53,18 +62,89 @@ export function Services({
             ))}
           </div>
         )}
-
+        <h2 id="services-title" className="visually-hidden">
+          {strings[lang].nav.services}
+        </h2>
         <p className={styles.empty} role="status" hidden={visible.length > 0}>
           {visible.length === 0 ? t.empty : ''}
         </p>
-
-        <ol className={styles.list} {...revealItem(2)}>
-          {visible.map((row, i) => (
-            <ServiceItem key={row.id} row={row} index={i + 1} lang={lang} whatsapp={whatsapp} />
-          ))}
-        </ol>
+        <div {...revealItem(1)}>
+          <ServiceList rows={visible} lang={lang} whatsapp={whatsapp} />
+        </div>
       </div>
     </section>
+  );
+}
+
+/** A titled list of services, e.g. the home services on the home-service page. */
+export function ServicesSection({
+  id,
+  eyebrow,
+  titleLines,
+  intro,
+  rows,
+  lang,
+  whatsapp,
+  footer,
+}: {
+  id: string;
+  eyebrow: string;
+  titleLines: readonly string[];
+  intro?: string;
+  rows: ServiceRow[];
+  lang: Lang;
+  whatsapp: string | null;
+  footer?: ReactNode;
+}) {
+  const ref = useReveal<HTMLElement>();
+  return (
+    <section ref={ref} data-reveal className={styles.section} aria-labelledby={id}>
+      <div className={styles.inner}>
+        <div {...revealItem(0)}>
+          <Heading id={id} eyebrow={eyebrow} titleLines={titleLines} intro={intro} />
+        </div>
+        <div {...revealItem(1)}>
+          <ServiceList rows={rows} lang={lang} whatsapp={whatsapp} />
+        </div>
+        {footer && (
+          <div className={styles.footer} {...revealItem(2)}>
+            {footer}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+/** Home page: the first services and a link to the services page. */
+export function ServicesPreview({ rows, lang, whatsapp }: { rows: ServiceRow[]; lang: Lang; whatsapp: string | null }) {
+  const t = strings[lang];
+  return (
+    <ServicesSection
+      id="services-preview-title"
+      eyebrow={t.servicesPreview.eyebrow}
+      titleLines={t.servicesPreview.titleLines}
+      intro={t.services.intro}
+      rows={rows.slice(0, 4)}
+      lang={lang}
+      whatsapp={whatsapp}
+      footer={
+        <Link href={pathFor('services', lang)} className={styles.allLink}>
+          <span>{t.allServices}</span>
+          <ArrowIcon size={16} className={styles.arrow} />
+        </Link>
+      }
+    />
+  );
+}
+
+export function ServiceList({ rows, lang, whatsapp }: { rows: ServiceRow[]; lang: Lang; whatsapp: string | null }) {
+  return (
+    <ol className={styles.list}>
+      {rows.map((row, i) => (
+        <ServiceItem key={row.id} row={row} index={i + 1} lang={lang} whatsapp={whatsapp} />
+      ))}
+    </ol>
   );
 }
 

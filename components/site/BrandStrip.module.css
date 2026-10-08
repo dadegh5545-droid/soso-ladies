@@ -1,0 +1,120 @@
+/* Phones: face, then the Arabic block, then the Latin block. */
+.strip {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: var(--section-top);
+  padding: 48px var(--gutter);
+  background: var(--accent);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* A soft light drifting across the magenta. */
+.strip::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: 70%;
+  aspect-ratio: 1;
+  top: -40%;
+  inset-inline-start: -20%;
+  border-radius: 50%;
+  background: var(--glow-on-brand);
+  animation: drift 14s var(--ease-in-out) infinite alternate;
+}
+
+.frame {
+  position: absolute;
+  inset: 12px;
+  border: 1.5px solid var(--brand-frame);
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.faceWrap {
+  order: -1;
+}
+
+.face {
+  width: auto;
+  height: 130px;
+  animation: float-face 5s var(--ease-in-out) infinite alternate;
+}
+
+.sousou {
+  width: 220px;
+  height: auto;
+}
+
+.soso {
+  width: 210px;
+  height: auto;
+}
+
+.pill {
+  width: 190px;
+  height: auto;
+}
+
+@keyframes float-face {
+  from {
+    transform: translate3d(0, -4px, 0) rotate(-1.5deg);
+  }
+  to {
+    transform: translate3d(0, 6px, 0) rotate(1.5deg);
+  }
+}
+
+@keyframes drift {
+  to {
+    transform: translate3d(60%, 40%, 0);
+  }
+}
+
+/* Desktop: one row [Arabic block] · [face] · [Latin block]. */
+@media (min-width: 720px) {
+  .strip {
+    flex-direction: row;
+    justify-content: center;
+    gap: min(56px, 4vw);
+    padding: 72px min(64px, 4vw);
+  }
+
+  .frame {
+    inset: 18px;
+  }
+
+  .block {
+    gap: 18px;
+  }
+
+  .faceWrap {
+    order: 0;
+  }
+
+  .face {
+    height: min(290px, 22vw);
+  }
+
+  .sousou {
+    width: min(400px, 30vw);
+  }
+
+  .soso {
+    width: min(360px, 27vw);
+  }
+
+  .pill {
+    width: min(340px, 25vw);
+  }
+}

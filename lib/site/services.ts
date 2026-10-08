@@ -15,8 +15,9 @@ export type MediaKey = 'makeup' | 'hair' | 'henna' | 'facial' | 'pedicure' | 'ma
 type Fallback = {
   /** Arabic names this entry answers to (compared after normalizeName). */
   names: string[];
-  tagline: Record<Lang, string>;
-  packages: Record<Lang, string[]>;
+  /** Copy from the brief; services without approved copy get a photo only. */
+  tagline?: Record<Lang, string>;
+  packages?: Record<Lang, string[]>;
   media: MediaKey | null;
 };
 
@@ -65,8 +66,11 @@ const FALLBACKS: Fallback[] = [
       en: 'Brows, eyeliner and lips with a natural touch that lasts.',
     },
     packages: { ar: ['حواجب', 'آيلاينر', 'شفاه'], en: ['Brows', 'Eyeliner', 'Lips'] },
-    media: null,
+    media: 'makeup',
   },
+  // Photo only (the brief has no copy for these two).
+  { names: ['العناية بالبشرة'], media: 'facial' },
+  { names: ['الأظافر'], media: 'manicure' },
 ];
 
 /**
@@ -129,8 +133,8 @@ export function serviceRows(services: ServiceView[], lang: Lang): ServiceRow[] {
     return {
       id: service.id,
       name: service.name,
-      tagline: service.description ?? (fallback ? { text: fallback.tagline[lang], lang } : null),
-      packages: fallback ? { text: fallback.packages[lang].join(' · '), lang } : null,
+      tagline: service.description ?? (fallback?.tagline ? { text: fallback.tagline[lang], lang } : null),
+      packages: fallback?.packages ? { text: fallback.packages[lang].join(' · '), lang } : null,
       availability: service.availability,
       imageSrc: service.imageSrc,
       media: service.imageSrc ? null : (fallback?.media ?? null),

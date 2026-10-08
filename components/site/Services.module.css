@@ -92,11 +92,60 @@
 
 .photo {
   object-fit: cover;
-  transition: filter 0.4s ease;
+  transition:
+    filter 0.5s ease,
+    transform 0.9s var(--ease-out);
 }
 
 .row:hover .photo {
   filter: brightness(1.04);
+  transform: scale(1.05);
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 28px;
+}
+
+/* "All services": an outlined pill with an arrow that nudges on hover. */
+.allLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 48px;
+  padding-inline: 24px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-secondary);
+  color: var(--text-strong);
+  font-family: var(--font-text-bold);
+  font-size: 14px;
+  font-weight: 700;
+  transition:
+    background var(--duration-fast) ease,
+    border-color var(--duration-fast) ease;
+}
+
+.allLink:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.arrow {
+  flex-shrink: 0;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+:global([dir='ltr']) .arrow {
+  transform: scaleX(-1);
+}
+
+.allLink:hover .arrow {
+  transform: translateX(-4px);
+}
+
+:global([dir='ltr']) .allLink:hover .arrow {
+  transform: scaleX(-1) translateX(-4px);
 }
 
 .placeholder {

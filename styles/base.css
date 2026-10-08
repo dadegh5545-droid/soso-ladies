@@ -94,6 +94,20 @@ html.js [data-reveal][data-visible] [data-reveal-item] {
   transform: none;
 }
 
+/* Photos open downward from a clipped top edge as they appear. */
+html.js [data-reveal] [data-reveal-item][data-reveal-media] {
+  clip-path: inset(14% 0 0 0 round var(--radius-tile, 18px));
+  transition:
+    opacity var(--duration-reveal) var(--ease-out),
+    transform var(--duration-reveal) var(--ease-out),
+    clip-path 1.1s var(--ease-out);
+  transition-delay: calc(var(--reveal-index, 0) * var(--reveal-stagger));
+}
+
+html.js [data-reveal][data-visible] [data-reveal-item][data-reveal-media] {
+  clip-path: inset(0 0 0 0 round var(--radius-tile, 18px));
+}
+
 /* The sticky header must not cover a section's title after an in-page jump. */
 section[id] {
   scroll-margin-top: var(--header-height);
@@ -107,6 +121,7 @@ section[id] {
   html.js [data-reveal] [data-reveal-item] {
     opacity: 1;
     transform: none;
+    clip-path: none;
   }
 
   *,

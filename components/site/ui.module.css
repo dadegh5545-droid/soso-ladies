@@ -28,6 +28,15 @@
   background: var(--gold);
 }
 
+/* On the brand magenta: white text (yellow is for large text and lines only). */
+.eyebrow[data-tone='light'] {
+  color: var(--on-accent);
+}
+
+.eyebrow[data-tone='light'] .eyebrowLine {
+  background: var(--gold);
+}
+
 .line {
   display: block;
 }
@@ -61,6 +70,21 @@
 
 .primary:hover {
   filter: brightness(1.08);
+  box-shadow: var(--shadow-accent);
+}
+
+.primary[data-tone='light'] {
+  background: var(--on-accent);
+  color: var(--accent-deep);
+}
+
+.primary[data-tone='light'] .primaryCircle {
+  background: var(--accent-tint);
+}
+
+.primary[data-tone='light']:hover {
+  filter: none;
+  box-shadow: var(--shadow-photo);
 }
 
 .primaryCircle {

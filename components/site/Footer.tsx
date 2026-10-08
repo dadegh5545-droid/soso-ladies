@@ -1,5 +1,7 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { InstagramIcon, PinIcon, WhatsappIcon } from '@/components/icons';
+import { PAGE_KEYS, pathFor } from '@/lib/site/routes';
 import { strings } from '@/lib/site/strings';
 import type { SiteView } from '@/lib/site/view';
 import { whatsappLink } from '@/lib/whatsapp';
@@ -40,6 +42,14 @@ export function Footer({ view }: { view: SiteView }) {
             </ul>
           )}
         </div>
+
+        <nav className={styles.pages} aria-label={strings[view.lang].mainNav}>
+          {PAGE_KEYS.map((key) => (
+            <Link key={key} href={pathFor(key, view.lang)}>
+              {strings[view.lang].nav[key]}
+            </Link>
+          ))}
+        </nav>
 
         {(view.address || view.workingHours || view.phone) && (
           <dl className={styles.contact}>

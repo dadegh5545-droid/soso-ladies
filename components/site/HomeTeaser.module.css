@@ -1,0 +1,110 @@
+.section {
+  padding: var(--section-top) var(--gutter) 0;
+}
+
+.inner {
+  display: grid;
+  gap: 28px;
+  max-width: var(--content-max);
+  margin-inline: auto;
+}
+
+.media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-tile);
+  overflow: hidden;
+  box-shadow: var(--shadow-photo);
+}
+
+.photo {
+  object-fit: cover;
+  transition: transform 1.2s var(--ease-out);
+}
+
+.media:hover .photo {
+  transform: scale(1.04);
+}
+
+/* A small magenta tab with the yellow wordmark, like the shop sign. */
+.badge {
+  position: absolute;
+  bottom: 16px;
+  inset-inline-start: 16px;
+  display: flex;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: var(--accent);
+  box-shadow: var(--shadow-accent);
+}
+
+.badgeLogo {
+  width: auto;
+  height: 26px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--fs-h2);
+  line-height: 1.15;
+}
+
+.body {
+  max-width: 460px;
+  color: var(--text-muted);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 48px;
+  margin-top: 6px;
+  padding-inline: 24px;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-family: var(--font-text-bold);
+  font-size: 14px;
+  font-weight: 700;
+  transition:
+    filter var(--duration-fast) ease,
+    box-shadow var(--duration-fast) ease;
+}
+
+.link:hover {
+  filter: brightness(1.08);
+  box-shadow: var(--shadow-accent);
+}
+
+.arrow {
+  flex-shrink: 0;
+}
+
+:global([dir='ltr']) .arrow {
+  transform: scaleX(-1);
+}
+
+@media (min-width: 1024px) {
+  .inner {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 72px;
+  }
+
+  .media {
+    aspect-ratio: 5 / 4;
+  }
+
+  .body {
+    font-size: 17px;
+  }
+}

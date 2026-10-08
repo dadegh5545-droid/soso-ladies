@@ -20,8 +20,10 @@ test('names compare without diacritics, brackets or letter variants', () => {
   assert.equal(normalizeName('إطلالة'), 'اطلاله');
   assert.ok(findFallback('الحنّاء'));
   assert.ok(findFallback('الحنة'));
-  assert.equal(findFallback('المكياج الدائم')?.media, null);
+  assert.equal(findFallback('المكياج الدائم')?.packages?.ar.length, 3);
   assert.equal(findFallback('المكياج')?.media, 'makeup');
+  assert.equal(findFallback('العناية بالبشرة (Facial)')?.media, 'facial');
+  assert.equal(findFallback('الأظافر')?.tagline, undefined, 'photo only, no invented copy');
   assert.equal(findFallback('خدمة جديدة'), null);
 });
 

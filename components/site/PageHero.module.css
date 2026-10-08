@@ -1,0 +1,151 @@
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: var(--page-hero-height);
+  padding-top: calc(var(--site-header-height) + 40px);
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--bg);
+}
+
+.image {
+  z-index: -2;
+  object-fit: cover;
+  animation: settle 2.4s var(--ease-out) both;
+}
+
+.fade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--fade-hero);
+}
+
+/* Brand variant: logo magenta with the shop-sign face. */
+.hero[data-brand] {
+  background: var(--gradient-brand);
+}
+
+.hero[data-brand] .fade {
+  background: var(--glow-section-alt);
+}
+
+.face {
+  position: absolute;
+  z-index: -2;
+  bottom: -20px;
+  inset-inline-end: -10px;
+  width: auto;
+  height: 82%;
+  opacity: 0.22;
+  animation: float 6s var(--ease-in-out) infinite alternate;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  max-width: calc(var(--content-max) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding: 0 var(--gutter) 36px;
+  text-shadow: var(--shadow-text-on-video);
+  animation: fade-up 0.7s var(--ease-out) 0.1s both;
+}
+
+.breadcrumb ol {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--fs-caption);
+  color: var(--text-muted);
+}
+
+.breadcrumb li + li::before {
+  content: '/';
+  margin-inline-end: 8px;
+  color: var(--text-faint);
+}
+
+.breadcrumb a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-min);
+  color: var(--text);
+}
+
+.breadcrumb a:hover {
+  color: var(--accent-soft);
+}
+
+.hero[data-brand] .breadcrumb ol,
+.hero[data-brand] .breadcrumb li + li::before,
+.hero[data-brand] .breadcrumb a {
+  color: var(--on-accent);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--fs-h2);
+  line-height: 1.1;
+}
+
+.lead {
+  max-width: 520px;
+  color: var(--text);
+}
+
+.hero[data-brand] .lead {
+  color: var(--on-accent);
+}
+
+@keyframes settle {
+  from {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+}
+
+@keyframes float {
+  to {
+    transform: translate3d(0, -12px, 0) rotate(-2deg);
+  }
+}
+
+@media (min-width: 720px) {
+  .content {
+    padding-bottom: 64px;
+  }
+
+  .title {
+    font-size: var(--fs-h1);
+    line-height: 1.05;
+  }
+
+  .lead {
+    font-size: 18px;
+  }
+
+  .face {
+    height: 95%;
+    inset-inline-end: 6%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image,
+  .face {
+    animation: none;
+  }
+}

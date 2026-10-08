@@ -1,9 +1,9 @@
 # Media credits
 
-## Supplied by the salon (redesign brief, October 2026)
+## The salon's own media
 
-- `Soso_Website_Hero_12s.mp4`: hero video, 1280 × 720, 12 s, silent.
-- `soso-makeup.jpg`, `soso-hair.jpg`, `soso-henna.jpg`, `soso-facial.jpg`: 800 × 450 stills, taken from the approved mockup.
+- `Soso_Website_Hero_12s.mp4`: the salon's video, 1280 × 720, 12 s, silent (About page).
+- `soso-makeup.jpg`, `soso-facial.jpg`, `soso-hair.jpg`, `soso-henna.jpg`: 1280 × 720 frames of that video, one per scene (makeup at 1.4 s, facial at 4.0 s, hair at 6.2 s, henna at 8.4 s), JPEG quality 84. They replace the 800 × 450 stills from the mockup, which show the same scenes.
 
 ## Stock photos
 
@@ -20,3 +20,16 @@
 - Photographer: Karola G / Kaboompics (https://www.pexels.com/@karola-g/)
 - License: Pexels License (free to use, attribution not required)
 - Changes: resized from 6720 × 4480 to 1600 × 1067, JPEG quality 82. Not cropped.
+
+## Where each photo is used
+
+| Photo | Places |
+| --- | --- |
+| makeup | Home carousel, home-service banner and teaser, bride tile, permanent-makeup row, About video poster |
+| facial | Home carousel, signature service, About story, facial row |
+| hair | Home carousel, About banner, evening tile, hair row |
+| henna | Home carousel, Gallery banner, Eid tile, henna row |
+| manicure | Services banner, nails/manicure row |
+| pedicure | Pedicure row |
+
+All six are also in the Gallery. A service image uploaded in /admin always wins over these.

@@ -52,6 +52,27 @@
   color: var(--accent-soft);
 }
 
+.pages {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 22px;
+  padding-block: 4px;
+  border-block: 1px solid var(--hairline);
+}
+
+.pages a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-min);
+  font-size: 14px;
+  color: var(--text);
+  transition: color var(--duration-fast) ease;
+}
+
+.pages a:hover {
+  color: var(--accent-soft);
+}
+
 .contact {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

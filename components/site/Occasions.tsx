@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import type { ReactNode } from 'react';
-import { revealItem, useReveal } from '@/lib/site/reveal';
+import { revealItem, revealMedia, useReveal } from '@/lib/site/reveal';
 import { strings, type Lang, type Occasion } from '@/lib/site/strings';
 import { whatsappLink } from '@/lib/whatsapp';
 import { PHOTOS, type Photo } from './media';
@@ -27,7 +27,7 @@ export function Occasions({ lang, whatsapp }: { lang: Lang; whatsapp: string | n
             <Lines lines={t.occasions.titleLines} />
           </h2>
         </div>
-        <ul className={styles.grid} {...revealItem(1)}>
+        <ul className={styles.grid} {...revealMedia(1)}>
           {TILES.map(({ key, photo }) => {
             const name = t.occasions[key];
             const content = (

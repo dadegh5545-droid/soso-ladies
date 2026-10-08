@@ -43,3 +43,6 @@ export const revealItem = (index = 0) => ({
   'data-reveal-item': '',
   style: { '--reveal-index': index } as CSSProperties,
 });
+
+/** Like revealItem, for a photo block: it also opens from a clipped top edge. */
+export const revealMedia = (index = 0) => ({ ...revealItem(index), 'data-reveal-media': '' });

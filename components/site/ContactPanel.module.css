@@ -1,0 +1,145 @@
+.section {
+  padding: var(--section-top) var(--gutter) 0;
+}
+
+.inner {
+  display: grid;
+  gap: 24px;
+  max-width: var(--content-max);
+  margin-inline: auto;
+}
+
+.empty {
+  color: var(--text-muted);
+}
+
+.cards {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  column-gap: 16px;
+  row-gap: 2px;
+  align-items: center;
+  padding: 20px;
+  border-radius: var(--radius-tile);
+  border: 1px solid var(--hairline);
+  background: var(--bg-raised);
+  color: var(--text);
+  transition:
+    border-color var(--duration-fast) ease,
+    transform 0.4s var(--ease-out),
+    box-shadow 0.4s var(--ease-out);
+}
+
+a.card:hover {
+  border-color: var(--accent-soft);
+  transform: translateY(-3px);
+}
+
+/* WhatsApp, the main way to book, in the brand magenta. */
+.card[data-primary] {
+  background: var(--gradient-brand);
+  border-color: transparent;
+  color: var(--on-accent);
+}
+
+a.card[data-primary]:hover {
+  box-shadow: var(--shadow-accent);
+}
+
+.icon {
+  grid-row: span 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-tint);
+  color: var(--accent-soft);
+}
+
+.card[data-primary] .icon {
+  background: var(--button-circle);
+  color: var(--on-accent);
+}
+
+.label {
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.2;
+  color: var(--text-strong);
+}
+
+.card[data-primary] .label {
+  color: var(--on-accent);
+}
+
+.value {
+  font-size: 14px;
+  color: var(--text-muted);
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.card[data-primary] .value {
+  color: var(--on-accent);
+}
+
+.map {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.map[data-embed] {
+  min-height: 320px;
+}
+
+.frame {
+  flex: 1;
+  width: 100%;
+  min-height: 320px;
+  border: 0;
+  border-radius: var(--radius-tile);
+  filter: saturate(0.9);
+}
+
+.mapLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding-inline: 22px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-secondary);
+  color: var(--text-strong);
+  font-family: var(--font-text-bold);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.mapLink:hover {
+  background: var(--segment-fill);
+}
+
+@media (min-width: 1024px) {
+  .inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    align-items: stretch;
+    gap: 40px;
+  }
+
+  .card {
+    padding: 24px;
+  }
+}

@@ -1,5 +1,6 @@
 .section {
   padding: 56px var(--gutter) 20px;
+  background: var(--glow-section);
 }
 
 .inner {

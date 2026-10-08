@@ -154,14 +154,17 @@
    * Public homepage: editorial dark theme (October 2026 redesign). Used only
    * by components/site; the admin panel keeps the tokens above.
    */
-  --bg: #130910;
-  --bg-elevated: #1b0f17;
+  --bg: #150811;
+  --bg-elevated: #1f0b19;
+  --bg-elevated-glass: rgba(31, 11, 25, 0.86);
+  --bg-raised: #1d0a17;
   --text: #f4e9e1;
   --text-strong: #fbf3ee;
   --text-muted: #cdb7ab;
   --text-faint: #a8928a;
   --hairline: rgba(244, 233, 225, 0.12);
   --accent: #e10485;
+  --accent-deep: #b0125f;
   --accent-soft: #ff5cbd;
   --accent-tint: rgba(255, 92, 189, 0.14);
   --gold: #fce211;
@@ -181,6 +184,18 @@
   --bar-border: rgba(244, 233, 225, 0.14);
   --shadow-bar: 0 12px 30px rgba(0, 0, 0, 0.45);
   --shadow-text-on-video: 0 1px 14px rgba(19, 9, 16, 0.7);
+  --shadow-accent: 0 10px 30px rgba(225, 4, 133, 0.35);
+  --shadow-photo: 0 30px 60px rgba(0, 0, 0, 0.45);
+
+  /* Brand magenta (logo #E10485): soft glows and the brand bands. */
+  --glow-menu: radial-gradient(120% 60% at 100% 0%, rgba(225, 4, 133, 0.28) 0%, transparent 60%);
+  --glow-section: radial-gradient(60% 80% at 85% 0%, rgba(225, 4, 133, 0.16) 0%, transparent 70%);
+  --glow-section-alt: radial-gradient(60% 80% at 15% 100%, rgba(225, 4, 133, 0.14) 0%, transparent 70%);
+  --gradient-brand: linear-gradient(135deg, #e10485 0%, #b0125f 100%);
+  --glow-on-brand: radial-gradient(circle, rgba(255, 255, 255, 0.16) 0%, transparent 65%);
+  --backdrop-lightbox: rgba(12, 3, 9, 0.92);
+  --brand-frame: rgba(252, 226, 17, 0.55);
+  --on-brand-muted: #fde3f1;
   --placeholder-fill: linear-gradient(160deg, #3a1a2d 0%, #22101c 100%);
   --placeholder-caption: #b89aa9;
   --fade-image: linear-gradient(180deg, rgba(19, 9, 16, 0) 35%, rgba(19, 9, 16, 0.9) 100%);
@@ -195,8 +210,8 @@
   /* Desktop hero: darker toward the start side, where the text sits. */
   --fade-hero-desktop: linear-gradient(
     180deg,
-    rgba(19, 9, 16, 0.5) 0%,
-    rgba(19, 9, 16, 0) 22%,
+    rgba(19, 9, 16, 0.62) 0%,
+    rgba(19, 9, 16, 0) 24%,
     rgba(19, 9, 16, 0) 60%,
     rgba(19, 9, 16, 0.9) 100%
   );
@@ -218,6 +233,9 @@
   --section-top: 60px;
   --site-header-height: 68px;
   --hero-video-height: 660px;
+  --hero-carousel-height: clamp(700px, 100svh, 820px);
+  --page-hero-height: 460px;
+  --hero-track: rgba(255, 255, 255, 0.28);
   --radius-thumb: 14px;
   --radius-tile: 18px;
   --radius-cta-card: 26px;
@@ -257,6 +275,8 @@
     --section-top: 120px;
     --site-header-height: 80px;
     --hero-video-height: min(100svh, 820px);
+    --hero-carousel-height: clamp(640px, 100svh, 900px);
+    --page-hero-height: 560px;
   }
 }
 

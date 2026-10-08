@@ -1,7 +1,7 @@
 import type { GetServerSideProps } from 'next';
 import { HomePage } from '@/components/site/HomePage';
-import { getHomeProps, type HomeProps } from '@/lib/server/home-props';
+import { getSiteProps, type SiteProps } from '@/lib/server/site-props';
 
-export const getServerSideProps: GetServerSideProps<HomeProps> = (context) => getHomeProps(context, 'en');
+export const getServerSideProps: GetServerSideProps<SiteProps> = (context) => getSiteProps(context, 'en');
 
 export default HomePage;

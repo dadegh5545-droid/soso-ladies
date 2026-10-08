@@ -4,10 +4,11 @@ import { buildSiteView, type SiteView } from '@/lib/site/view';
 import { loadPublicData } from './public-data';
 import { siteOrigin } from './site-url';
 
-export type HomeProps = { view: SiteView; origin: string; unavailable: boolean };
+/** Props of every public page: the same settings and catalog, one language. */
+export type SiteProps = { view: SiteView; origin: string; unavailable: boolean };
 
 /**
- * Content freshness on Amplify Hosting: the page is server-rendered (full
+ * Content freshness on Amplify Hosting: each page is server-rendered (full
  * content in the first HTML) and the CDN may keep it for 30 s, then serve it
  * stale for up to 15 s while it refetches. With the 15 s in-memory read cache
  * an owner's change shows within about a minute, with no rebuild. ISR is not
@@ -18,10 +19,10 @@ const CACHE_CONTROL = 'public, s-maxage=30, stale-while-revalidate=15';
 
 const emptyCatalog = { categories: [], services: [], galleryImages: [] };
 
-export async function getHomeProps(
+export async function getSiteProps(
   context: GetServerSidePropsContext,
   lang: Lang,
-): Promise<GetServerSidePropsResult<HomeProps>> {
+): Promise<GetServerSidePropsResult<SiteProps>> {
   const origin = siteOrigin(context.req);
   let view: SiteView;
   let hasSettings = false;

@@ -3,13 +3,15 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { IBM_Plex_Sans_Arabic, Noto_Kufi_Arabic } from 'next/font/google';
 
-// Self-hosted by next/font. Only the regular heading weight is preloaded: the
-// hero title is the largest paint. The medium weight (card titles) and IBM Plex
-// (body) load without preload and swap in. Latin glyphs load on demand.
+// Self-hosted by next/font, used by the admin panel and the 404 page. Nothing
+// is preloaded: the public pages use their own fonts (components/site/fonts.ts),
+// so a preload here would only compete with their first paint. Latin glyphs
+// load on demand.
 const kufi = Noto_Kufi_Arabic({
   subsets: ['arabic'],
   weight: '400',
   display: 'swap',
+  preload: false,
   variable: '--font-kufi',
 });
 
