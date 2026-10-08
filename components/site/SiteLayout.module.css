@@ -12,7 +12,7 @@
 
 .page[data-lang='ar'] {
   --font-display: var(--font-amiri), 'Amiri', serif;
-  --font-display-italic: var(--font-amiri-italic), var(--font-amiri), serif;
+  --font-display-italic: var(--font-amiri), serif;
   --font-text: var(--font-almarai), 'Almarai', sans-serif;
   --font-text-bold: var(--font-almarai-bold), var(--font-almarai), sans-serif;
 }
@@ -20,7 +20,7 @@
 /* English: Cormorant Garamond headlines; Amiri covers any Arabic in them. */
 .page[data-lang='en'] {
   --font-display: var(--font-cormorant), var(--font-amiri), serif;
-  --font-display-italic: var(--font-cormorant), var(--font-amiri-italic), serif;
+  --font-display-italic: var(--font-cormorant), var(--font-amiri), serif;
   --font-text: var(--font-almarai), 'Almarai', sans-serif;
   --font-text-bold: var(--font-almarai-bold), var(--font-almarai), sans-serif;
 }
