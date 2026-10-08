@@ -272,6 +272,15 @@ async function main() {
     const state = await readPublicState();
     const settingsAction = state ? (state.settings ? 'update' : 'create') : 'create or update';
     console.log(`\nSiteSettings "${SITE_SETTINGS_ID}": would ${settingsAction} ${Object.keys(settingsInput).join(', ')}`);
+    if (state) {
+      // Field by field: "=" unchanged, "+" now empty, "~" changes.
+      const show = (value) => (value === null || value === undefined || value === '' ? '(empty)' : JSON.stringify(value));
+      for (const [field, next] of Object.entries(settingsInput)) {
+        const current = state.settings?.[field] ?? null;
+        const mark = current === next ? '=' : current === null || current === '' ? '+' : '~';
+        console.log(`  ${mark} ${field}: ${show(current)} -> ${show(next)}`);
+      }
+    }
     if (heroVideo) {
       const size = fs.statSync(heroVideo).size;
       const skip = state?.settings?.heroVideoKey && !FORCE;
@@ -287,11 +296,14 @@ async function main() {
     console.log(`\nServices (${services.length}), matched by Arabic name:`);
     for (const s of services) {
       const exists = state?.serviceNames.has(s.fields.nameAr);
+      const skipped = exists && !FORCE;
       const action = exists ? (FORCE ? 'would update (--force)' : 'exists, would skip') : 'would create';
       let image = 'no image file, skipped';
-      if (imageFiles[s.key]) {
+      if (skipped) {
+        image = 'image not uploaded (the service is skipped; --force replaces it and its image)';
+      } else if (imageFiles[s.key]) {
         const img = await compressImage(imageFiles[s.key]);
-        image = `${rel(imageFiles[s.key])} -> ${img.width}x${img.height} WebP ${kb(img.data.length)}, would upload to media/services/`;
+        image = `${rel(imageFiles[s.key])} -> ${img.width}x${img.height} WebP ${kb(img.data.length)}, would upload to media/services/ and set the service's imageKey`;
       }
       console.log(`  - ${s.fields.nameAr} / ${s.fields.nameEn ?? '-'} [${s.fields.availability}, order ${s.fields.sortOrder}]: ${action}; ${image}`);
     }

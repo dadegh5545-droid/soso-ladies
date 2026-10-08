@@ -23,8 +23,19 @@ test('names compare without diacritics, brackets or letter variants', () => {
   assert.equal(findFallback('المكياج الدائم')?.packages?.ar.length, 3);
   assert.equal(findFallback('المكياج')?.media, 'makeup');
   assert.equal(findFallback('العناية بالبشرة (Facial)')?.media, 'facial');
-  assert.equal(findFallback('الأظافر')?.tagline, undefined, 'photo only, no invented copy');
+  assert.equal(findFallback('الأظافر')?.packages?.ar.join(' · '), 'باديكير · مانيكير · جل');
   assert.equal(findFallback('خدمة جديدة'), null);
+});
+
+test('the five current service names all find their fallback', () => {
+  // As stored in the data: shadda and hamza on henna, a bracketed note on facial.
+  const names = ['العناية بالبشرة (Facial)', 'المكياج الدائم', 'الشعر', 'الأظافر', 'الحنّاء'];
+  for (const name of names) assert.ok(findFallback(name)?.tagline, name);
+  // Letter variants: alef forms, taa marbuta / haa, alef maqsura / yaa, spaces.
+  assert.ok(findFallback('  الاظافر '));
+  assert.ok(findFallback('العنايه بالبشره'));
+  assert.equal(normalizeName('مكياج المناسبى'), normalizeName('مكياج المناسبي'));
+  assert.equal(normalizeName('آيلاينر'), normalizeName('ايلاينر'));
 });
 
 test('rows: admin text and image win; fallback fills the gaps', () => {

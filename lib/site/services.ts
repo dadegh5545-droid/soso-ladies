@@ -68,9 +68,21 @@ const FALLBACKS: Fallback[] = [
     packages: { ar: ['حواجب', 'آيلاينر', 'شفاه'], en: ['Brows', 'Eyeliner', 'Lips'] },
     media: 'makeup',
   },
-  // Photo only (the brief has no copy for these two).
-  { names: ['العناية بالبشرة'], media: 'facial' },
-  { names: ['الأظافر'], media: 'manicure' },
+  // The salon's own services; taglines follow the content pack's descriptions.
+  {
+    names: ['الأظافر'],
+    tagline: { ar: 'أظافر أنيقة بعناية بكل تفصيلة.', en: 'Elegant nails, with care in every detail.' },
+    packages: { ar: ['باديكير', 'مانيكير', 'جل'], en: ['Pedicure', 'Manicure', 'Gel'] },
+    media: 'manicure',
+  },
+  {
+    names: ['العناية بالبشرة'],
+    tagline: {
+      ar: 'جلسات تنظّف بشرتك وترطّبها وتمنحها نضارة.',
+      en: 'Sessions that cleanse and hydrate your skin for a fresh glow.',
+    },
+    media: 'facial',
+  },
 ];
 
 /**
