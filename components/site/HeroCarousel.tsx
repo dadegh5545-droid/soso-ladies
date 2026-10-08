@@ -141,7 +141,7 @@ export function HeroCarousel({ view, showPlaces }: { view: SiteView; showPlaces:
                 alt={name(i)}
                 fill
                 priority={i === 0}
-                placeholder="blur"
+                placeholder={i === 0 ? 'empty' : 'blur'}
                 sizes="100vw"
                 quality={80}
                 className={styles.image}

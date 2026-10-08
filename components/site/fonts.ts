@@ -3,16 +3,14 @@
  * in _app, so only the public pages load them; the admin panel keeps its own.
  *
  * Each instance is its own font family, exposed as a CSS variable:
- * - --font-amiri: Arabic headlines.
- * - --font-almarai: body text (the only preload: small, and on every line).
+ * - --font-amiri: Arabic headlines (preloaded with Almarai regular: measured,
+ *   first paint is about a second earlier than when it swaps in late).
+ * - --font-almarai: body text.
  * - --font-almarai-bold: bold labels and buttons.
  * - --font-cormorant: English headlines.
  *
- * Amiri is large (about 100 KB for Arabic), so it is not preloaded: the hero
- * photo, the page's largest paint, gets the bandwidth first and the
- * headlines swap in (next/font adjusts the fallback's metrics to limit
- * shifts). The statement's italic line uses a slanted Amiri regular rather
- * than another 100 KB file.
+ * The statement's italic line uses a slanted Amiri regular rather than a
+ * second 100 KB Amiri file.
  */
 import { Almarai, Amiri, Cormorant_Garamond } from 'next/font/google';
 
@@ -20,7 +18,6 @@ const amiri = Amiri({
   subsets: ['arabic'],
   weight: '400',
   display: 'swap',
-  preload: false,
   variable: '--font-amiri',
 });
 

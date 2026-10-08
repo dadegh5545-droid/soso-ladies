@@ -37,7 +37,6 @@ export function PageHero({
           alt={alt ?? ''}
           fill
           priority
-          placeholder="blur"
           sizes="100vw"
           className={styles.image}
           style={{ objectPosition: photo.position }}
