@@ -145,10 +145,82 @@
   --ease-out: cubic-bezier(0.22, 0.75, 0.2, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --duration-fast: 0.25s;
-  --duration-reveal: 0.9s;
+  --duration-reveal: 0.5s;
   --duration-slide-fade: 1.1s;
-  --reveal-distance: 28px;
-  --reveal-stagger: 90ms;
+  --reveal-distance: 12px;
+  --reveal-stagger: 70ms;
+
+  /*
+   * Public homepage: editorial dark theme (October 2026 redesign). Used only
+   * by components/site; the admin panel keeps the tokens above.
+   */
+  --bg: #130910;
+  --bg-elevated: #1b0f17;
+  --text: #f4e9e1;
+  --text-strong: #fbf3ee;
+  --text-muted: #cdb7ab;
+  --text-faint: #a8928a;
+  --hairline: rgba(244, 233, 225, 0.12);
+  --accent: #e10485;
+  --accent-soft: #ff5cbd;
+  --accent-tint: rgba(255, 92, 189, 0.14);
+  --gold: #fce211;
+  --cream-card: #f4e9e1;
+  --cream-card-text: #130910;
+  --cream-card-muted: #5b4a52;
+  --whatsapp: #25d366;
+  --whatsapp-text: #0b2b16;
+  --on-accent: #ffffff;
+  --button-circle: rgba(255, 255, 255, 0.18);
+  --border-secondary: rgba(251, 243, 238, 0.6);
+  --border-pill: rgba(244, 233, 225, 0.35);
+  --border-icon: rgba(244, 233, 225, 0.25);
+  --segment-fill: rgba(255, 255, 255, 0.08);
+  --segment-border: rgba(255, 255, 255, 0.14);
+  --bar-fill: rgba(27, 15, 23, 0.86);
+  --bar-border: rgba(244, 233, 225, 0.14);
+  --shadow-bar: 0 12px 30px rgba(0, 0, 0, 0.45);
+  --shadow-text-on-video: 0 1px 14px rgba(19, 9, 16, 0.7);
+  --placeholder-fill: linear-gradient(160deg, #3a1a2d 0%, #22101c 100%);
+  --placeholder-caption: #b89aa9;
+  --fade-image: linear-gradient(180deg, rgba(19, 9, 16, 0) 35%, rgba(19, 9, 16, 0.9) 100%);
+  --fade-hero: linear-gradient(
+    180deg,
+    rgba(19, 9, 16, 0.55) 0%,
+    rgba(19, 9, 16, 0.15) 24%,
+    rgba(19, 9, 16, 0.62) 46%,
+    rgba(19, 9, 16, 0.88) 68%,
+    rgba(19, 9, 16, 0.97) 100%
+  );
+  /* Desktop hero: darker toward the start side, where the text sits. */
+  --fade-hero-desktop: linear-gradient(
+    180deg,
+    rgba(19, 9, 16, 0.5) 0%,
+    rgba(19, 9, 16, 0) 22%,
+    rgba(19, 9, 16, 0) 60%,
+    rgba(19, 9, 16, 0.9) 100%
+  );
+  /* The hero text sits on the left in both languages (see Hero.module.css). */
+  --fade-hero-left: linear-gradient(to right, rgba(19, 9, 16, 0.82) 0%, rgba(19, 9, 16, 0.55) 38%, rgba(19, 9, 16, 0) 62%);
+  --fade-signature: linear-gradient(180deg, rgba(19, 9, 16, 0.1) 0%, rgba(19, 9, 16, 0.35) 40%, rgba(19, 9, 16, 0.95) 100%);
+
+  --fs-h1: 60px;
+  --fs-h2: 40px;
+  --fs-h3: 30px;
+  --fs-body: 15.5px;
+  --fs-eyebrow: 12px;
+  --fs-caption: 12.5px;
+  --lh-display: 1.1;
+  --lh-body: 1.75;
+
+  --gutter: 24px;
+  --content-max: 1200px;
+  --section-top: 60px;
+  --site-header-height: 68px;
+  --hero-video-height: 660px;
+  --radius-thumb: 14px;
+  --radius-tile: 18px;
+  --radius-cta-card: 26px;
 }
 
 @media (min-width: 720px) {
@@ -177,6 +249,14 @@
     --hero-line-width: 72px;
     --hero-frame-width: min(38vw, 470px);
     --header-height: 90px;
+
+    --fs-h1: 96px;
+    --fs-h2: 64px;
+    --fs-h3: 36px;
+    --fs-body: 17px;
+    --section-top: 120px;
+    --site-header-height: 80px;
+    --hero-video-height: min(100svh, 820px);
   }
 }
 
@@ -185,5 +265,8 @@
     --text-display: 64px;
     --section-pad-x: 40px;
     --hero-frame-width: min(38vw, 340px);
+
+    --fs-h1: 76px;
+    --fs-h2: 52px;
   }
 }
