@@ -123,16 +123,27 @@ npm run seed -- --apply --force   # يكتب فوق الخدمات الموجو�
 
 **على الإنتاج (بعد نشر الفرع على Amplify Hosting):**
 
-1. احتفظي بنسخة الـ sandbox، مثلاً `Rename-Item amplify_outputs.json amplify_outputs.sandbox.json`.
-2. ولّدي outputs الفرع المنشور:
+ملف الـ sandbox (`amplify_outputs.json`) يبقى كما هو، لأن خادم التطوير يقرؤه. outputs الإنتاج تُكتب في ملف منفصل، ويُختار بالمتغير `AMPLIFY_OUTPUTS`.
+
+1. ولّدي outputs الفرع المنشور في مجلد مؤقت:
 
    ```powershell
-   npx ampx generate outputs --app-id <APP_ID> --branch main --profile soso
+   npx ampx generate outputs --app-id <APP_ID> --branch main --profile soso --out-dir $env:TEMP\soso-prod
+   Copy-Item $env:TEMP\soso-prod\amplify_outputs.json amplify_outputs.production.json
    ```
 
-   `APP_ID` في صفحة التطبيق في Amplify console.
-3. شغّلي `npm run seed` ثم `--apply` بحساب مالكة الإنتاج.
-4. أعيدي ملف الـ sandbox باسمه بعد الانتهاء.
+   - `APP_ID` في صفحة التطبيق في Amplify console (للإنتاج الحالي `d25q08krig2cft`).
+   - الملف خارج git (`amplify_outputs*`).
+2. شغّلي التجربة ثم الكتابة. السكربت يطبع أولاً الـ user pool المستهدف:
+
+   ```powershell
+   $env:AMPLIFY_OUTPUTS = "amplify_outputs.production.json"
+   npm run seed
+   npm run seed -- --apply
+   Remove-Item Env:AMPLIFY_OUTPUTS
+   ```
+
+   الكتابة تحتاج حساب مالكة الإنتاج في `SOSO_OWNER_EMAIL` و`SOSO_OWNER_PASSWORD`.
 
 ## إنشاء حساب المالكة
 

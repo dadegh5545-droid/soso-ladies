@@ -7,8 +7,9 @@
  *   node scripts/seed-content.mjs --apply          signs in as the owner and writes
  *   node scripts/seed-content.mjs --apply --force  also overwrites existing services and hero media
  *
- * - Connection: the local amplify_outputs.json (sandbox, or a deployed branch:
- *   see README "تعبئة المحتوى").
+ * - Connection: the local amplify_outputs.json (sandbox), or the file named by
+ *   AMPLIFY_OUTPUTS, e.g. a deployed branch's outputs (README "تعبئة المحتوى").
+ *   The target user pool is printed first.
  * - Owner sign-in for --apply only: SOSO_OWNER_EMAIL and SOSO_OWNER_PASSWORD
  *   from the environment. They are never printed or written anywhere.
  * - Writes go through the app's own API with the owner's token; the backend's
@@ -40,7 +41,11 @@ import { uploadData } from 'aws-amplify/storage';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CONTENT_DIR = path.join(ROOT, 'content');
 const CONTENT_FILE = path.join(CONTENT_DIR, 'soso-content.json');
-const OUTPUTS_FILE = path.join(ROOT, 'amplify_outputs.json');
+// AMPLIFY_OUTPUTS targets another environment without replacing the sandbox
+// file that the dev server reads.
+const OUTPUTS_FILE = process.env.AMPLIFY_OUTPUTS
+  ? path.resolve(process.env.AMPLIFY_OUTPUTS)
+  : path.join(ROOT, 'amplify_outputs.json');
 const HERO_VIDEO = path.join(CONTENT_DIR, 'Soso_Website_Hero_12s.mp4');
 const IMAGE_EXTENSIONS = ['jpg', 'jpeg', 'png', 'webp'];
 
@@ -186,8 +191,10 @@ async function upload(key, data, contentType) {
 // ---------------------------------------------------------------- backend
 
 function configure() {
-  if (!fs.existsSync(OUTPUTS_FILE)) fail('amplify_outputs.json not found (see README).');
-  Amplify.configure(JSON.parse(fs.readFileSync(OUTPUTS_FILE, 'utf8')));
+  if (!fs.existsSync(OUTPUTS_FILE)) fail(`${rel(OUTPUTS_FILE)} not found (see README).`);
+  const outputs = JSON.parse(fs.readFileSync(OUTPUTS_FILE, 'utf8'));
+  console.log(`Target: ${rel(OUTPUTS_FILE)}, user pool ${outputs.auth?.user_pool_id ?? '?'}`);
+  Amplify.configure(outputs);
 }
 
 function check(result, what) {
