@@ -37,14 +37,22 @@ export function applyDemo(view: SiteView, hasSettings: boolean): SiteView {
     used = true;
     next.subtitle = text({ ar: '[سطر قصير يعرّف بالصالون: محتوى تجريبي]', en: '[A short line about the salon: demo content]' });
     next.about = text({ ar: '[نبذة قصيرة عن الصالون وفريقه، تُكتب من لوحة الإدارة: محتوى تجريبي]', en: '[A short note about the salon and its team, written in the admin panel: demo content]' });
-    next.address = text({ ar: '[العنوان: تجريبي]', en: '[Address: demo]' });
-    next.workingHours = text({ ar: '[ساعات العمل: تجريبي]', en: '[Working hours: demo]' });
-    next.phone = '+974 0000 0000';
-    next.whatsapp = '97400000000';
-    next.instagramUrl = 'https://www.instagram.com/';
-    next.mapUrl = 'https://www.openstreetmap.org/';
-    next.geo = { lat: 25.2854, lng: 51.531 };
   }
+
+  // Each missing contact detail is filled on its own, so the WhatsApp buttons
+  // and the footer can be reviewed even when only some settings exist.
+  const fill = <K extends keyof SiteView>(key: K, value: SiteView[K]) => {
+    if (next[key]) return;
+    next[key] = value;
+    used = true;
+  };
+  fill('address', text({ ar: '[العنوان: تجريبي]', en: '[Address: demo]' }));
+  fill('workingHours', text({ ar: '[ساعات العمل: تجريبي]', en: '[Working hours: demo]' }));
+  fill('phone', '+974 0000 0000');
+  fill('whatsapp', '97400000000');
+  fill('instagramUrl', 'https://www.instagram.com/');
+  fill('mapUrl', 'https://www.openstreetmap.org/');
+  fill('geo', { lat: 25.2854, lng: 51.531 });
 
   if (view.services.length === 0) {
     used = true;
@@ -52,6 +60,7 @@ export function applyDemo(view: SiteView, hasSettings: boolean): SiteView {
     next.services = services.map((s) => ({
       id: s.id,
       name: lang === 'en' ? en(s.en[0]) : ar(s.ar[0]),
+      nameAr: s.ar[0],
       description: lang === 'en' ? en(s.en[1]) : ar(s.ar[1]),
       categoryId: s.cat,
       availability: s.type,

@@ -1,0 +1,73 @@
+.marquee {
+  display: flex;
+  align-items: center;
+  height: 54px;
+  border-block: 1px solid var(--hairline);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.track {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.list {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 22px;
+  padding-inline: 22px 0;
+  font-family: var(--font-display);
+  font-size: 19px;
+  color: var(--text-muted);
+}
+
+/* Phones: one static line; the duplicate is not needed. */
+.list[aria-hidden] {
+  display: none;
+}
+
+.star {
+  flex-shrink: 0;
+  width: 9px;
+  height: 9px;
+  color: var(--accent-soft);
+}
+
+@media (min-width: 1024px) {
+  .list[aria-hidden] {
+    display: flex;
+  }
+
+  /* Arabic flows to the right, English to the left: half the track = one list. */
+  .track {
+    animation: scroll-rtl 40s linear infinite;
+  }
+
+  :global([dir='ltr']) .track {
+    animation-name: scroll-ltr;
+  }
+
+  .marquee:hover .track {
+    animation-play-state: paused;
+  }
+}
+
+@media (min-width: 1024px) and (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+}
+
+@keyframes scroll-rtl {
+  to {
+    transform: translateX(50%);
+  }
+}
+
+@keyframes scroll-ltr {
+  to {
+    transform: translateX(-50%);
+  }
+}

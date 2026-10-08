@@ -1,0 +1,118 @@
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 1px;
+  color: var(--accent-soft);
+}
+
+:global([data-lang='en']) .eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.eyebrowLine {
+  flex-shrink: 0;
+  width: 28px;
+  height: 1px;
+  background: var(--accent-soft);
+}
+
+.eyebrow[data-tone='gold'] {
+  color: var(--gold);
+}
+
+.eyebrow[data-tone='gold'] .eyebrowLine {
+  background: var(--gold);
+}
+
+.line {
+  display: block;
+}
+
+/* Arrows point in the reading direction: drawn for Arabic, mirrored for English. */
+.arrow {
+  flex-shrink: 0;
+}
+
+:global([dir='ltr']) .arrow {
+  transform: scaleX(-1);
+}
+
+.primary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  height: 56px;
+  padding-inline: 22px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-family: var(--font-text-bold);
+  font-size: 16px;
+  font-weight: 700;
+  transition:
+    filter var(--duration-fast) ease,
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.primary:hover {
+  filter: brightness(1.08);
+}
+
+.primaryCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-pill);
+  background: var(--button-circle);
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.primary:hover .primaryCircle {
+  transform: translateX(-3px);
+}
+
+:global([dir='ltr']) .primary:hover .primaryCircle {
+  transform: translateX(3px);
+}
+
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 48px;
+  padding-inline: 22px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-secondary);
+  color: var(--text-strong);
+  font-family: var(--font-text-bold);
+  font-size: 14px;
+  font-weight: 700;
+  transition: background var(--duration-fast) ease;
+}
+
+.secondary:hover {
+  background: var(--segment-fill);
+}
+
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--touch-min);
+  color: var(--accent-soft);
+  font-family: var(--font-text-bold);
+  font-size: 13.5px;
+  font-weight: 700;
+}
+
+.textLink:hover span {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}

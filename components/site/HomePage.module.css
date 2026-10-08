@@ -1,12 +1,57 @@
+/* Editorial dark page: tokens in styles/tokens.css, fonts in ./fonts.ts. */
+.page {
+  --demo-offset: 0px;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-text);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  overflow-x: clip;
+}
+
+.page[data-lang='ar'] {
+  --font-display: var(--font-amiri), 'Amiri', serif;
+  --font-display-italic: var(--font-amiri-italic), var(--font-amiri), serif;
+  --font-text: var(--font-almarai), 'Almarai', sans-serif;
+  --font-text-bold: var(--font-almarai-bold), var(--font-almarai), sans-serif;
+}
+
+/* English: Cormorant Garamond headlines; Amiri covers any Arabic in them. */
+.page[data-lang='en'] {
+  --font-display: var(--font-cormorant), var(--font-amiri), serif;
+  --font-display-italic: var(--font-cormorant), var(--font-amiri-italic), serif;
+  --font-text: var(--font-almarai), 'Almarai', sans-serif;
+  --font-text-bold: var(--font-almarai-bold), var(--font-almarai), sans-serif;
+}
+
+/* Development: the demo banner (32 px) sits above the fixed header. */
+.page[data-demo] {
+  --demo-offset: 32px;
+}
+
+.page h1,
+.page h2,
+.page h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--text-strong);
+}
+
+.page :focus-visible {
+  outline: 2px solid var(--accent-soft);
+  outline-offset: 3px;
+}
+
 .skip {
   position: absolute;
   top: var(--space-2);
   inset-inline-start: var(--space-2);
-  z-index: 50;
+  z-index: 60;
   padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-pill);
-  background: var(--color-text);
-  color: var(--color-on-dark);
+  background: var(--text-strong);
+  color: var(--bg);
   transform: translateY(-200%);
 }
 

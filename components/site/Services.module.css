@@ -1,360 +1,210 @@
 .section {
+  padding: var(--section-top) var(--gutter) 0;
+}
+
+.inner {
+  max-width: var(--content-max);
+  margin-inline: auto;
+}
+
+.heading {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
-  padding: var(--space-9) var(--section-pad-x) var(--section-pad-y);
+  gap: 14px;
 }
 
-.lead {
-  font-size: var(--text-lead);
-  color: var(--color-text-muted);
+.title {
+  margin: 0;
+  font-size: var(--fs-h2);
+  line-height: 1.15;
 }
 
-.filters {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
+.intro {
+  margin-bottom: 26px;
+  font-size: 14.5px;
+  color: var(--text-muted);
 }
 
-/* Mobile: one scrolling line each; desktop: centered and wrapping. */
-.row {
-  display: flex;
-  gap: var(--space-2);
-  overflow-x: auto;
-  padding-bottom: var(--space-1);
-  scrollbar-width: thin;
+.filter {
+  display: inline-flex;
+  gap: 4px;
+  margin-bottom: 22px;
+  padding: 5px;
+  border-radius: var(--radius-pill);
+  background: var(--segment-fill);
+  border: 1px solid var(--segment-border);
 }
 
-.tab,
-.chip {
-  flex-shrink: 0;
-  white-space: nowrap;
-  min-height: var(--touch-min);
+.filter button {
+  height: var(--touch-min);
+  padding-inline: 16px;
+  border: 0;
   border-radius: var(--radius-pill);
   background: transparent;
-}
-
-.tab {
-  padding: 0 22px;
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--color-text);
-  border: 1px solid var(--color-border-button);
-}
-
-.tab,
-.chip {
-  transition:
-    background var(--duration-fast) ease,
-    border-color var(--duration-fast) ease,
-    color var(--duration-fast) ease,
-    box-shadow var(--duration-fast) ease;
-}
-
-.tab:hover {
-  border-color: var(--color-magenta);
-}
-
-.tab[aria-pressed='true'] {
-  background: var(--color-magenta);
-  border-color: var(--color-magenta);
-  color: var(--color-on-magenta);
-  box-shadow: var(--shadow-glow);
-}
-
-.chip {
-  padding: 0 18px;
+  color: var(--text-strong);
   font-size: 14px;
-  color: var(--color-text-muted);
-  border: 1px solid var(--color-border);
+  white-space: nowrap;
 }
 
-.chip[aria-pressed='true'] {
-  background: var(--color-chip-on);
-  border-color: var(--color-magenta);
-  color: var(--color-text);
+.filter button[aria-pressed='true'] {
+  background: var(--text-strong);
+  color: var(--bg);
+  font-family: var(--font-text-bold);
+  font-weight: 700;
 }
 
 .empty {
-  margin: var(--space-4) 0;
-  text-align: center;
-  color: var(--color-text-muted);
+  padding: 22px 0;
+  border-top: 1px solid var(--hairline);
+  color: var(--text-muted);
 }
 
 .empty[hidden] {
   display: none;
 }
 
-.grid {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+.list {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.cardWrap {
+.row {
   display: flex;
+  gap: 16px;
+  padding: 22px 0;
+  border-top: 1px solid var(--hairline);
 }
 
-/* Mobile card: compact and horizontal (image 96 × 120 + text). */
-.card {
-  display: flex;
-  flex: 1;
-  gap: 14px;
-  padding: var(--space-3);
-  background: var(--color-card);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-card);
-  transition:
-    transform 0.5s var(--ease-out),
-    box-shadow 0.5s var(--ease-out),
-    border-color 0.5s ease;
+.list .row:last-child {
+  border-bottom: 1px solid var(--hairline);
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lift);
-  border-color: var(--color-border-soft);
-}
-
-/* Cards that appear after a filter change fade up into place. */
-/* "backwards" so the animation lets go of transform afterwards (hover lift). */
-.grid[data-filtered] .card {
-  animation: card-in 0.55s var(--ease-out) backwards;
-}
-
-@keyframes card-in {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 16px, 0) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.image {
+.thumb {
   position: relative;
   flex-shrink: 0;
-  width: 96px;
-  height: 120px;
-  border-radius: 10px;
+  width: 132px;
+  height: 176px;
+  border-radius: var(--radius-thumb);
   overflow: hidden;
-  background: var(--color-placeholder-1);
+  background: var(--placeholder-fill);
 }
 
 .photo {
   object-fit: cover;
-  transition: transform 0.9s var(--ease-out);
+  transition: filter 0.4s ease;
 }
 
-.card:hover .photo {
-  transform: scale(1.06);
+.row:hover .photo {
+  filter: brightness(1.04);
+}
+
+.placeholder {
+  position: absolute;
+  inset-inline: 12px;
+  bottom: 12px;
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: var(--placeholder-caption);
 }
 
 .body {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
   flex-grow: 1;
+  flex-direction: column;
+  gap: 8px;
   min-width: 0;
 }
 
-.badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.badgeSalon,
-.badgeHome {
-  font-size: var(--text-badge);
-  padding: 2px 10px;
-  border-radius: var(--radius-pill);
-  line-height: 1.6;
-}
-
-.badgeSalon {
-  background: var(--color-badge-salon-bg);
-  color: var(--color-badge-salon-text);
-  border: 1px solid var(--color-badge-salon-border);
-}
-
-.badgeHome {
-  background: var(--color-badge-home-bg);
-  color: var(--color-badge-home-text);
-  border: 1px solid var(--color-badge-home-bg);
-}
-
-.name {
-  font-family: var(--font-heading-medium);
-  font-weight: 500;
-  font-size: var(--text-card-title);
-  line-height: 1.5;
-}
-
-.description {
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--color-text-muted);
-  white-space: pre-line;
-}
-
-.footer {
+.meta {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-2);
+}
+
+.number {
+  font-family: var(--font-display);
+  font-size: 13px;
+  color: var(--text-faint);
+}
+
+.tag {
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-tint);
+  color: var(--accent-soft);
+  font-size: 10.5px;
+  white-space: nowrap;
+}
+
+.name {
+  margin: 0;
+  font-size: var(--fs-h3);
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.tagline {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.packages {
+  font-size: var(--fs-caption);
+  line-height: 1.7;
+  color: var(--text-faint);
+}
+
+.cta {
   margin-top: auto;
 }
 
-.price {
-  font-size: 14px;
-  font-weight: 600;
-}
+@media (min-width: 1024px) {
+  .intro {
+    font-size: 17px;
+    margin-bottom: 40px;
+  }
 
-.ask {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  min-height: var(--touch-min);
-  margin-inline-start: auto;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--color-text);
-  border-bottom: 1px solid var(--color-text);
-}
+  /* Two columns of rows; the number grows into a large faint numeral. */
+  .list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 48px;
+  }
 
-.ask svg {
-  width: 16px;
-  height: 16px;
-}
-
-@media (min-width: 720px) {
-  .section {
-    gap: var(--space-7);
-    padding: var(--section-pad-y) var(--section-pad-x);
+  .list .row:nth-last-child(2):nth-child(odd) {
+    border-bottom: 1px solid var(--hairline);
   }
 
   .row {
-    flex-wrap: wrap;
-    justify-content: center;
-    overflow: visible;
-    padding-bottom: 0;
+    gap: 24px;
+    padding: 28px 0;
   }
 
-  .filters {
-    gap: var(--space-6);
+  .thumb {
+    width: 200px;
+    height: 260px;
   }
 
-  .row:first-child {
-    gap: var(--space-3);
+  /* Decorative (aria-hidden): an outlined numeral. */
+  .number {
+    font-size: 44px;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--text-faint);
   }
 
-  .row + .row {
-    gap: 10px;
-  }
-
-  .tab {
-    min-height: 48px;
-    padding: 0 28px;
-    font-size: 16px;
-  }
-
-  .chip {
-    padding: 0 var(--space-5);
+  .tagline {
     font-size: 15px;
   }
 
-  .empty {
-    margin: var(--space-6) 0;
-  }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 28px;
-  }
-
-  /* Desktop card: image on top, button at the bottom. */
-  .card {
-    flex-direction: column;
-    gap: 0;
-    padding: 0;
-    overflow: hidden;
-  }
-
-  .card:hover {
-    transform: translateY(-8px);
-  }
-
-  .image {
-    width: 100%;
-    height: 230px;
-    border-radius: 0;
-  }
-
-  .body {
-    gap: var(--space-3);
-    padding: var(--space-6);
-  }
-
-  .badges {
-    gap: var(--space-2);
-  }
-
-  .badgeSalon,
-  .badgeHome {
-    padding: 4px 14px;
-  }
-
-  .name {
-    line-height: 1.45;
-  }
-
-  .description {
-    flex-grow: 1;
-    font-size: 16px;
-    line-height: 1.7;
-  }
-
-  .footer {
-    flex-direction: column;
-    align-items: stretch;
-    gap: var(--space-3);
-  }
-
-  .price {
-    font-size: 16px;
-  }
-
-  .ask {
-    justify-content: center;
-    gap: 10px;
-    min-height: 48px;
-    margin-top: var(--space-2);
-    margin-inline-start: 0;
-    border: 1px solid var(--color-text);
-    border-radius: var(--radius-pill);
-    font-size: 16px;
-    transition:
-      background var(--duration-fast) ease,
-      color var(--duration-fast) ease,
-      border-color var(--duration-fast) ease;
-  }
-
-  .ask:hover {
-    background: var(--color-magenta);
-    border-color: var(--color-magenta);
-    color: var(--color-on-magenta);
-  }
-
-  .ask svg {
-    width: 18px;
-    height: 18px;
+  .packages {
+    font-size: 14px;
   }
 }

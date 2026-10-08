@@ -1,0 +1,124 @@
+.section {
+  padding: var(--section-top) var(--gutter) 0;
+}
+
+.inner {
+  max-width: var(--content-max);
+  margin-inline: auto;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--fs-h2);
+  line-height: 1.15;
+}
+
+/* Bride tall on the start side; evening and Eid stacked on the end side. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: 160px 160px;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tile[data-occasion='bride'] {
+  grid-row: 1 / span 2;
+}
+
+.tileInner {
+  position: relative;
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-tile);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.photo {
+  z-index: -2;
+  object-fit: cover;
+  transition: filter 0.4s ease;
+}
+
+a.tileInner:hover .photo {
+  filter: brightness(1.04);
+}
+
+.fade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--fade-image);
+}
+
+.caption {
+  position: absolute;
+  inset-inline: 14px;
+  bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.2;
+  color: var(--text-strong);
+}
+
+.tile[data-occasion='bride'] .caption {
+  inset-inline: 16px;
+  bottom: 16px;
+}
+
+.tile[data-occasion='bride'] .name {
+  font-size: 26px;
+}
+
+.sub {
+  font-size: 12px;
+  color: var(--text);
+}
+
+@media (min-width: 1024px) {
+  .heading {
+    margin-bottom: 40px;
+  }
+
+  /* One row of three equal tiles. */
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: 280px;
+    gap: 20px;
+  }
+
+  .tile[data-occasion='bride'] {
+    grid-row: auto;
+  }
+
+  .name,
+  .tile[data-occasion='bride'] .name {
+    font-size: 30px;
+  }
+
+  .caption,
+  .tile[data-occasion='bride'] .caption {
+    inset-inline: 22px;
+    bottom: 22px;
+  }
+
+  .sub {
+    font-size: 13px;
+  }
+}

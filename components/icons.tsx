@@ -93,6 +93,23 @@ export const ChevronIcon = ({ direction, ...p }: IconProps & { direction: 'up' |
   );
 };
 
+/**
+ * Arrow drawn pointing left, the reading direction on Arabic pages; English
+ * pages mirror it with CSS so it points right.
+ */
+export const ArrowIcon = (p: IconProps) => (
+  <Icon strokeWidth={2} {...p}>
+    <path d="M19 12H5M11 6l-6 6 6 6" />
+  </Icon>
+);
+
+/** Small filled four-point star used as a separator. */
+export const StarIcon = ({ size = 10, ...p }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" {...p}>
+    <path d="M12 0c1 6.6 5.4 11 12 12-6.6 1-11 5.4-12 12-1-6.6-5.4-11-12-12C6.6 11 11 6.6 12 0z" />
+  </svg>
+);
+
 export const PauseIcon = (p: IconProps) => (
   <Icon strokeWidth={1.8} {...p}>
     <path d="M9 6v12M15 6v12" />

@@ -1,0 +1,67 @@
+.section {
+  padding: var(--section-top) 20px 0;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 920px;
+  margin-inline: auto;
+  padding: 34px 26px;
+  border-radius: var(--radius-cta-card);
+  background: var(--cream-card);
+  color: var(--cream-card-text);
+}
+
+.wordmark {
+  width: auto;
+  height: 34px;
+  align-self: flex-start;
+}
+
+/* Two classes, to win over the page's cream heading color. */
+.card .title {
+  margin: 0;
+  font-size: 38px;
+  line-height: 1.1;
+  color: var(--cream-card-text);
+}
+
+.body {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--cream-card-muted);
+}
+
+.button {
+  margin-top: 6px;
+}
+
+.card :focus-visible {
+  outline-color: var(--cream-card-text);
+}
+
+@media (min-width: 1024px) {
+  .card {
+    padding: 64px 72px;
+    gap: 18px;
+  }
+
+  .wordmark {
+    height: 44px;
+  }
+
+  .card .title {
+    font-size: var(--fs-h2);
+  }
+
+  .body {
+    font-size: 17px;
+  }
+
+  .button {
+    align-self: flex-start;
+    min-width: 320px;
+  }
+}

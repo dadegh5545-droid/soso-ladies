@@ -17,6 +17,8 @@ export type LText = { text: string; lang: Lang };
 export type ServiceView = {
   id: string;
   name: LText;
+  /** The Arabic name as stored, for matching fallback copy (lib/site/services.ts). */
+  nameAr: string;
   description: LText | null;
   categoryId: string;
   availability: Availability;
@@ -119,6 +121,7 @@ export function buildSiteView(
         {
           id: service.id,
           name,
+          nameAr: service.nameAr,
           description: pick(lang, service.descriptionAr, service.descriptionEn),
           categoryId: service.categoryId,
           availability: service.availability as Availability,
