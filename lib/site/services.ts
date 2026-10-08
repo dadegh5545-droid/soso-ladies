@@ -81,6 +81,10 @@ const FALLBACKS: Fallback[] = [
       ar: 'جلسات تنظّف بشرتك وترطّبها وتمنحها نضارة.',
       en: 'Sessions that cleanse and hydrate your skin for a fresh glow.',
     },
+    packages: {
+      ar: ['تنظيف عميق', 'ترطيب', 'نضارة ومكافحة التجاعيد'],
+      en: ['Deep cleansing', 'Hydration', 'Anti-aging glow'],
+    },
     media: 'facial',
   },
 ];

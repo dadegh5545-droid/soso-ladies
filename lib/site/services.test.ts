@@ -30,7 +30,11 @@ test('names compare without diacritics, brackets or letter variants', () => {
 test('the five current service names all find their fallback', () => {
   // As stored in the data: shadda and hamza on henna, a bracketed note on facial.
   const names = ['العناية بالبشرة (Facial)', 'المكياج الدائم', 'الشعر', 'الأظافر', 'الحنّاء'];
-  for (const name of names) assert.ok(findFallback(name)?.tagline, name);
+  for (const name of names) {
+    assert.ok(findFallback(name)?.tagline, name);
+    assert.equal(findFallback(name)?.packages?.ar.length, 3, name);
+  }
+  assert.equal(findFallback('العناية بالبشرة (Facial)')?.packages?.en.join(' · '), 'Deep cleansing · Hydration · Anti-aging glow');
   // Letter variants: alef forms, taa marbuta / haa, alef maqsura / yaa, spaces.
   assert.ok(findFallback('  الاظافر '));
   assert.ok(findFallback('العنايه بالبشره'));
