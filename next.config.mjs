@@ -4,8 +4,8 @@ const nextConfig = {
   poweredByHeader: false,
   images: {
     formats: ['image/webp'],
-    // Media keys never change (a new upload gets a new key), so optimized
-    // copies can be kept for an hour.
+    // Only photos in the build go through the optimizer; uploads under /media/*
+    // are served as is (Amplify Hosting's optimizer answers 404 for them).
     minimumCacheTTL: 3600,
   },
   async rewrites() {

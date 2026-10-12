@@ -8,6 +8,11 @@ import styles from './GalleryGrid.module.css';
 
 export type GalleryItem = {
   id: string;
+  /**
+   * A photo in the build, or an upload URL (/media/*). Uploads skip the image
+   * optimizer: Amplify Hosting's answers 404 for them, and they are already
+   * resized WebP.
+   */
   src: StaticImageData | string;
   alt: LText;
   /** Object position for the tile crop. */
@@ -59,6 +64,7 @@ export function GalleryGrid({ items, lang }: { items: GalleryItem[]; lang: Lang 
                 alt={item.alt.text}
                 lang={item.alt.lang}
                 fill
+                unoptimized={typeof item.src === 'string'}
                 placeholder={typeof item.src === 'string' ? 'empty' : 'blur'}
                 sizes="(min-width: 1024px) 400px, 50vw"
                 className={styles.photo}
@@ -81,7 +87,15 @@ export function GalleryGrid({ items, lang }: { items: GalleryItem[]; lang: Lang 
         {current && (
           <div className={styles.viewer}>
             <div className={styles.full}>
-              <Image src={current.src} alt={current.alt.text} lang={current.alt.lang} fill sizes="100vw" className={styles.fullPhoto} />
+              <Image
+                src={current.src}
+                alt={current.alt.text}
+                lang={current.alt.lang}
+                fill
+                unoptimized={typeof current.src === 'string'}
+                sizes="100vw"
+                className={styles.fullPhoto}
+              />
             </div>
             <div className={styles.controls}>
               {items.length > 1 && (

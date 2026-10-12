@@ -156,7 +156,9 @@ function ServiceItem({ row, index, lang, whatsapp }: { row: ServiceRow; index: n
     <li className={styles.row}>
       <div className={styles.thumb}>
         {row.imageSrc ? (
-          <Image src={row.imageSrc} alt={row.name.text} fill sizes="(min-width: 1024px) 200px, 132px" className={styles.photo} />
+          // Uploads skip the optimizer: Amplify Hosting's answers 404 for /media/*
+          // (an API route), and uploads are already resized WebP.
+          <Image src={row.imageSrc} alt={row.name.text} fill unoptimized className={styles.photo} />
         ) : photo ? (
           <Image
             src={photo.image}
