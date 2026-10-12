@@ -11,9 +11,10 @@ import styles from './Header.module.css';
 /**
  * Fixed header: transparent over the page's hero, solid (--bg-elevated with a
  * hairline) after 40 px of scroll. The menu links to the site's pages and
- * marks the current one; phones get a full-screen menu.
+ * marks the current one; phones get a full-screen menu. Over a brand-magenta
+ * banner (onBrand) the logo is yellow until the header turns solid.
  */
-export function Header({ view, page }: { view: SiteView; page: PageKey }) {
+export function Header({ view, page, onBrand = false }: { view: SiteView; page: PageKey; onBrand?: boolean }) {
   const t = strings[view.lang];
   const [open, setOpen] = useState(false);
   const [solid, setSolid] = useState(false);
@@ -50,10 +51,29 @@ export function Header({ view, page }: { view: SiteView; page: PageKey }) {
   }, [open]);
 
   return (
-    <header className={styles.header} data-solid={solid || undefined}>
+    <header className={styles.header} data-solid={solid || undefined} data-on-brand={onBrand || undefined}>
       <div className={styles.bar}>
         <Link href={pathFor('home', view.lang)} className={styles.brand} aria-label={view.salonName.text}>
-          <Image src="/brand/soso-magenta.svg" alt="Soso" width={390} height={182} loading="eager" unoptimized className={styles.logo} />
+          <Image
+            src="/brand/soso-magenta.svg"
+            alt="Soso"
+            width={390}
+            height={182}
+            loading="eager"
+            unoptimized
+            className={`${styles.logo} ${styles.logoDefault}`}
+          />
+          {onBrand && (
+            <Image
+              src="/brand/soso-yellow.svg"
+              alt="Soso"
+              width={390}
+              height={182}
+              loading="eager"
+              unoptimized
+              className={`${styles.logo} ${styles.logoOnBrand}`}
+            />
+          )}
           <span className={styles.salonType}>{t.salonType}</span>
         </Link>
 

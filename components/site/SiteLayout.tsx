@@ -20,8 +20,16 @@ export function SiteLayout({
   page,
   title,
   description,
+  brandHero = false,
   children,
-}: SiteProps & { page: PageKey; title?: string; description?: string; children: ReactNode }) {
+}: SiteProps & {
+  page: PageKey;
+  title?: string;
+  description?: string;
+  /** The page opens on a brand-magenta banner (a PageHero without a photo). */
+  brandHero?: boolean;
+  children: ReactNode;
+}) {
   const t = strings[view.lang];
   // Development only: NODE_ENV is inlined at build time, so production builds
   // drop the banner entirely. It sits above the fixed header, which moves down.
@@ -39,7 +47,7 @@ export function SiteLayout({
         {t.skipToContent}
       </a>
       {showDemoBanner && <DemoBanner view={view} />}
-      <Header view={view} page={page} />
+      <Header view={view} page={page} onBrand={brandHero} />
       <main id="main">{children}</main>
       <Footer view={view} />
       {view.whatsapp && <StickyBar lang={view.lang} whatsapp={view.whatsapp} />}

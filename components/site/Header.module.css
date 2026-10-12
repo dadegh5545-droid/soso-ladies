@@ -40,6 +40,17 @@
   width: auto;
 }
 
+/* Over the magenta banner the magenta logo would vanish: the yellow one shows
+   until the header turns solid. */
+.logoOnBrand,
+.header[data-on-brand]:not([data-solid]) .logoDefault {
+  display: none;
+}
+
+.header[data-on-brand]:not([data-solid]) .logoOnBrand {
+  display: block;
+}
+
 /* The descriptor next to the logo shows from tablet width up. */
 .salonType {
   display: none;

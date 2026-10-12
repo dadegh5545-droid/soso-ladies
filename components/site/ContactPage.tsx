@@ -9,7 +9,7 @@ export function ContactPage(props: SiteProps) {
   const { view } = props;
   const t = strings[view.lang];
   return (
-    <SiteLayout {...props} page="contact" title={t.nav.contact} description={t.pages.contact.lead}>
+    <SiteLayout {...props} page="contact" title={t.nav.contact} description={t.pages.contact.lead} brandHero>
       <PageHero
         lang={view.lang}
         page="contact"
