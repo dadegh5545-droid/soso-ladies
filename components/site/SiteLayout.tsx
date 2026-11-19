@@ -5,13 +5,20 @@ import { strings } from '@/lib/site/strings';
 import { fontVariables } from './fonts';
 import { DemoBanner, Footer } from './Footer';
 import { Header } from './Header';
+import { MetaPixel } from './MetaPixel';
 import { Seo } from './Seo';
 import { StickyBar } from './StickyBar';
 import styles from './SiteLayout.module.css';
 
 /**
- * Frame of every public page: fonts and theme, SEO, the fixed header with
- * the page menu, the footer and the phone booking bar.
+ * Production builds only: local development never sends events to Meta.
+ * NODE_ENV is inlined at build time.
+ */
+const META_PIXEL_ON = process.env.NODE_ENV === 'production';
+
+/**
+ * Frame of every public page: fonts and theme, SEO, the Meta Pixel, the
+ * fixed header with the page menu, the footer and the phone booking bar.
  */
 export function SiteLayout({
   view,
@@ -43,6 +50,7 @@ export function SiteLayout({
         }
       `}</style>
       <Seo view={view} origin={origin} page={page} title={title} description={description} noindex={unavailable} />
+      {META_PIXEL_ON && <MetaPixel />}
       <a className={styles.skip} href="#main">
         {t.skipToContent}
       </a>
