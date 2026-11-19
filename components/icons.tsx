@@ -58,6 +58,13 @@ export const ClockIcon = (p: IconProps) => (
   </Icon>
 );
 
+export const MailIcon = (p: IconProps) => (
+  <Icon strokeWidth={1.5} {...p}>
+    <rect x="3.5" y="5.5" width="17" height="13" rx="2.5" />
+    <path d="M4.5 7.5l7.5 5.5 7.5-5.5" />
+  </Icon>
+);
+
 export const PhoneIcon = (p: IconProps) => (
   <Icon strokeWidth={1.5} {...p}>
     <path d="M6 3.5h3l1.5 4-2 1.3a10 10 0 0 0 5.7 5.7l1.3-2 4 1.5v3a2 2 0 0 1-2 2A14.5 14.5 0 0 1 4 5.5a2 2 0 0 1 2-2z" />

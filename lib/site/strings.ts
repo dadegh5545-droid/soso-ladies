@@ -21,6 +21,8 @@ export const strings = {
       about: 'عن سوسو',
       gallery: 'المعرض',
       contact: 'تواصلي معنا',
+      privacy: 'سياسة الخصوصية',
+      dataDeletion: 'حذف البيانات',
     },
     breadcrumb: 'مسار الصفحة',
     mainNav: 'القائمة الرئيسية',
@@ -108,6 +110,7 @@ export const strings = {
       instagram: 'انستقرام',
       whatsapp: 'واتساب',
       map: 'الموقع على الخريطة',
+      legal: 'الخصوصية والبيانات',
       copyright: '© 2026 Soso Ladies Salon · soso-ladies.qa',
     },
     sticky: {
@@ -164,6 +167,16 @@ export const strings = {
         eyebrow: 'تواصلي معنا',
         titleLines: ['يسعدنا', 'تواصلكِ.'],
         lead: 'راسلينا على واتساب ونرتّب لك موعدك في الصالون أو في بيتك.',
+      },
+      privacy: {
+        eyebrow: 'سياسة الخصوصية',
+        titleLines: ['خصوصيتكِ', 'أمانةٌ لدينا.'],
+        lead: 'ما البيانات التي نجمعها حين تتواصلين معنا، ولماذا، وكيف نحافظ عليها.',
+      },
+      dataDeletion: {
+        eyebrow: 'حذف البيانات',
+        titleLines: ['اطلبي حذف', 'بياناتكِ.'],
+        lead: 'يمكنكِ في أي وقت أن تطلبي حذف بياناتكِ الشخصية التي لدينا.',
       },
     },
     servicesPreview: {
@@ -240,6 +253,8 @@ export const strings = {
       about: 'About Soso',
       gallery: 'Gallery',
       contact: 'Contact',
+      privacy: 'Privacy Policy',
+      dataDeletion: 'Data Deletion',
     },
     breadcrumb: 'Breadcrumb',
     mainNav: 'Main menu',
@@ -326,6 +341,7 @@ export const strings = {
       instagram: 'Instagram',
       whatsapp: 'WhatsApp',
       map: 'Location on the map',
+      legal: 'Privacy and data',
       copyright: '© 2026 Soso Ladies Salon · soso-ladies.qa',
     },
     sticky: {
@@ -382,6 +398,16 @@ export const strings = {
         eyebrow: 'Contact',
         titleLines: ['We would love', 'to hear from you.'],
         lead: 'Message us on WhatsApp and we will arrange your appointment, in the salon or at home.',
+      },
+      privacy: {
+        eyebrow: 'Privacy Policy',
+        titleLines: ['Your privacy,', 'in safe hands.'],
+        lead: 'What we collect when you contact us, why we use it, and how we look after it.',
+      },
+      dataDeletion: {
+        eyebrow: 'Data Deletion',
+        titleLines: ['Ask us to delete', 'your data.'],
+        lead: 'You can ask us at any time to delete the personal data we hold about you.',
       },
     },
     servicesPreview: {

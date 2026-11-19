@@ -1,11 +1,11 @@
 import type { GetServerSideProps } from 'next';
 import { siteOrigin } from '@/lib/server/site-url';
-import { PAGE_KEYS, pathFor } from '@/lib/site/routes';
+import { LEGAL_PAGE_KEYS, PAGE_KEYS, pathFor } from '@/lib/site/routes';
 
 /** Every public page in both languages, with alternates; /admin is not listed. */
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const origin = siteOrigin(req);
-  const urls = PAGE_KEYS.flatMap((page) => {
+  const urls = [...PAGE_KEYS, ...LEGAL_PAGE_KEYS].flatMap((page) => {
     const alternates = `
     <xhtml:link rel="alternate" hreflang="ar" href="${origin}${pathFor(page, 'ar')}"/>
     <xhtml:link rel="alternate" hreflang="en" href="${origin}${pathFor(page, 'en')}"/>

@@ -1,0 +1,234 @@
+/* Privacy policy and data deletion: one readable column under the banner. */
+.wrap {
+  padding: 40px var(--gutter) 0;
+}
+
+.article {
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.effective {
+  margin-bottom: 8px;
+  font-size: var(--fs-caption);
+  color: var(--text-faint);
+}
+
+.section {
+  display: flex;
+  gap: 18px;
+  padding: 26px 0;
+  border-top: 1px solid var(--hairline);
+}
+
+.number {
+  flex-shrink: 0;
+  width: 44px;
+  font-family: var(--font-display);
+  font-size: 32px;
+  line-height: 1;
+  color: var(--accent-soft);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  color: var(--text-muted);
+}
+
+.title {
+  margin: 0;
+  padding-top: 2px;
+  font-size: 24px;
+  line-height: 1.3;
+}
+
+.body a {
+  color: var(--accent-soft);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  overflow-wrap: anywhere;
+}
+
+.body a:hover {
+  color: var(--text-strong);
+}
+
+/* The number stays on one line. */
+.body a.phone {
+  white-space: nowrap;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.list li {
+  position: relative;
+  padding-inline-start: 22px;
+}
+
+/* Bullets: a small magenta dot. */
+ul.list li::before {
+  content: '';
+  position: absolute;
+  top: 0.8em;
+  inset-inline-start: 2px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+}
+
+/* Steps: a magenta numeral, Arabic-Indic digits on the Arabic page. */
+ol.list li {
+  counter-increment: step;
+  padding-inline-start: 30px;
+}
+
+ol.list li::before {
+  content: counter(step) '.';
+  position: absolute;
+  inset-inline-start: 0;
+  font-family: var(--font-text-bold);
+  font-weight: 700;
+  color: var(--accent-soft);
+}
+
+:global([data-lang='ar']) ol.list li::before {
+  content: counter(step, arabic-indic) '.';
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 32px;
+  border-top: 1px solid var(--hairline);
+}
+
+.contactTitle {
+  margin: 0 0 6px;
+  font-size: var(--fs-h3);
+  line-height: 1.2;
+}
+
+.cards {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Same cards as the contact page; WhatsApp in the brand magenta. */
+.card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  column-gap: 16px;
+  row-gap: 2px;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+  border-radius: var(--radius-tile);
+  border: 1px solid var(--hairline);
+  background: var(--bg-raised);
+  color: var(--text);
+  transition:
+    border-color var(--duration-fast) ease,
+    transform 0.4s var(--ease-out),
+    box-shadow 0.4s var(--ease-out);
+}
+
+.card:hover {
+  border-color: var(--accent-soft);
+  transform: translateY(-3px);
+}
+
+.card[data-primary] {
+  background: var(--gradient-brand);
+  border-color: transparent;
+  color: var(--on-accent);
+}
+
+.card[data-primary]:hover {
+  box-shadow: var(--shadow-accent);
+}
+
+.icon {
+  grid-row: span 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-tint);
+  color: var(--accent-soft);
+}
+
+.card[data-primary] .icon {
+  background: var(--button-circle);
+  color: var(--on-accent);
+}
+
+.label {
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.2;
+  color: var(--text-strong);
+}
+
+.card[data-primary] .label {
+  color: var(--on-accent);
+}
+
+.value {
+  font-size: 14px;
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+}
+
+.card[data-primary] .value {
+  color: var(--on-accent);
+}
+
+@media (min-width: 720px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .wrap {
+    padding-top: 64px;
+  }
+
+  .section {
+    gap: 28px;
+    padding: 32px 0;
+  }
+
+  .number {
+    width: 56px;
+    font-size: 40px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .card {
+    padding: 24px;
+  }
+}

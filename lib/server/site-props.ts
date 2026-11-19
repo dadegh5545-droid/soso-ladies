@@ -22,11 +22,23 @@ const emptyCatalog = { categories: [], services: [], galleryImages: [] };
 export async function getSiteProps(
   context: GetServerSidePropsContext,
   lang: Lang,
+  {
+    fixedContent = false,
+  }: {
+    /**
+     * The page's own content is fixed text (the privacy and data-deletion
+     * pages), so it is complete even when the data cannot be read: it then
+     * still answers 200 and stays indexable, because Meta's crawler checks
+     * these URLs. Only the header and footer lose the owner's contact links.
+     */
+    fixedContent?: boolean;
+  } = {},
 ): Promise<GetServerSidePropsResult<SiteProps>> {
   const origin = siteOrigin(context.req);
   let view: SiteView;
   let hasSettings = false;
   let unavailable = false;
+  let noData = false;
 
   try {
     const { data } = await loadPublicData();
@@ -35,16 +47,20 @@ export async function getSiteProps(
     context.res.setHeader('Cache-Control', CACHE_CONTROL);
   } catch {
     // No data and no earlier copy: render the static parts, tell crawlers to
-    // retry, and keep this response out of every cache.
+    // retry (unless the page is fixed text), and keep this response out of
+    // every cache.
     view = buildSiteView(lang, null, emptyCatalog);
-    unavailable = true;
-    context.res.statusCode = 503;
-    context.res.setHeader('Retry-After', '60');
+    noData = true;
     context.res.setHeader('Cache-Control', 'no-store');
+    if (!fixedContent) {
+      unavailable = true;
+      context.res.statusCode = 503;
+      context.res.setHeader('Retry-After', '60');
+    }
   }
 
   if (process.env.NODE_ENV === 'development') {
-    if (process.env.DEMO_CONTENT !== 'off' && !unavailable) {
+    if (process.env.DEMO_CONTENT !== 'off' && !noData) {
       const { applyDemo } = await import('@/lib/demo-content');
       view = applyDemo(view, hasSettings);
     }

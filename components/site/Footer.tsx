@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { InstagramIcon, PinIcon, WhatsappIcon } from '@/components/icons';
-import { PAGE_KEYS, pathFor } from '@/lib/site/routes';
+import { LEGAL_PAGE_KEYS, PAGE_KEYS, pathFor } from '@/lib/site/routes';
 import { strings } from '@/lib/site/strings';
 import type { SiteView } from '@/lib/site/view';
 import { whatsappLink } from '@/lib/whatsapp';
@@ -13,7 +13,7 @@ const osmLink = ({ lat, lng }: { lat: number; lng: number }) =>
 /**
  * Wordmark and round links (Instagram, WhatsApp, map), then the contact block
  * from the admin settings (address, opening hours, phone). Anything empty is
- * left out.
+ * left out. The privacy and data-deletion links sit above the copyright.
  */
 export function Footer({ view }: { view: SiteView }) {
   const t = strings[view.lang].footer;
@@ -81,6 +81,14 @@ export function Footer({ view }: { view: SiteView }) {
             )}
           </dl>
         )}
+
+        <nav className={styles.legal} aria-label={t.legal}>
+          {LEGAL_PAGE_KEYS.map((key) => (
+            <Link key={key} href={pathFor(key, view.lang)}>
+              {strings[view.lang].nav[key]}
+            </Link>
+          ))}
+        </nav>
 
         <p className={styles.copyright} dir="ltr">
           {t.copyright}

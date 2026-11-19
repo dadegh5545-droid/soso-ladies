@@ -102,6 +102,27 @@
   color: var(--accent-soft);
 }
 
+/* Privacy policy and data deletion: small, above the copyright. */
+.legal {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  margin-bottom: -10px;
+}
+
+.legal a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-min);
+  font-size: var(--fs-caption);
+  color: var(--text-faint);
+  transition: color var(--duration-fast) ease;
+}
+
+.legal a:hover {
+  color: var(--accent-soft);
+}
+
 .copyright {
   font-size: 11.5px;
   color: var(--text-faint);

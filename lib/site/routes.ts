@@ -4,10 +4,21 @@
  */
 import type { Lang } from './strings';
 
-export type PageKey = 'home' | 'services' | 'homeService' | 'about' | 'gallery' | 'contact';
+export type PageKey =
+  | 'home'
+  | 'services'
+  | 'homeService'
+  | 'about'
+  | 'gallery'
+  | 'contact'
+  | 'privacy'
+  | 'dataDeletion';
 
 /** Menu order. */
 export const PAGE_KEYS: PageKey[] = ['home', 'services', 'homeService', 'about', 'gallery', 'contact'];
+
+/** Legal pages: linked from the footer only, not the menu. */
+export const LEGAL_PAGE_KEYS: PageKey[] = ['privacy', 'dataDeletion'];
 
 const SLUGS: Record<PageKey, string> = {
   home: '',
@@ -16,6 +27,8 @@ const SLUGS: Record<PageKey, string> = {
   about: 'about',
   gallery: 'gallery',
   contact: 'contact',
+  privacy: 'privacy',
+  dataDeletion: 'data-deletion',
 };
 
 export function pathFor(page: PageKey, lang: Lang): string {
