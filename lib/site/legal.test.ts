@@ -51,6 +51,13 @@ test('the privacy policy links to the data-deletion page and shows its effective
   }
 });
 
+test('the privacy policy discloses the Meta Pixel and its cookies', () => {
+  const ar = privacyPolicy.ar.sections.find((s) => s.id === 'cookies-meta-pixel');
+  const en = privacyPolicy.en.sections.find((s) => s.id === 'cookies-meta-pixel');
+  assert.ok(ar && texts({ ...privacyPolicy.ar, sections: [ar] }).some((t) => t.includes('Meta Pixel')));
+  assert.ok(en && texts({ ...privacyPolicy.en, sections: [en] }).some((t) => t.includes('cookies')));
+});
+
 test('the data-deletion page promises 30 days and a confirmation, and its cards prefill the request', () => {
   assert.ok(texts(dataDeletion.ar).some((text) => text.includes('30 يوماً')));
   assert.ok(texts(dataDeletion.en).some((text) => text.includes('within 30 days')));

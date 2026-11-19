@@ -57,7 +57,7 @@ export const privacyPolicy: Record<Lang, LegalDoc> = {
         title: 'البيانات التي نجمعها',
         body: [
           {
-            p: 'نجمع فقط ما ترسلينه إلينا بنفسكِ عبر واتساب وانستقرام وفيسبوك ماسنجر، وعبر روابط التواصل والحجز في موقعنا:',
+            p: 'نجمع ما ترسلينه إلينا بنفسكِ عبر واتساب وانستقرام وفيسبوك ماسنجر، وعبر روابط التواصل والحجز في موقعنا:',
           },
           {
             ul: [
@@ -89,6 +89,18 @@ export const privacyPolicy: Record<Lang, LegalDoc> = {
         body: [
           {
             p: 'نستقبل الرسائل ونرد عليها عبر منصات Meta (واتساب، انستقرام، فيسبوك)، وعبر منصة لإدارة رسائل الأعمال تساعدنا على تنظيم المحادثات. وتعالج هذه المنصات البيانات أيضاً وفق سياسات الخصوصية الخاصة بها.',
+          },
+        ],
+      },
+      {
+        id: 'cookies-meta-pixel',
+        title: 'ملفات تعريف الارتباط وبكسل Meta',
+        body: [
+          {
+            p: 'يستخدم موقعنا بكسل Meta (Meta Pixel)، وهو أداة من Meta تستخدم ملفات تعريف الارتباط (الكوكيز) لتسجيل زيارات صفحات الموقع والنقر على روابط واتساب والهاتف. نستخدم ذلك لقياس نتائج إعلاناتنا على فيسبوك وانستقرام وتحسينها.',
+          },
+          {
+            p: 'تعالج Meta هذه البيانات وفق سياسة الخصوصية الخاصة بها. ويمكنكِ التحكم في الإعلانات التي تظهر لكِ من إعدادات الإعلانات في حسابكِ على فيسبوك أو انستقرام، أو حظر ملفات تعريف الارتباط من إعدادات متصفحكِ.',
           },
         ],
       },
@@ -140,7 +152,7 @@ export const privacyPolicy: Record<Lang, LegalDoc> = {
         title: 'What we collect',
         body: [
           {
-            p: 'We collect only what you send us yourself through WhatsApp, Instagram, Facebook Messenger and the contact and booking links on our website:',
+            p: 'We collect what you send us yourself through WhatsApp, Instagram, Facebook Messenger and the contact and booking links on our website:',
           },
           {
             ul: [
@@ -172,6 +184,18 @@ export const privacyPolicy: Record<Lang, LegalDoc> = {
         body: [
           {
             p: 'We receive and reply to messages on Meta platforms (WhatsApp, Instagram and Facebook) and through a business messaging management platform that helps us organise conversations. These platforms also process data under their own privacy policies.',
+          },
+        ],
+      },
+      {
+        id: 'cookies-meta-pixel',
+        title: 'Cookies and the Meta Pixel',
+        body: [
+          {
+            p: 'Our website uses the Meta Pixel, a Meta tool that uses cookies to record visits to our pages and clicks on our WhatsApp and phone links. We use this to measure and improve our ads on Facebook and Instagram.',
+          },
+          {
+            p: 'Meta processes this data under its own privacy policy. You can control the ads you see in the ad settings of your Facebook or Instagram account, or block cookies in your browser settings.',
           },
         ],
       },
